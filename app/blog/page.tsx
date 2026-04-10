@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, Clock, ArrowRight, BookOpen } from "lucide-react";
-import { BLOG_POSTS } from "@/app/_lib/data";
+import { Calendar, Clock, ArrowRight, BookOpen, Phone } from "lucide-react";
+import { BLOG_POSTS, getWhatsAppLink } from "@/app/_lib/data";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -119,6 +119,36 @@ export default function BlogPage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-primary">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white">
+            Yatırım Danışmanlığı Almak İster Misiniz?
+          </h2>
+          <p className="text-white/70 mt-3 text-lg">
+            Yazılarımızda bahsettiğimiz fırsatları değerlendirmek için uzman
+            ekibimizle görüşün. İlk danışmanlık ücretsizdir.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <Link
+              href="/iletisim"
+              className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl font-semibold transition-all hover:shadow-xl"
+            >
+              <Phone className="w-5 h-5" />
+              İletişime Geçin
+            </Link>
+            <a
+              href={getWhatsAppLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold transition-all"
+            >
+              WhatsApp ile Yazın
+            </a>
           </div>
         </div>
       </section>
