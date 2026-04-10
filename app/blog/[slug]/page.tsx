@@ -165,6 +165,60 @@ export default async function BlogPostPage({
           </div>
         </div>
       </section>
+
+      {/* Related Posts */}
+      <RelatedPosts currentSlug={post.slug} />
     </>
+  );
+}
+
+function RelatedPosts({ currentSlug }: { currentSlug: string }) {
+  // Pick 3 posts, deterministic based on slug hash
+  const others = BLOG_POSTS.filter((p) => p.slug !== currentSlug);
+  const hash = currentSlug.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+  const shuffled = [...others].sort(
+    (a, b) =>
+      ((a.slug.length * hash) % 97) - ((b.slug.length * hash) % 97)
+  );
+  const related = shuffled.slice(0, 3);
+
+  return (
+    <section className="py-16 bg-surface">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <div className="section-divider mx-auto mb-4" />
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary">
+            Benzer Yazılar
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {related.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/blog/${p.slug}`}
+              className="block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-accent/20 group"
+            >
+              <div className="relative h-44">
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+              <div className="p-5">
+                <span className="bg-accent/10 text-accent px-2.5 py-0.5 rounded-full font-medium text-xs">
+                  {p.category}
+                </span>
+                <h3 className="text-base font-bold text-primary mt-2 group-hover:text-accent transition-colors line-clamp-2">
+                  {p.title}
+                </h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

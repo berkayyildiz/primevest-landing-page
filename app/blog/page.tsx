@@ -124,12 +124,12 @@ export default function BlogPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-primary">
+      <section className="py-16 bg-white border-t border-border">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white">
+          <h2 className="text-3xl font-bold text-primary">
             Yatırım Danışmanlığı Almak İster Misiniz?
           </h2>
-          <p className="text-white/70 mt-3 text-lg">
+          <p className="text-text-light mt-3 text-lg">
             Yazılarımızda bahsettiğimiz fırsatları değerlendirmek için uzman
             ekibimizle görüşün. İlk danışmanlık ücretsizdir.
           </p>
@@ -145,7 +145,7 @@ export default function BlogPage() {
               href={getWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold transition-all"
+              className="inline-flex items-center justify-center gap-2 border border-border text-primary hover:bg-surface px-8 py-4 rounded-xl font-semibold transition-all"
             >
               WhatsApp ile Yazın
             </a>
