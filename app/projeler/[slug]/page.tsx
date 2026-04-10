@@ -14,7 +14,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { PROJECTS, getProjectBySlug, COMPANY, getWhatsAppLink } from "@/app/_lib/data";
+import { PROJECTS, getProjectBySlug, COMPANY, getWhatsAppLink, type Project } from "@/app/_lib/data";
+import { ProjectCard } from "@/app/_components/project-card";
 import { ContactForm } from "@/app/_components/contact-form";
 import { ImageGallery } from "./gallery";
 
@@ -225,6 +226,48 @@ export default async function ProjectPage({
           </div>
         </div>
       </section>
+
+      {/* Similar Projects */}
+      <SimilarProjects current={project} />
     </>
+  );
+}
+
+function SimilarProjects({ current }: { current: Project }) {
+  const similar = PROJECTS.filter(
+    (p) => p.slug !== current.slug && p.region === current.region
+  ).slice(0, 3);
+
+  const fallback =
+    similar.length < 3
+      ? [
+          ...similar,
+          ...PROJECTS.filter(
+            (p) => p.slug !== current.slug && !similar.includes(p)
+          ).slice(0, 3 - similar.length),
+        ]
+      : similar;
+
+  if (fallback.length === 0) return null;
+
+  return (
+    <section className="py-16 bg-surface">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <div className="section-divider mx-auto mb-4" />
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary">
+            Benzer Projeler
+          </h2>
+          <p className="text-text-light mt-2">
+            {current.region} bölgesindeki diğer yatırım fırsatları
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {fallback.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
