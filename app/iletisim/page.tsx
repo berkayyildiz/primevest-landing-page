@@ -171,7 +171,7 @@ export default function ContactPage() {
       {/* Map */}
       <section className="h-[400px] bg-surface-dark relative">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3254.5!2d33.9!3d35.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDE4JzAwLjAiTiAzM8KwNTQnMDAuMCJF!5e0!3m2!1str!2s!4v1"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.155875412121!2d27.13887367630725!3d38.437868371825864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd85b1c5a3223%3A0x2f242830fc5d1cf5!2sProf.%20Dr.%20M.Serdar%20Saydam!5e0!3m2!1str!2str!4v1775814378012!5m2!1str!2str"
           className="w-full h-full border-0 grayscale"
           allowFullScreen
           loading="lazy"
