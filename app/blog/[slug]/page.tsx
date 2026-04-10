@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar, Clock, ArrowLeft, Phone } from "lucide-react";
+import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import { BLOG_POSTS, getBlogPostBySlug, COMPANY, getWhatsAppLink } from "@/app/_lib/data";
 import { ContactForm } from "@/app/_components/contact-form";
 
@@ -70,6 +71,22 @@ export default async function BlogPostPage({
           <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
             {post.title}
           </h1>
+        </div>
+      </section>
+
+      {/* Cover Image */}
+      <section className="bg-surface-dark">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden">
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+              priority
+            />
+          </div>
         </div>
       </section>
 
