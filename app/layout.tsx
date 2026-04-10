@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "./_components/navbar";
 import { Footer } from "./_components/footer";
 import { WhatsAppFAB } from "./_components/whatsapp-fab";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +59,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppFAB />
+        <Analytics />
       </body>
     </html>
   );
