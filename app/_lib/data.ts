@@ -67,8 +67,8 @@ export const TEAM: TeamMember[] = [
   },
   {
     name: "Taşkın Şen",
-    title: "Kıdemli Danışman",
-    titleEn: "Senior Consultant",
+    title: "Danışman",
+    titleEn: "Consultant",
     image: "/images/team/taskin-sen.jpeg",
     bio: "Otomotiv sektöründe satış, satış sonrası hizmetler ve operasyon yönetimi alanlarında 20 yılı aşkın deneyime sahiptir. Volkswagen, Audi, Seat ve Ford markalarında satış ve servis organizasyonlarının yönetiminde aktif rol almıştır. Stratejik planlama, ekip yönetimi ve müşteri odaklı yaklaşımıyla öne çıkan Şen, bu kapsamlı deneyimini emlak ve yatırım danışmanlığı alanında değerlendirmektedir.",
   },
