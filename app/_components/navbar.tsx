@@ -33,7 +33,7 @@ export function Navbar() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-2.5">
             <Image
@@ -41,7 +41,7 @@ export function Navbar() {
               alt=""
               width={100}
               height={100}
-              className={`h-10 w-auto transition-all duration-300 ${
+              className={`h-12 w-auto transition-all duration-300 ${
                 scrolled ? "" : "brightness-0 invert"
               }`}
               priority
@@ -51,7 +51,7 @@ export function Navbar() {
               alt="Primevest Investment"
               width={260}
               height={60}
-              className={`h-7 w-auto transition-all duration-300 ${
+              className={`h-9 w-auto transition-all duration-300 ${
                 scrolled ? "" : "brightness-0 invert"
               }`}
               priority
@@ -59,12 +59,12 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden lg:flex items-center gap-0 absolute left-1/2 -translate-x-1/2">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3.5 py-2.5 rounded-lg text-base font-medium transition-colors ${
                   scrolled
                     ? "text-primary hover:text-accent hover:bg-surface"
                     : "text-white/90 hover:text-white hover:bg-white/10"
@@ -79,7 +79,7 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-5">
             <a
               href={`tel:${COMPANY.phone}`}
-              className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 text-base font-medium transition-colors ${
                 scrolled ? "text-primary" : "text-white/90"
               }`}
             >
@@ -88,7 +88,7 @@ export function Navbar() {
             </a>
             <Link
               href="/iletisim"
-              className="bg-accent hover:bg-accent-dark text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all hover:shadow-lg"
+              className="bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-lg text-base font-semibold transition-all hover:shadow-lg"
             >
               Bilgi Alın
             </Link>

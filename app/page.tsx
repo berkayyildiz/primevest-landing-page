@@ -12,6 +12,7 @@ import {
   Users,
   Award,
   Phone,
+  ChevronDown,
 } from "lucide-react";
 import {
   getFeaturedProjects,
@@ -37,7 +38,7 @@ export default function HomePage() {
   return (
     <>
       {/* ====== HERO ====== */}
-      <section className="relative pt-36 pb-20 sm:pt-44 sm:pb-28 overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center pt-40 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
         <Image
           src="/images/projects/querencia/2.webp"
           alt="Kuzey Kıbrıs gayrimenkul yatırımı"
@@ -46,7 +47,7 @@ export default function HomePage() {
           priority
           quality={85}
         />
-        <div className="absolute inset-0 bg-primary/40" />
+        <div className="absolute inset-0 hero-overlay" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-5 py-2 rounded-full text-white font-semibold text-sm mb-6 tracking-wide">
             PRIMEVEST INVESTMENT
@@ -76,17 +77,22 @@ export default function HomePage() {
               href={getWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-xl text-base font-semibold transition-all"
+              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 text-primary px-8 py-4 rounded-xl text-base font-semibold transition-all"
             >
               <Phone className="w-5 h-5" />
               Hemen Arayın
             </a>
           </div>
         </div>
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
+          <a href="#about" className="animate-bounce inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-colors">
+            <ChevronDown className="w-5 h-5" />
+          </a>
+        </div>
       </section>
 
       {/* ====== ABOUT PREVIEW ====== */}
-      <section className="py-20 bg-white">
+      <section id="about" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
