@@ -49,7 +49,7 @@ export const TEAM: TeamMember[] = [
     title: "Kurucu Ortak & Direktör",
     titleEn: "Founder & Director",
     image: "/images/team/gulay-yildiz.jpeg",
-    bio: "21 yıllık bankacılık kariyerinde Garanti BBVA, ING Bank ve Türk Ekonomi Bankası gibi sektörün önde gelen kurumlarında özel bankacılık, ticari bankacılık ve şube müdürlüğü görevlerinde bulunmuştur. Finansal uzmanlığını girişimcilikle birleştirerek Primevest Investment'ı kurmuş ve yılların birikimini gayrimenkul ve yatırım danışmanlığına dönüştürmüştür. Gülay Yıldız'ı farklı kılan; yalnızca satış yapmak değil, birebir güvene dayalı stratejik danışmanlık sunarak yatırımcıya doğru zamanda, doğru lokasyonda, doğru proje seçimini sağlamasıdır.",
+    bio: "Bankacılık ve finans sektöründe 22 yılı aşkın deneyime sahip olup, Kuzey Kıbrıs'a odaklı gayrimenkul yatırım danışmanlığı hizmeti sunan Primevest Investment'ın kurucusudur. Kariyeri boyunca Garanti BBVA, ING Bank ve Türk Ekonomi Bankası gibi sektörün önde gelen kurumlarında özel bankacılık, ticari bankacılık ve şube müdürlüğü gibi kritik görevlerde bulunmuştur. 22 yıllık bankacılık kariyerinin son 8 yılını Kuzey Kıbrıs'ta şube müdürü olarak geçiren Gülay Yıldız; yatırım finansmanı, yerel mevzuat ve piyasa dinamiklerine hâkimiyetiyle, yatırım süreçlerini yöneten tarafta yer almıştır. Bugün Primevest Investment çatısı altında; satış odaklı değil, güvene dayalı birebir danışmanlık modeliyle, yatırımcılarına doğru zamanda, doğru lokasyonda ve doğru projede konumlanma imkânı sunmaktadır.",
   },
   {
     name: "Berkay Yıldız",
@@ -488,7 +488,7 @@ export const WHY_NORTH_CYPRUS = [
   {
     title: "Stratejik Konum",
     description:
-      "Avrupa, Orta Doğu ve Afrika'nın kesişim noktasında, Türkiye'ye 75 dakika uçuş mesafesinde stratejik lokasyon avantajı.",
+      "Avrupa, Orta Doğu ve Afrika'nın kesişim noktasında, Türkiye'ye 45-75 dakika uçuş mesafesinde stratejik lokasyon avantajı.",
     icon: "map-pin",
   },
   {

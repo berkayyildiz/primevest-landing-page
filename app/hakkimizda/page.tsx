@@ -36,21 +36,30 @@ export default function AboutPage() {
                 Primevest Investment Hikayesi
               </h2>
               <p className="text-text-light mt-4 leading-relaxed">
-                Primevest Investment, 21 yıllık bankacılık kariyerinde Garanti
-                BBVA, ING Bank ve Türk Ekonomi Bankası gibi sektörün önde gelen
-                kurumlarında görev yapmış Gülay Yıldız tarafından kurulmuştur.
+                Primevest Investment, 21 yılı aşkın bankacılık ve finans
+                deneyimini gayrimenkul yatırım danışmanlığıyla birleştiren Gülay
+                Yıldız tarafından kurulmuştur. Garanti BBVA, ING Bank ve Türk
+                Ekonomi Bankası gibi sektörün önde gelen kurumlarında edindiği
+                güçlü kurumsal altyapıyı, son 8 yılında Kuzey Kıbrıs&apos;ta
+                şube müdürü olarak yönettiği operasyonel ve stratejik deneyimle
+                pekiştirmiştir.
               </p>
               <p className="text-text-light mt-4 leading-relaxed">
-                Yılların birikimini gayrimenkul ve yatırım danışmanlığına
-                dönüştüren Gülay Yıldız, Kuzey Kıbrıs&apos;taki 8 yılı aşkın
-                deneyimi, hem KKTC hem TC vatandaşlığı, geniş yerel ağı ve
-                derin sektör bilgisiyle Primevest&apos;i sektörde güçlü bir
-                konuma taşımıştır.
+                Kuzey Kıbrıs&apos;ta 8 yılı aşkın saha deneyimi, güçlü yerel
+                ağı ve çift vatandaşlığın sağladığı çok yönlü bakış açısı ile
+                Primevest; yatırımcılara yalnızca fırsat sunmaz, doğru
+                yapılandırılmış, sürdürülebilir ve güvenli yatırım modelleri
+                geliştirir.
+              </p>
+              <p className="text-text-light mt-4 leading-relaxed font-medium text-primary/80">
+                Bizim yaklaşımımız nettir: Doğru zaman, doğru lokasyon, doğru
+                proje.
               </p>
               <p className="text-text-light mt-4 leading-relaxed">
-                Bizi farklı kılan; yalnızca satış yapmak değil, birebir, güvene
-                dayalı ve stratejik danışmanlık sunarak yatırımcıya doğru
-                zamanda, doğru lokasyonda, doğru proje seçimini sağlamamızdır.
+                Primevest olarak amacımız; yatırımcıyı yalnızca bir mülkle
+                buluşturmak değil, sermayesini koruyan ve büyüten stratejik
+                kararlar almasına rehberlik etmektir. Her yatırım bizim için bir
+                işlem değil, uzun vadeli bir güven ilişkisinin başlangıcıdır.
               </p>
             </div>
             <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">

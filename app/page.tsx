@@ -37,68 +37,50 @@ export default function HomePage() {
   return (
     <>
       {/* ====== HERO ====== */}
-      <section className="relative min-h-[90vh] flex items-center">
+      <section className="relative pt-36 pb-20 sm:pt-44 sm:pb-28 overflow-hidden">
         <Image
-          src="/images/projects/grand-sapphire-blu/1.webp"
+          src="/images/projects/querencia/2.webp"
           alt="Kuzey Kıbrıs gayrimenkul yatırımı"
           fill
           className="object-cover"
           priority
           quality={85}
         />
-        <div className="hero-overlay absolute inset-0" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-white/90 text-sm mb-6">
-              <MapPin className="w-4 h-4" />
-              Kuzey Kıbrıs&apos;ın Güvenilir Yatırım Ortağı
-            </div>
-            <h1 className="hero-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Akdeniz&apos;in Yükselen Değerinde{" "}
-              <span className="gradient-text">Doğru Yatırım</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-white/80 mt-6 max-w-2xl leading-relaxed">
-              21 yıllık finans deneyimi ve Kuzey Kıbrıs&apos;taki derin yerel
-              bilgiyle, size özel stratejik gayrimenkul danışmanlığı sunuyoruz.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <Link
-                href="/projeler"
-                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl text-base font-semibold transition-all hover:shadow-xl"
-              >
-                Projeleri Keşfedin
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <a
-                href={getWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all"
-              >
-                <Phone className="w-5 h-5" />
-                Hemen Arayın
-              </a>
-            </div>
+        <div className="absolute inset-0 bg-primary/40" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-5 py-2 rounded-full text-white font-semibold text-sm mb-6 tracking-wide">
+            PRIMEVEST INVESTMENT
           </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16">
-            {[
-              { value: "10+", label: "Premium Proje" },
-              { value: "21", label: "Yıl Finans Deneyimi" },
-              { value: "8+", label: "Yıl KKTC Tecrübesi" },
-              { value: "%100", label: "Güvenilir Danışmanlık" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="glass rounded-xl p-4 text-center"
-              >
-                <div className="text-2xl sm:text-3xl font-bold text-white">
-                  {stat.value}
-                </div>
-                <div className="text-white/70 text-sm mt-1">{stat.label}</div>
-              </div>
-            ))}
+          <p className="text-lg sm:text-xl text-white/90 font-medium mb-4 drop-shadow-md">
+            Kuzey Kıbrıs&apos;ın Uzman ve Güvenilir Çözüm Ortağınız
+          </p>
+          <h1 className="hero-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            Akdeniz&apos;in Yükselen Değeri{" "}
+            <br className="hidden sm:block" />
+            Kuzey Kıbrıs&apos;ta{" "}
+            <span className="text-white">Doğru Yatırım Fırsatları</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-white/85 mt-6 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+            21 yıllık finans deneyimi ve Kuzey Kıbrıs&apos;taki derin yerel
+            bilgiyle, size özel stratejik gayrimenkul danışmanlığı sunuyoruz.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
+            <Link
+              href="/projeler"
+              className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl text-base font-semibold transition-all hover:shadow-xl"
+            >
+              Projeleri Keşfedin
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <a
+              href={getWhatsAppLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-xl text-base font-semibold transition-all"
+            >
+              <Phone className="w-5 h-5" />
+              Hemen Arayın
+            </a>
           </div>
         </div>
       </section>
@@ -110,20 +92,41 @@ export default function HomePage() {
             <div>
               <div className="section-divider mb-6" />
               <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-                Neden Primevest?
+                Neden Primevest Investment?
               </h2>
               <p className="text-text-light mt-4 leading-relaxed text-lg">
-                Primevest Investment, bankacılık sektöründe 21 yılı aşkın
-                deneyime sahip Gülay Yıldız tarafından kurulan, Kuzey
-                Kıbrıs&apos;a özel gayrimenkul yatırım danışmanlığı
-                şirketidir.
+                Primevest Investment, gayrimenkulü duygusal bir tercih olarak
+                değil; analitik ve sürdürülebilir bir yatırım enstrümanı olarak
+                değerlendirir.
               </p>
               <p className="text-text-light mt-4 leading-relaxed">
-                Satış odaklı değil, güvene dayalı birebir danışmanlık
-                modelimizle yatırımcılarımıza doğru zamanda, doğru lokasyonda,
-                doğru proje seçimini sağlıyoruz. Hem KKTC hem TC vatandaşlığı,
-                geniş yerel ağ ve derin sektör bilgimizle sektörde güçlü bir
-                konumdayız.
+                Her yatırım kararı;
+              </p>
+              <ul className="text-text-light mt-3 space-y-2 leading-relaxed">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                  GBP bazlı değerleme
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                  Amortisman süresi
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                  Kira ve doluluk potansiyeli
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                  Bölgesel talep dinamikleri
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                  Proje ve teslim riskleri
+                </li>
+              </ul>
+              <p className="text-text-light mt-4 leading-relaxed">
+                üzerinden modellenir. Odak noktamız; doğru yapılandırılmış,
+                uzun vadede güçlü kalan yatırımlardır.
               </p>
               <div className="grid grid-cols-3 gap-6 mt-8">
                 {[
@@ -174,8 +177,9 @@ export default function HomePage() {
               Öne Çıkan Projeler
             </h2>
             <p className="text-text-light mt-4 max-w-2xl mx-auto text-lg">
-              Kuzey Kıbrıs&apos;ın en prestijli lokasyonlarında, özenle
-              seçilmiş gayrimenkul yatırım fırsatları.
+              Kuzey Kıbrıs&apos;ın en gözde lokasyonlarında, güçlü proje
+              geliştiricilerden, yüksek standartlı ve değer odaklı yatırım
+              fırsatları.
             </p>
           </div>
 
