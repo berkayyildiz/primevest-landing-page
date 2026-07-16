@@ -3,18 +3,83 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X, Phone } from "lucide-react";
 import { COMPANY } from "@/app/_lib/data";
+import {
+  getAlternatePath,
+  LOCALE_COOKIE,
+  locales,
+  paths,
+  type Locale,
+} from "@/app/_lib/i18n";
+import type { Dictionary } from "@/app/_lib/dictionaries";
 
-const NAV_LINKS = [
-  { href: "/", label: "Ana Sayfa" },
-  { href: "/projeler", label: "Projeler" },
-  { href: "/hakkimizda", label: "Hakkımızda" },
-  { href: "/blog", label: "Blog" },
-  { href: "/iletisim", label: "İletişim" },
-];
+function rememberLocale(target: Locale) {
+  document.cookie = `${LOCALE_COOKIE}=${target};path=/;max-age=31536000;samesite=lax`;
+}
 
-export function Navbar() {
+function LanguageSwitcher({
+  locale,
+  scrolled,
+  label,
+  className = "",
+}: {
+  locale: Locale;
+  scrolled: boolean;
+  label: string;
+  className?: string;
+}) {
+  const pathname = usePathname();
+
+  return (
+    <div
+      aria-label={label}
+      className={`flex items-center gap-1 text-sm font-semibold ${className}`}
+    >
+      {locales.map((target, i) => (
+        <span key={target} className="flex items-center gap-1">
+          {i > 0 && (
+            <span className={scrolled ? "text-border" : "text-white/40"}>
+              |
+            </span>
+          )}
+          {target === locale ? (
+            <span
+              aria-current="true"
+              className={`px-1.5 py-1 rounded ${
+                scrolled ? "text-accent" : "text-white"
+              }`}
+            >
+              {target.toUpperCase()}
+            </span>
+          ) : (
+            <Link
+              href={getAlternatePath(pathname, target)}
+              hrefLang={target}
+              onClick={() => rememberLocale(target)}
+              className={`px-1.5 py-1 rounded transition-colors ${
+                scrolled
+                  ? "text-text-light hover:text-accent"
+                  : "text-white/60 hover:text-white"
+              }`}
+            >
+              {target.toUpperCase()}
+            </Link>
+          )}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export function Navbar({
+  locale,
+  dict,
+}: {
+  locale: Locale;
+  dict: Dictionary["nav"];
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,6 +88,14 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navLinks = [
+    { href: paths.home(locale), label: dict.home },
+    { href: paths.projects(locale), label: dict.projects },
+    { href: paths.about(locale), label: dict.about },
+    { href: paths.blog(locale), label: dict.blog },
+    { href: paths.contact(locale), label: dict.contact },
+  ];
 
   return (
     <header
@@ -35,7 +108,10 @@ export function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-2.5">
+          <Link
+            href={paths.home(locale)}
+            className="flex-shrink-0 flex items-center gap-2.5"
+          >
             <Image
               src="/images/brand/logo-icon.png"
               alt=""
@@ -60,7 +136,7 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-0 absolute left-1/2 -translate-x-1/2">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -77,6 +153,11 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-5">
+            <LanguageSwitcher
+              locale={locale}
+              scrolled={scrolled}
+              label={dict.languageSwitcherLabel}
+            />
             <a
               href={`tel:${COMPANY.phone}`}
               className={`flex items-center gap-2 text-base font-medium transition-colors ${
@@ -87,31 +168,38 @@ export function Navbar() {
               {COMPANY.phone}
             </a>
             <Link
-              href="/iletisim"
+              href={paths.contact(locale)}
               className="bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-lg text-base font-semibold transition-all hover:shadow-lg"
             >
-              Bilgi Alın
+              {dict.getInfo}
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              scrolled
-                ? "text-primary hover:bg-surface"
-                : "text-white hover:bg-white/10"
-            }`}
-            aria-label="Menüyü aç"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile: language switcher + toggle */}
+          <div className="lg:hidden flex items-center gap-2">
+            <LanguageSwitcher
+              locale={locale}
+              scrolled={scrolled}
+              label={dict.languageSwitcherLabel}
+            />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-lg transition-colors ${
+                scrolled
+                  ? "text-primary hover:bg-surface"
+                  : "text-white hover:bg-white/10"
+              }`}
+              aria-label={dict.openMenu}
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden bg-white rounded-2xl shadow-2xl mt-2 p-4 animate-fade-in">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -130,11 +218,11 @@ export function Navbar() {
               {COMPANY.phone}
             </a>
             <Link
-              href="/iletisim"
+              href={paths.contact(locale)}
               onClick={() => setIsOpen(false)}
               className="block text-center bg-accent hover:bg-accent-dark text-white px-5 py-3 rounded-lg text-sm font-semibold transition-all mt-2"
             >
-              Bilgi Alın
+              {dict.getInfo}
             </Link>
           </div>
         )}

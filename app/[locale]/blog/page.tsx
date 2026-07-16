@@ -1,17 +1,45 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Calendar, Clock, ArrowRight, BookOpen, Phone } from "lucide-react";
-import { BLOG_POSTS, getWhatsAppLink } from "@/app/_lib/data";
+import { getBlogPosts } from "@/app/_lib/blog";
+import { getWhatsAppLink } from "@/app/_lib/data";
+import { getDictionary } from "@/app/_lib/dictionaries";
+import {
+  DATE_LOCALES,
+  hasLocale,
+  pageAlternates,
+  paths,
+} from "@/app/_lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Kuzey Kıbrıs gayrimenkul yatırımı hakkında güncel bilgiler, pazar analizleri, yasal rehberler ve uzman görüşleri.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(locale)) return {};
+  const dict = await getDictionary(locale);
+  return {
+    title: dict.meta.blog.title,
+    description: dict.meta.blog.description,
+    alternates: pageAlternates(locale, {
+      tr: paths.blog("tr"),
+      en: paths.blog("en"),
+    }),
+  };
+}
 
-export default function BlogPage() {
-  const [featured, ...rest] = BLOG_POSTS;
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
+  const [featured, ...rest] = getBlogPosts(locale);
 
   return (
     <>
@@ -20,12 +48,13 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 rounded-full text-white/90 text-sm mb-4">
             <BookOpen className="w-4 h-4" />
-            Yatırım Rehberi
+            {dict.blog.badge}
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">Blog</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white">
+            {dict.blog.title}
+          </h1>
           <p className="text-white/70 mt-4 max-w-2xl mx-auto text-lg">
-            Kuzey Kıbrıs gayrimenkul yatırımı hakkında bilmeniz gereken her
-            şey: pazar analizleri, yasal süreçler ve uzman tavsiyeleri.
+            {dict.blog.subtitle}
           </p>
         </div>
       </section>
@@ -34,7 +63,7 @@ export default function BlogPage() {
       <section className="py-12 bg-surface">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
-            href={`/blog/${featured.slug}`}
+            href={paths.blogPost(locale, featured.slug)}
             className="block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all border border-transparent hover:border-accent/20 group"
           >
             <div className="grid md:grid-cols-2">
@@ -54,11 +83,14 @@ export default function BlogPage() {
                   </span>
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" />
-                    {new Date(featured.date).toLocaleDateString("tr-TR", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
+                    {new Date(featured.date).toLocaleDateString(
+                      DATE_LOCALES[locale],
+                      {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      }
+                    )}
                   </span>
                 </div>
                 <h2 className="text-2xl font-bold text-primary group-hover:text-accent transition-colors">
@@ -68,7 +100,7 @@ export default function BlogPage() {
                   {featured.excerpt}
                 </p>
                 <div className="flex items-center gap-1 text-accent font-semibold text-sm mt-5 group-hover:gap-2 transition-all">
-                  Devamını Okuyun
+                  {dict.blog.readMore}
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
@@ -84,7 +116,7 @@ export default function BlogPage() {
             {rest.map((post) => (
               <Link
                 key={post.slug}
-                href={`/blog/${post.slug}`}
+                href={paths.blogPost(locale, post.slug)}
                 className="block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-accent/20 group"
               >
                 <div className="relative h-48">
@@ -113,7 +145,7 @@ export default function BlogPage() {
                     {post.excerpt}
                   </p>
                   <div className="flex items-center gap-1 text-accent font-semibold text-xs mt-3 group-hover:gap-2 transition-all">
-                    Devamını Okuyun
+                    {dict.blog.readMore}
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -127,27 +159,24 @@ export default function BlogPage() {
       <section className="py-16 bg-white border-t border-border">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-primary">
-            Yatırım Danışmanlığı Almak İster Misiniz?
+            {dict.blog.ctaTitle}
           </h2>
-          <p className="text-text-light mt-3 text-lg">
-            Yazılarımızda bahsettiğimiz fırsatları değerlendirmek için uzman
-            ekibimizle görüşün. İlk danışmanlık ücretsizdir.
-          </p>
+          <p className="text-text-light mt-3 text-lg">{dict.blog.ctaText}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
-              href="/iletisim"
+              href={paths.contact(locale)}
               className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl font-semibold transition-all hover:shadow-xl"
             >
               <Phone className="w-5 h-5" />
-              İletişime Geçin
+              {dict.blog.ctaContact}
             </Link>
             <a
-              href={getWhatsAppLink()}
+              href={getWhatsAppLink(locale)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border border-border text-primary hover:bg-surface px-8 py-4 rounded-xl font-semibold transition-all"
             >
-              WhatsApp ile Yazın
+              {dict.blog.ctaWhatsapp}
             </a>
           </div>
         </div>

@@ -1,30 +1,72 @@
 import type { MetadataRoute } from "next";
-import { PROJECTS, BLOG_POSTS } from "@/app/_lib/data";
+import { PROJECT_SLUGS } from "@/app/_lib/data";
+import { BLOG_SLUGS, locales, paths, SITE_URL } from "@/app/_lib/i18n";
+import { getBlogPosts } from "@/app/_lib/blog";
 
-const BASE_URL = "https://primevestinvestment.com";
+type SitemapEntry = MetadataRoute.Sitemap[number];
+
+// One entry per locale per page, each carrying the full hreflang alternate
+// set so Google can associate the language versions.
+function localizedEntries(
+  pathsByLocale: Record<"tr" | "en", string>,
+  options: Pick<SitemapEntry, "lastModified" | "changeFrequency" | "priority">
+): MetadataRoute.Sitemap {
+  const languages = {
+    tr: `${SITE_URL}${pathsByLocale.tr}`,
+    en: `${SITE_URL}${pathsByLocale.en}`,
+  };
+  return locales.map((locale) => ({
+    url: `${SITE_URL}${pathsByLocale[locale]}`,
+    alternates: { languages },
+    ...options,
+  }));
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE_URL}/projeler`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/hakkimizda`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE_URL}/iletisim`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    ...localizedEntries(
+      { tr: paths.home("tr"), en: paths.home("en") },
+      { lastModified: new Date(), changeFrequency: "weekly", priority: 1 }
+    ),
+    ...localizedEntries(
+      { tr: paths.projects("tr"), en: paths.projects("en") },
+      { lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 }
+    ),
+    ...localizedEntries(
+      { tr: paths.about("tr"), en: paths.about("en") },
+      { lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 }
+    ),
+    ...localizedEntries(
+      { tr: paths.contact("tr"), en: paths.contact("en") },
+      { lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 }
+    ),
+    ...localizedEntries(
+      { tr: paths.blog("tr"), en: paths.blog("en") },
+      { lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 }
+    ),
   ];
 
-  const projectRoutes: MetadataRoute.Sitemap = PROJECTS.map((p) => ({
-    url: `${BASE_URL}/projeler/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
+  const projectRoutes: MetadataRoute.Sitemap = PROJECT_SLUGS.flatMap((slug) =>
+    localizedEntries(
+      { tr: paths.project("tr", slug), en: paths.project("en", slug) },
+      { lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 }
+    )
+  );
 
-  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((p) => ({
-    url: `${BASE_URL}/blog/${p.slug}`,
-    lastModified: new Date(p.date),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const blogRoutes: MetadataRoute.Sitemap = getBlogPosts("tr").flatMap(
+    (post) =>
+      localizedEntries(
+        {
+          tr: paths.blogPost("tr", BLOG_SLUGS[post.key].tr),
+          en: paths.blogPost("en", BLOG_SLUGS[post.key].en),
+        },
+        {
+          lastModified: new Date(post.date),
+          changeFrequency: "monthly",
+          priority: 0.6,
+        }
+      )
+  );
 
   return [...staticRoutes, ...projectRoutes, ...blogRoutes];
 }

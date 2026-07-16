@@ -2,8 +2,28 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Globe } from "lucide-react";
 import { COMPANY } from "@/app/_lib/data";
+import { getDictionary } from "@/app/_lib/dictionaries";
+import { paths, type Locale } from "@/app/_lib/i18n";
 
-export function Footer() {
+const FEATURED_PROJECT_LINKS = [
+  { slug: "grand-sapphire-blu", label: "Grand Sapphire Blu" },
+  { slug: "querencia", label: "Querencia" },
+  { slug: "d-point", label: "D-Point" },
+  { slug: "phuket-wellness", label: "Phuket Wellness" },
+  { slug: "aloha-beach-resort", label: "Aloha Beach Resort" },
+];
+
+export async function Footer({ locale }: { locale: Locale }) {
+  const dict = await getDictionary(locale);
+
+  const quickLinks = [
+    { href: paths.home(locale), label: dict.nav.home },
+    { href: paths.projects(locale), label: dict.nav.projects },
+    { href: paths.about(locale), label: dict.nav.about },
+    { href: paths.blog(locale), label: dict.nav.blog },
+    { href: paths.contact(locale), label: dict.nav.contact },
+  ];
+
   return (
     <footer className="bg-primary text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -18,25 +38,17 @@ export function Footer() {
               className="h-14 w-auto brightness-0 invert mb-4"
             />
             <p className="text-white/70 text-sm leading-relaxed mt-4">
-              Kuzey Kıbrıs&apos;ta güvenilir gayrimenkul yatırım danışmanlığı.
-              21 yıllık finans deneyimi ile doğru zamanda, doğru lokasyonda,
-              doğru yatırım.
+              {dict.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-gold font-semibold mb-4 text-sm uppercase tracking-wider">
-              Hızlı Erişim
+              {dict.footer.quickLinks}
             </h3>
             <ul className="space-y-3">
-              {[
-                { href: "/", label: "Ana Sayfa" },
-                { href: "/projeler", label: "Projeler" },
-                { href: "/hakkimizda", label: "Hakkımızda" },
-                { href: "/blog", label: "Blog" },
-                { href: "/iletisim", label: "İletişim" },
-              ].map((link) => (
+              {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -52,19 +64,13 @@ export function Footer() {
           {/* Projects */}
           <div>
             <h3 className="text-gold font-semibold mb-4 text-sm uppercase tracking-wider">
-              Öne Çıkan Projeler
+              {dict.footer.featuredProjects}
             </h3>
             <ul className="space-y-3">
-              {[
-                { href: "/projeler/grand-sapphire-blu", label: "Grand Sapphire Blu" },
-                { href: "/projeler/querencia", label: "Querencia" },
-                { href: "/projeler/d-point", label: "D-Point" },
-                { href: "/projeler/phuket-wellness", label: "Phuket Wellness" },
-                { href: "/projeler/aloha-beach-resort", label: "Aloha Beach Resort" },
-              ].map((link) => (
-                <li key={link.href}>
+              {FEATURED_PROJECT_LINKS.map((link) => (
+                <li key={link.slug}>
                   <Link
-                    href={link.href}
+                    href={paths.project(locale, link.slug)}
                     className="text-white/70 hover:text-gold transition-colors text-sm"
                   >
                     {link.label}
@@ -77,7 +83,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-gold font-semibold mb-4 text-sm uppercase tracking-wider">
-              İletişim
+              {dict.footer.contact}
             </h3>
             <ul className="space-y-4">
               <li>
@@ -108,7 +114,8 @@ export function Footer() {
                   <span>
                     {COMPANY.address.street}
                     <br />
-                    {COMPANY.address.city}, {COMPANY.address.country}
+                    {COMPANY.address.city[locale]},{" "}
+                    {COMPANY.address.country[locale]}
                   </span>
                 </div>
               </li>
@@ -130,12 +137,10 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/50 text-xs">
-            &copy; {new Date().getFullYear()} Primevest Investment. Tüm hakları
-            saklıdır.
+            &copy; {new Date().getFullYear()} Primevest Investment.{" "}
+            {dict.footer.rights}
           </p>
-          <p className="text-white/50 text-xs">
-            Kuzey Kıbrıs&apos;ın Güvenilir Yatırım Ortağı
-          </p>
+          <p className="text-white/50 text-xs">{dict.footer.tagline}</p>
         </div>
       </div>
     </footer>

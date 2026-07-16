@@ -3,13 +3,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import type { Dictionary } from "@/app/_lib/dictionaries";
 
 export function ImageGallery({
   images,
   name,
+  dict,
 }: {
   images: string[];
   name: string;
+  dict: Dictionary["gallery"];
 }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
@@ -24,7 +27,7 @@ export function ImageGallery({
         >
           <Image
             src={images[0]}
-            alt={`${name} - Ana görsel`}
+            alt={`${name} - ${dict.mainImageAlt}`}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -42,7 +45,7 @@ export function ImageGallery({
           >
             <Image
               src={img}
-              alt={`${name} - Görsel ${i + 2}`}
+              alt={`${name} - ${dict.imageAlt} ${i + 2}`}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
               sizes="(max-width: 768px) 50vw, 25vw"
@@ -51,7 +54,7 @@ export function ImageGallery({
             {i === 3 && images.length > 5 && (
               <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                 <span className="text-white font-bold text-lg">
-                  +{images.length - 5} Foto
+                  +{images.length - 5} {dict.morePhotos}
                 </span>
               </div>
             )}
@@ -68,7 +71,7 @@ export function ImageGallery({
           <button
             className="absolute top-4 right-4 text-white/70 hover:text-white p-2 z-10"
             onClick={() => setLightbox(null)}
-            aria-label="Kapat"
+            aria-label={dict.close}
           >
             <X className="w-8 h-8" />
           </button>
@@ -81,7 +84,7 @@ export function ImageGallery({
                 lightbox === 0 ? images.length - 1 : lightbox - 1
               );
             }}
-            aria-label="Önceki"
+            aria-label={dict.previous}
           >
             <ChevronLeft className="w-10 h-10" />
           </button>
@@ -92,7 +95,7 @@ export function ImageGallery({
           >
             <Image
               src={images[lightbox]}
-              alt={`${name} - Görsel ${lightbox + 1}`}
+              alt={`${name} - ${dict.imageAlt} ${lightbox + 1}`}
               fill
               className="object-contain"
               sizes="100vw"
@@ -108,7 +111,7 @@ export function ImageGallery({
                 lightbox === images.length - 1 ? 0 : lightbox + 1
               );
             }}
-            aria-label="Sonraki"
+            aria-label={dict.next}
           >
             <ChevronRight className="w-10 h-10" />
           </button>

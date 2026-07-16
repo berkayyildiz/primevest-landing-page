@@ -2,11 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, BedDouble, Maximize2, ArrowRight } from "lucide-react";
 import type { Project } from "@/app/_lib/data";
+import { paths, type Locale } from "@/app/_lib/i18n";
+import type { Dictionary } from "@/app/_lib/dictionaries";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  locale,
+  dict,
+}: {
+  project: Project;
+  locale: Locale;
+  dict: Dictionary["projectCard"];
+}) {
   return (
     <Link
-      href={`/projeler/${project.slug}`}
+      href={paths.project(locale, project.slug)}
       className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border hover:border-accent/30"
     >
       {/* Image */}
@@ -21,12 +31,12 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="absolute top-3 left-3">
           <span
             className={`px-3 py-1 rounded-full text-xs font-semibold ${
-              project.status === "satis"
+              project.status === "sale"
                 ? "bg-green-500 text-white"
                 : "bg-gold text-primary"
             }`}
           >
-            {project.status === "satis" ? "Satışta" : "Ön Satış"}
+            {project.status === "sale" ? dict.statusSale : dict.statusPresale}
           </span>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -50,7 +60,9 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex items-center gap-4 mt-4 pt-4 border-t border-border">
           <div className="flex items-center gap-1.5 text-sm text-text-light">
             <BedDouble className="w-4 h-4 text-accent" />
-            <span>{project.bedrooms} Yatak</span>
+            <span>
+              {project.bedrooms} {dict.beds}
+            </span>
           </div>
           <div className="flex items-center gap-1.5 text-sm text-text-light">
             <Maximize2 className="w-4 h-4 text-accent" />
@@ -60,7 +72,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
         {/* CTA */}
         <div className="flex items-center gap-1 text-accent font-semibold text-sm mt-4 group-hover:gap-2 transition-all">
-          Detayları İncele
+          {dict.viewDetails}
           <ArrowRight className="w-4 h-4" />
         </div>
       </div>

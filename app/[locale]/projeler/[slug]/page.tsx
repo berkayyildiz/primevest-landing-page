@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -11,29 +10,48 @@ import {
   CheckCircle2,
   ArrowLeft,
   Phone,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
-import { PROJECTS, getProjectBySlug, COMPANY, getWhatsAppLink, type Project } from "@/app/_lib/data";
+import {
+  getProjects,
+  getProjectBySlug,
+  COMPANY,
+  getWhatsAppLink,
+  PROJECT_SLUGS,
+  type Project,
+} from "@/app/_lib/data";
+import { getDictionary, type Dictionary } from "@/app/_lib/dictionaries";
+import {
+  hasLocale,
+  pageAlternates,
+  paths,
+  type Locale,
+} from "@/app/_lib/i18n";
 import { ProjectCard } from "@/app/_components/project-card";
 import { ContactForm } from "@/app/_components/contact-form";
 import { ImageGallery } from "./gallery";
 
+// The parent [locale] layout generates the locale params; project slugs are
+// identical in both languages.
 export async function generateStaticParams() {
-  return PROJECTS.map((project) => ({ slug: project.slug }));
+  return PROJECT_SLUGS.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { locale, slug } = await params;
+  if (!hasLocale(locale)) return {};
+  const project = getProjectBySlug(locale, slug);
   if (!project) return {};
   return {
     title: project.name,
     description: project.description.slice(0, 160),
+    alternates: pageAlternates(locale, {
+      tr: paths.project("tr", slug),
+      en: paths.project("en", slug),
+    }),
     openGraph: {
       title: `${project.name} | Primevest Investment`,
       description: project.shortDescription,
@@ -45,13 +63,41 @@ export async function generateMetadata({
 export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { locale, slug } = await params;
+  if (!hasLocale(locale)) notFound();
+  const project = getProjectBySlug(locale, slug);
   if (!project) notFound();
+  const dict = await getDictionary(locale);
 
-  const whatsappMsg = `Merhaba, ${project.name} projesi hakkında bilgi almak istiyorum.`;
+  const whatsappMsg = dict.projectDetail.whatsappMessage.replace(
+    "{project}",
+    project.name
+  );
+
+  const specs = [
+    {
+      icon: <BedDouble className="w-5 h-5" />,
+      label: dict.projectDetail.specBedrooms,
+      value: project.bedrooms,
+    },
+    {
+      icon: <Maximize2 className="w-5 h-5" />,
+      label: dict.projectDetail.specArea,
+      value: project.sizeRange,
+    },
+    {
+      icon: <Calendar className="w-5 h-5" />,
+      label: dict.projectDetail.specCompletion,
+      value: project.completion,
+    },
+    {
+      icon: <Building2 className="w-5 h-5" />,
+      label: dict.projectDetail.specTotalUnits,
+      value: project.totalUnits > 0 ? `${project.totalUnits}` : "—",
+    },
+  ];
 
   return (
     <>
@@ -59,11 +105,11 @@ export default async function ProjectPage({
       <div className="bg-primary pt-24 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
-            href="/projeler"
+            href={paths.projects(locale)}
             className="inline-flex items-center gap-1 text-white/70 hover:text-white text-sm transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Tüm Projeler
+            {dict.projectDetail.allProjects}
           </Link>
         </div>
       </div>
@@ -75,36 +121,38 @@ export default async function ProjectPage({
             <div>
               <span
                 className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3 ${
-                  project.status === "satis"
+                  project.status === "sale"
                     ? "bg-green-500 text-white"
                     : "bg-gold text-primary"
                 }`}
               >
-                {project.status === "satis" ? "Satışta" : "Ön Satış"}
+                {project.status === "sale"
+                  ? dict.projectDetail.statusSale
+                  : dict.projectDetail.statusPresale}
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
                 {project.name}
               </h1>
               <div className="flex items-center gap-2 text-white/70 mt-2">
                 <MapPin className="w-4 h-4" />
-                {project.location}, Kuzey Kıbrıs
+                {project.location}, {dict.projectDetail.countryName}
               </div>
             </div>
             <div className="flex gap-3">
               <a
-                href={getWhatsAppLink(whatsappMsg)}
+                href={getWhatsAppLink(locale, whatsappMsg)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] hover:bg-[#1fb855] text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all"
               >
-                WhatsApp ile Bilgi Alın
+                {dict.projectDetail.whatsappCta}
               </a>
               <a
                 href={`tel:${COMPANY.phone}`}
                 className="border border-white/30 text-white hover:bg-white/10 px-6 py-3 rounded-xl font-semibold text-sm transition-all flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" />
-                Arayın
+                {dict.projectDetail.call}
               </a>
             </div>
           </div>
@@ -114,7 +162,11 @@ export default async function ProjectPage({
       {/* Image Gallery */}
       <section className="bg-surface-dark py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ImageGallery images={project.images} name={project.name} />
+          <ImageGallery
+            images={project.images}
+            name={project.name}
+            dict={dict.gallery}
+          />
         </div>
       </section>
 
@@ -126,28 +178,7 @@ export default async function ProjectPage({
             <div className="lg:col-span-2 space-y-10">
               {/* Specs Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {[
-                  {
-                    icon: <BedDouble className="w-5 h-5" />,
-                    label: "Yatak Odası",
-                    value: project.bedrooms,
-                  },
-                  {
-                    icon: <Maximize2 className="w-5 h-5" />,
-                    label: "Alan",
-                    value: project.sizeRange,
-                  },
-                  {
-                    icon: <Calendar className="w-5 h-5" />,
-                    label: "Teslim",
-                    value: project.completion,
-                  },
-                  {
-                    icon: <Building2 className="w-5 h-5" />,
-                    label: "Toplam Ünite",
-                    value: project.totalUnits > 0 ? `${project.totalUnits}` : "—",
-                  },
-                ].map((spec) => (
+                {specs.map((spec) => (
                   <div
                     key={spec.label}
                     className="bg-surface rounded-xl p-4 text-center"
@@ -168,7 +199,7 @@ export default async function ProjectPage({
               {/* Unit Types */}
               <div>
                 <h2 className="text-xl font-bold text-primary mb-3">
-                  Daire Tipleri
+                  {dict.projectDetail.unitTypes}
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {project.unitTypes.map((type) => (
@@ -185,7 +216,7 @@ export default async function ProjectPage({
               {/* Description */}
               <div>
                 <h2 className="text-xl font-bold text-primary mb-3">
-                  Proje Hakkında
+                  {dict.projectDetail.aboutProject}
                 </h2>
                 <p className="text-text-light leading-relaxed text-base">
                   {project.description}
@@ -195,7 +226,7 @@ export default async function ProjectPage({
               {/* Features */}
               <div>
                 <h2 className="text-xl font-bold text-primary mb-4">
-                  Özellikler & Tesisler
+                  {dict.projectDetail.features}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {project.features.map((feature) => (
@@ -215,12 +246,12 @@ export default async function ProjectPage({
             <div className="lg:col-span-1">
               <div className="sticky top-24 bg-white rounded-2xl border border-border p-6 shadow-sm">
                 <h3 className="text-lg font-bold text-primary mb-1">
-                  Bu Proje Hakkında Bilgi Alın
+                  {dict.projectDetail.sidebarTitle}
                 </h3>
                 <p className="text-text-light text-sm mb-6">
-                  Fiyat, ödeme planı ve detaylar için formu doldurun.
+                  {dict.projectDetail.sidebarText}
                 </p>
-                <ContactForm variant="compact" />
+                <ContactForm variant="compact" dict={dict.contactForm} />
               </div>
             </div>
           </div>
@@ -228,23 +259,32 @@ export default async function ProjectPage({
       </section>
 
       {/* Similar Projects */}
-      <SimilarProjects current={project} />
+      <SimilarProjects current={project} locale={locale} dict={dict} />
     </>
   );
 }
 
-function SimilarProjects({ current }: { current: Project }) {
-  const similar = PROJECTS.filter(
-    (p) => p.slug !== current.slug && p.region === current.region
-  ).slice(0, 3);
+function SimilarProjects({
+  current,
+  locale,
+  dict,
+}: {
+  current: Project;
+  locale: Locale;
+  dict: Dictionary;
+}) {
+  const projects = getProjects(locale);
+  const similar = projects
+    .filter((p) => p.slug !== current.slug && p.region === current.region)
+    .slice(0, 3);
 
   const fallback =
     similar.length < 3
       ? [
           ...similar,
-          ...PROJECTS.filter(
-            (p) => p.slug !== current.slug && !similar.includes(p)
-          ).slice(0, 3 - similar.length),
+          ...projects
+            .filter((p) => p.slug !== current.slug && !similar.includes(p))
+            .slice(0, 3 - similar.length),
         ]
       : similar;
 
@@ -256,15 +296,23 @@ function SimilarProjects({ current }: { current: Project }) {
         <div className="text-center mb-10">
           <div className="section-divider mx-auto mb-4" />
           <h2 className="text-2xl sm:text-3xl font-bold text-primary">
-            Benzer Projeler
+            {dict.projectDetail.similarTitle}
           </h2>
           <p className="text-text-light mt-2">
-            {current.region} bölgesindeki diğer yatırım fırsatları
+            {dict.projectDetail.similarSubtitle.replace(
+              "{region}",
+              dict.regions[current.region]
+            )}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {fallback.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              locale={locale}
+              dict={dict.projectCard}
+            />
           ))}
         </div>
       </div>

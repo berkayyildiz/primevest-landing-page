@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -13,6 +11,10 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    // Instantiated per-request: the constructor throws without an API key,
+    // which would otherwise crash the whole build/server at import time.
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
       from: "Primevest Website <onboarding@resend.dev>",

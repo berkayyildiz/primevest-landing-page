@@ -1,27 +1,57 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArrowRight, Target, Heart, Eye, Users } from "lucide-react";
-import { TEAM, getWhatsAppLink } from "@/app/_lib/data";
+import { getTeam, getWhatsAppLink } from "@/app/_lib/data";
+import { getDictionary } from "@/app/_lib/dictionaries";
+import { hasLocale, pageAlternates, paths } from "@/app/_lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Hakkımızda",
-  description:
-    "Primevest Investment ekibini tanıyın. 21 yıllık finans deneyimi ve Kuzey Kıbrıs'taki derin yerel bilgiyle güvenilir gayrimenkul danışmanlığı.",
+const VALUE_ICONS: Record<string, React.ReactNode> = {
+  heart: <Heart className="w-7 h-7" />,
+  target: <Target className="w-7 h-7" />,
+  eye: <Eye className="w-7 h-7" />,
+  users: <Users className="w-7 h-7" />,
 };
 
-export default function AboutPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(locale)) return {};
+  const dict = await getDictionary(locale);
+  return {
+    title: dict.meta.about.title,
+    description: dict.meta.about.description,
+    alternates: pageAlternates(locale, {
+      tr: paths.about("tr"),
+      en: paths.about("en"),
+    }),
+  };
+}
+
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
+  const team = getTeam(locale);
+
   return (
     <>
       {/* Header */}
       <section className="bg-primary pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">
-            Hakkımızda
+            {dict.about.title}
           </h1>
           <p className="text-white/70 mt-4 max-w-2xl mx-auto text-lg">
-            Güvene dayalı danışmanlık modelimizle Kuzey Kıbrıs&apos;ta doğru
-            yatırımın adresi.
+            {dict.about.subtitle}
           </p>
         </div>
       </section>
@@ -33,39 +63,25 @@ export default function AboutPage() {
             <div>
               <div className="section-divider mb-6" />
               <h2 className="text-3xl font-bold text-primary">
-                Primevest Investment Hikayesi
+                {dict.about.storyTitle}
               </h2>
               <p className="text-text-light mt-4 leading-relaxed">
-                Primevest Investment, 21 yılı aşkın bankacılık ve finans
-                deneyimini gayrimenkul yatırım danışmanlığıyla birleştiren Gülay
-                Yıldız tarafından kurulmuştur. Garanti BBVA, ING Bank ve Türk
-                Ekonomi Bankası gibi sektörün önde gelen kurumlarında edindiği
-                güçlü kurumsal altyapıyı, son 8 yılında Kuzey Kıbrıs&apos;ta
-                şube müdürü olarak yönettiği operasyonel ve stratejik deneyimle
-                pekiştirmiştir.
+                {dict.about.storyParagraph1}
               </p>
               <p className="text-text-light mt-4 leading-relaxed">
-                Kuzey Kıbrıs&apos;ta 8 yılı aşkın saha deneyimi, güçlü yerel
-                ağı ve çift vatandaşlığın sağladığı çok yönlü bakış açısı ile
-                Primevest; yatırımcılara yalnızca fırsat sunmaz, doğru
-                yapılandırılmış, sürdürülebilir ve güvenli yatırım modelleri
-                geliştirir.
+                {dict.about.storyParagraph2}
               </p>
               <p className="text-text-light mt-4 leading-relaxed font-medium text-primary/80">
-                Bizim yaklaşımımız nettir: Doğru zaman, doğru lokasyon, doğru
-                proje.
+                {dict.about.storyMotto}
               </p>
               <p className="text-text-light mt-4 leading-relaxed">
-                Primevest olarak amacımız; yatırımcıyı yalnızca bir mülkle
-                buluşturmak değil, sermayesini koruyan ve büyüten stratejik
-                kararlar almasına rehberlik etmektir. Her yatırım bizim için bir
-                işlem değil, uzun vadeli bir güven ilişkisinin başlangıcıdır.
+                {dict.about.storyParagraph3}
               </p>
             </div>
             <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/projects/aloha-beach-resort/1.jpg"
-                alt="Kuzey Kıbrıs manzarası"
+                alt={dict.about.storyImageAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -80,42 +96,25 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="section-divider mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-primary">Değerlerimiz</h2>
+            <h2 className="text-3xl font-bold text-primary">
+              {dict.about.valuesTitle}
+            </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: <Heart className="w-7 h-7" />,
-                title: "Güven",
-                desc: "Müşterilerimizle güvene dayalı, şeffaf ilişkiler kuruyoruz. Her adımda dürüst ve açık iletişim.",
-              },
-              {
-                icon: <Target className="w-7 h-7" />,
-                title: "Strateji",
-                desc: "21 yıllık finans deneyimimizi stratejik yatırım danışmanlığına dönüştürüyoruz.",
-              },
-              {
-                icon: <Eye className="w-7 h-7" />,
-                title: "Vizyon",
-                desc: "Teknolojiyi yatırım dünyasıyla buluşturan yenilikçi yaklaşımımızla geleceğe bakıyoruz.",
-              },
-              {
-                icon: <Users className="w-7 h-7" />,
-                title: "Birebir İlgi",
-                desc: "Her yatırımcıya özel, kişiye özel danışmanlık modeli ile yanındayız.",
-              },
-            ].map((value) => (
+            {dict.about.values.map((value) => (
               <div
                 key={value.title}
                 className="bg-white rounded-2xl p-7 text-center hover:shadow-lg transition-all border border-transparent hover:border-accent/20"
               >
                 <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mx-auto">
-                  {value.icon}
+                  {VALUE_ICONS[value.icon]}
                 </div>
                 <h3 className="text-lg font-bold text-primary mt-4">
                   {value.title}
                 </h3>
-                <p className="text-text-light text-sm mt-2">{value.desc}</p>
+                <p className="text-text-light text-sm mt-2">
+                  {value.description}
+                </p>
               </div>
             ))}
           </div>
@@ -127,14 +126,15 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="section-divider mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-primary">Ekibimiz</h2>
+            <h2 className="text-3xl font-bold text-primary">
+              {dict.about.teamTitle}
+            </h2>
             <p className="text-text-light mt-4 max-w-2xl mx-auto">
-              Finans, teknoloji ve gayrimenkul alanlarında uzman kadromuzla size
-              en doğru yönlendirmeyi sunuyoruz.
+              {dict.about.teamSubtitle}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {TEAM.map((member) => (
+            {team.map((member) => (
               <div
                 key={member.name}
                 className="bg-surface rounded-2xl overflow-hidden hover:shadow-lg transition-all group"
@@ -180,26 +180,24 @@ export default function AboutPage() {
       <section className="py-16 bg-accent">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white">
-            Birlikte Çalışalım
+            {dict.about.ctaTitle}
           </h2>
-          <p className="text-white/80 mt-4 text-lg">
-            Kuzey Kıbrıs&apos;ta doğru yatırım için uzman ekibimizle tanışın.
-          </p>
+          <p className="text-white/80 mt-4 text-lg">{dict.about.ctaText}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
-              href="/iletisim"
+              href={paths.contact(locale)}
               className="inline-flex items-center justify-center gap-2 bg-white text-accent hover:bg-surface px-8 py-4 rounded-xl font-semibold transition-all"
             >
-              İletişime Geçin
+              {dict.about.ctaContact}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <a
-              href={getWhatsAppLink()}
+              href={getWhatsAppLink(locale)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold transition-all"
             >
-              WhatsApp ile Yazın
+              {dict.about.ctaWhatsapp}
             </a>
           </div>
         </div>

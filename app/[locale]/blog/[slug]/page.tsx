@@ -1,43 +1,109 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
-import { BLOG_POSTS, getBlogPostBySlug, COMPANY, getWhatsAppLink } from "@/app/_lib/data";
+import { getBlogPosts, getBlogPostBySlug, type BlogPost } from "@/app/_lib/blog";
+import { getDictionary } from "@/app/_lib/dictionaries";
+import {
+  BLOG_SLUGS,
+  DATE_LOCALES,
+  hasLocale,
+  pageAlternates,
+  paths,
+  SITE_URL,
+  translateBlogSlug,
+  type Locale,
+} from "@/app/_lib/i18n";
+import { COMPANY } from "@/app/_lib/data";
 import { ContactForm } from "@/app/_components/contact-form";
 
-export async function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+// Blog slugs are localized, so they are generated per locale from the parent
+// [locale] params.
+export async function generateStaticParams({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  if (!hasLocale(params.locale)) return [];
+  return getBlogPosts(params.locale).map((post) => ({ slug: post.slug }));
+}
+
+// Looks up the post for this locale; if the slug belongs to the other
+// language (e.g. /en/blog/<turkish-slug>), redirects permanently to the
+// localized slug so each post has one canonical URL per locale.
+function resolvePost(locale: Locale, slug: string): BlogPost {
+  const post = getBlogPostBySlug(locale, slug);
+  if (post) return post;
+
+  const translated = translateBlogSlug(slug, locale);
+  if (translated !== slug && getBlogPostBySlug(locale, translated)) {
+    permanentRedirect(paths.blogPost(locale, translated));
+  }
+  notFound();
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const { locale, slug } = await params;
+  if (!hasLocale(locale)) return {};
+  const post = getBlogPostBySlug(locale, slug);
   if (!post) return {};
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: pageAlternates(locale, {
+      tr: paths.blogPost("tr", BLOG_SLUGS[post.key].tr),
+      en: paths.blogPost("en", BLOG_SLUGS[post.key].en),
+    }),
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
+      images: [post.image],
     },
   };
+}
+
+function BlogPostJsonLd({ post, locale }: { post: BlogPost; locale: Locale }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: `${SITE_URL}${post.image}`,
+    datePublished: post.date,
+    inLanguage: locale,
+    author: {
+      "@type": "Organization",
+      name: COMPANY.name,
+      url: `${SITE_URL}${paths.home(locale)}`,
+    },
+    mainEntityOfPage: `${SITE_URL}${paths.blogPost(locale, post.slug)}`,
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
 }
 
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
-  if (!post) notFound();
+  const { locale, slug } = await params;
+  if (!hasLocale(locale)) notFound();
+  const post = resolvePost(locale, slug);
+  const dict = await getDictionary(locale);
+  const allPosts = getBlogPosts(locale);
 
   return (
     <>
@@ -45,11 +111,11 @@ export default async function BlogPostPage({
       <section className="bg-primary pt-24 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
-            href="/blog"
+            href={paths.blog(locale)}
             className="inline-flex items-center gap-1 text-white/70 hover:text-white text-sm transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
-            Tüm Yazılar
+            {dict.blogPost.allPosts}
           </Link>
           <div className="flex items-center gap-3 text-sm text-white/60 mb-4">
             <span className="bg-accent/20 text-accent-light px-3 py-1 rounded-full font-medium text-xs">
@@ -57,7 +123,7 @@ export default async function BlogPostPage({
             </span>
             <span className="flex items-center gap-1">
               <Calendar className="w-3.5 h-3.5" />
-              {new Date(post.date).toLocaleDateString("tr-TR", {
+              {new Date(post.date).toLocaleDateString(DATE_LOCALES[locale], {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
@@ -132,32 +198,31 @@ export default async function BlogPostPage({
               <div className="sticky top-24 space-y-6">
                 <div className="bg-surface rounded-2xl p-6">
                   <h3 className="font-bold text-primary mb-4">
-                    Yatırım Danışmanlığı
+                    {dict.blogPost.advisoryTitle}
                   </h3>
                   <p className="text-text-light text-sm mb-4">
-                    Kuzey Kıbrıs&apos;ta yatırım yapmak ister misiniz? Uzman
-                    ekibimizle ücretsiz görüşme planlayın.
+                    {dict.blogPost.advisoryText}
                   </p>
-                  <ContactForm variant="compact" />
+                  <ContactForm variant="compact" dict={dict.contactForm} />
                 </div>
 
                 {/* Other Posts */}
                 <div className="bg-surface rounded-2xl p-6">
                   <h3 className="font-bold text-primary mb-4">
-                    Diğer Yazılar
+                    {dict.blogPost.otherPosts}
                   </h3>
                   <div className="space-y-3">
-                    {BLOG_POSTS.filter((p) => p.slug !== post.slug).map(
-                      (p) => (
+                    {allPosts
+                      .filter((p) => p.slug !== post.slug)
+                      .map((p) => (
                         <Link
                           key={p.slug}
-                          href={`/blog/${p.slug}`}
+                          href={paths.blogPost(locale, p.slug)}
                           className="block text-sm text-text-light hover:text-accent transition-colors"
                         >
                           {p.title}
                         </Link>
-                      )
-                    )}
+                      ))}
                   </div>
                 </div>
               </div>
@@ -167,14 +232,30 @@ export default async function BlogPostPage({
       </section>
 
       {/* Related Posts */}
-      <RelatedPosts currentSlug={post.slug} />
+      <RelatedPosts
+        currentSlug={post.slug}
+        posts={allPosts}
+        locale={locale}
+        title={dict.blogPost.relatedPosts}
+      />
+      <BlogPostJsonLd post={post} locale={locale} />
     </>
   );
 }
 
-function RelatedPosts({ currentSlug }: { currentSlug: string }) {
+function RelatedPosts({
+  currentSlug,
+  posts,
+  locale,
+  title,
+}: {
+  currentSlug: string;
+  posts: BlogPost[];
+  locale: Locale;
+  title: string;
+}) {
   // Pick 3 posts, deterministic based on slug hash
-  const others = BLOG_POSTS.filter((p) => p.slug !== currentSlug);
+  const others = posts.filter((p) => p.slug !== currentSlug);
   const hash = currentSlug.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   const shuffled = [...others].sort(
     (a, b) =>
@@ -188,14 +269,14 @@ function RelatedPosts({ currentSlug }: { currentSlug: string }) {
         <div className="text-center mb-10">
           <div className="section-divider mx-auto mb-4" />
           <h2 className="text-2xl sm:text-3xl font-bold text-primary">
-            Benzer Yazılar
+            {title}
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {related.map((p) => (
             <Link
               key={p.slug}
-              href={`/blog/${p.slug}`}
+              href={paths.blogPost(locale, p.slug)}
               className="block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-accent/20 group"
             >
               <div className="relative h-44">

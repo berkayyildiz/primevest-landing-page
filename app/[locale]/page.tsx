@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   ArrowRight,
   TrendingUp,
@@ -14,12 +15,9 @@ import {
   Phone,
   ChevronDown,
 } from "lucide-react";
-import {
-  getFeaturedProjects,
-  WHY_NORTH_CYPRUS,
-  COMPANY,
-  getWhatsAppLink,
-} from "@/app/_lib/data";
+import { getFeaturedProjects, COMPANY, getWhatsAppLink } from "@/app/_lib/data";
+import { getDictionary } from "@/app/_lib/dictionaries";
+import { hasLocale, paths } from "@/app/_lib/i18n";
 import { ProjectCard } from "@/app/_components/project-card";
 import { ContactForm } from "@/app/_components/contact-form";
 
@@ -32,8 +30,21 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   "building-2": <Building2 className="w-7 h-7" />,
 };
 
-export default function HomePage() {
-  const featuredProjects = getFeaturedProjects();
+const BADGE_ICONS = [
+  <Shield key="shield" className="w-6 h-6" />,
+  <Users key="users" className="w-6 h-6" />,
+  <Award key="award" className="w-6 h-6" />,
+];
+
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
+  const featuredProjects = getFeaturedProjects(locale);
 
   return (
     <>
@@ -41,7 +52,7 @@ export default function HomePage() {
       <section className="relative min-h-[85vh] flex items-center pt-40 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
         <Image
           src="/images/projects/querencia/2.webp"
-          alt="Kuzey Kıbrıs gayrimenkul yatırımı"
+          alt={dict.home.heroImageAlt}
           fill
           className="object-cover"
           priority
@@ -53,34 +64,31 @@ export default function HomePage() {
             PRIMEVEST INVESTMENT
           </div>
           <p className="text-lg sm:text-xl text-white/90 font-medium mb-4 drop-shadow-md">
-            Kuzey Kıbrıs&apos;ın Uzman ve Güvenilir Çözüm Ortağınız
+            {dict.home.heroTagline}
           </p>
           <h1 className="hero-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Akdeniz&apos;in Yükselen Değeri{" "}
-            <br className="hidden sm:block" />
-            Kuzey Kıbrıs&apos;ta{" "}
-            <span className="text-white">Doğru Yatırım Fırsatları</span>
+            {dict.home.heroTitle}{" "}
+            <span className="text-white">{dict.home.heroTitleHighlight}</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/85 mt-6 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-            21 yıllık finans deneyimi ve Kuzey Kıbrıs&apos;taki derin yerel
-            bilgiyle, size özel stratejik gayrimenkul danışmanlığı sunuyoruz.
+            {dict.home.heroSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
             <Link
-              href="/projeler"
+              href={paths.projects(locale)}
               className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl text-base font-semibold transition-all hover:shadow-xl"
             >
-              Projeleri Keşfedin
+              {dict.home.heroCtaProjects}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <a
-              href={getWhatsAppLink()}
+              href={getWhatsAppLink(locale)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 text-primary px-8 py-4 rounded-xl text-base font-semibold transition-all"
             >
               <Phone className="w-5 h-5" />
-              Hemen Arayın
+              {dict.home.heroCtaCall}
             </a>
           </div>
         </div>
@@ -98,73 +106,52 @@ export default function HomePage() {
             <div>
               <div className="section-divider mb-6" />
               <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-                Neden Primevest Investment?
+                {dict.home.aboutTitle}
               </h2>
               <p className="text-text-light mt-4 leading-relaxed text-lg">
-                Primevest Investment, gayrimenkulü duygusal bir tercih olarak
-                değil; analitik ve sürdürülebilir bir yatırım enstrümanı olarak
-                değerlendirir.
+                {dict.home.aboutIntro}
               </p>
               <p className="text-text-light mt-4 leading-relaxed">
-                Her yatırım kararı;
+                {dict.home.aboutListIntro}
               </p>
               <ul className="text-text-light mt-3 space-y-2 leading-relaxed">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
-                  GBP bazlı değerleme
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
-                  Amortisman süresi
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
-                  Kira ve doluluk potansiyeli
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
-                  Bölgesel talep dinamikleri
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
-                  Proje ve teslim riskleri
-                </li>
+                {dict.home.aboutListItems.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
               </ul>
               <p className="text-text-light mt-4 leading-relaxed">
-                üzerinden modellenir. Odak noktamız; doğru yapılandırılmış,
-                uzun vadede güçlü kalan yatırımlardır.
+                {dict.home.aboutListOutro}
               </p>
               <div className="grid grid-cols-3 gap-6 mt-8">
-                {[
-                  { icon: <Shield className="w-6 h-6" />, label: "Güvenilir" },
-                  { icon: <Users className="w-6 h-6" />, label: "Birebir Danışmanlık" },
-                  { icon: <Award className="w-6 h-6" />, label: "Uzman Ekip" },
-                ].map((item) => (
+                {dict.home.aboutBadges.map((label, i) => (
                   <div
-                    key={item.label}
+                    key={label}
                     className="flex flex-col items-center text-center gap-2"
                   >
                     <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent">
-                      {item.icon}
+                      {BADGE_ICONS[i]}
                     </div>
                     <span className="text-sm font-medium text-primary">
-                      {item.label}
+                      {label}
                     </span>
                   </div>
                 ))}
               </div>
               <Link
-                href="/hakkimizda"
+                href={paths.about(locale)}
                 className="inline-flex items-center gap-2 text-accent hover:text-accent-dark font-semibold mt-8 group"
               >
-                Ekibimizi Tanıyın
+                {dict.home.aboutCta}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
             <div className="relative h-[450px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/projects/querencia/1.webp"
-                alt="Kuzey Kıbrıs lüks yaşam"
+                alt={dict.home.aboutImageAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -180,27 +167,30 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <div className="section-divider mx-auto mb-6" />
             <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-              Öne Çıkan Projeler
+              {dict.home.featuredTitle}
             </h2>
             <p className="text-text-light mt-4 max-w-2xl mx-auto text-lg">
-              Kuzey Kıbrıs&apos;ın en gözde lokasyonlarında, güçlü proje
-              geliştiricilerden, yüksek standartlı ve değer odaklı yatırım
-              fırsatları.
+              {dict.home.featuredSubtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                locale={locale}
+                dict={dict.projectCard}
+              />
             ))}
           </div>
 
           <div className="text-center mt-12">
             <Link
-              href="/projeler"
+              href={paths.projects(locale)}
               className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-xl font-semibold transition-all hover:shadow-lg"
             >
-              Tüm Projeleri Görüntüleyin
+              {dict.home.featuredCta}
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
@@ -213,16 +203,15 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <div className="section-divider mx-auto mb-6" />
             <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-              Neden Kuzey Kıbrıs&apos;a Yatırım Yapmalısınız?
+              {dict.home.whyTitle}
             </h2>
             <p className="text-text-light mt-4 max-w-2xl mx-auto text-lg">
-              Akdeniz&apos;in doğusundaki bu cennet adası, gayrimenkul
-              yatırımcıları için eşsiz fırsatlar sunuyor.
+              {dict.home.whySubtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {WHY_NORTH_CYPRUS.map((item) => (
+            {dict.home.whyItems.map((item) => (
               <div
                 key={item.title}
                 className="bg-surface rounded-2xl p-7 hover:shadow-lg transition-all duration-300 border border-transparent hover:border-accent/20 group"
@@ -257,21 +246,19 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white">
-                Yatırımınıza Bugün Başlayın
+                {dict.home.ctaTitle}
               </h2>
               <p className="text-white/70 mt-4 text-lg leading-relaxed">
-                Kuzey Kıbrıs gayrimenkul yatırımı hakkında sorularınız mı var?
-                Size özel danışmanlık için hemen iletişime geçin. İlk
-                görüşmemiz ücretsizdir.
+                {dict.home.ctaText}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <a
-                  href={getWhatsAppLink()}
+                  href={getWhatsAppLink(locale)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fb855] text-white px-6 py-3.5 rounded-xl font-semibold transition-all"
                 >
-                  WhatsApp ile Yazın
+                  {dict.home.ctaWhatsapp}
                 </a>
                 <a
                   href={`tel:${COMPANY.phone}`}
@@ -284,12 +271,12 @@ export default function HomePage() {
             </div>
             <div className="bg-white rounded-2xl p-8 shadow-2xl">
               <h3 className="text-xl font-bold text-primary mb-1">
-                Ücretsiz Danışmanlık
+                {dict.home.ctaFormTitle}
               </h3>
               <p className="text-text-light text-sm mb-6">
-                Bilgilerinizi bırakın, uzman ekibimiz sizi arasın.
+                {dict.home.ctaFormSubtitle}
               </p>
-              <ContactForm variant="compact" />
+              <ContactForm variant="compact" dict={dict.contactForm} />
             </div>
           </div>
         </div>

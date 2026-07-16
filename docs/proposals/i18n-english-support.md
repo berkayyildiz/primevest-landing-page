@@ -1,7 +1,25 @@
 # Proposal: Ingilizce Dil Destegi (i18n)
 
 **Tarih:** 2026-04-13
-**Durum:** Taslak — karar bekleniyor
+**Durum:** Uygulandi (2026-07-16)
+
+> Uygulamada verilen kararlar:
+> - Acik karar 1 (otomatik yonlendirme): Evet — sadece prefix'siz URL'lerde.
+>   Root `/` icin `NEXT_LOCALE` cookie > `Accept-Language` > `tr` sirasiyla
+>   307 ile yonlendirilir. Eski Turkce URL'ler (`/projeler` vb.) her zaman
+>   kalici olarak (308) `/tr/...`'ye gider.
+> - Acik karar 2 (dil secici): Navbar'in sag tarafinda TR | EN secici
+>   (desktop + mobil). Secim `NEXT_LOCALE` cookie'sine yazilir.
+> - Acik karar 3 (icerik yonetimi): UI metinleri `app/_lib/dictionaries/`
+>   altinda JSON; proje/ekip/blog icerikleri `app/_lib/data.ts` ve
+>   `app/_lib/blog.ts` icinde locale bazli kayitlar halinde.
+> - Acik karar 4 (kutuphane): Kutuphanesiz, Next.js'in kendi `[locale]`
+>   segmenti + `proxy.ts` (Next 16'da middleware'in yeni adi) + JSON sozlukler.
+> - Acik karar 5 (SEO): Her sayfada `hreflang` + canonical, cift dilli
+>   sitemap (`xhtml:link` alternates), `og:locale`, JSON-LD
+>   (RealEstateAgent + BlogPosting). Ingilizce route segmentleri
+>   (`/en/projects`, `/en/about`, `/en/contact`) rewrite ile, blog
+>   yazilari icin dile ozel slug'lar ile sunulur.
 
 ## Ozet
 

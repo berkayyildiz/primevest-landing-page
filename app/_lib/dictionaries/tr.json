@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "defaultTitle": "Primevest Investment | Kuzey Kıbrıs Gayrimenkul Yatırım Danışmanlığı",
+    "titleTemplate": "%s | Primevest Investment",
+    "description": "Kuzey Kıbrıs'ta güvenilir gayrimenkul yatırım danışmanlığı. 21 yıllık finans deneyimi ile doğru zamanda, doğru lokasyonda, doğru yatırım. Lüks konut projeleri, stratejik danışmanlık.",
+    "ogDescription": "Kuzey Kıbrıs'ta güvenilir gayrimenkul yatırım danışmanlığı. Lüks konut projeleri ve stratejik danışmanlık.",
+    "keywords": [
+      "Kuzey Kıbrıs gayrimenkul",
+      "KKTC yatırım",
+      "North Cyprus property",
+      "Kıbrıs emlak",
+      "gayrimenkul danışmanlık",
+      "İskele projeler",
+      "Girne projeler",
+      "Long Beach",
+      "Esentepe",
+      "lüks konut",
+      "yatırım fırsatları"
+    ],
+    "projects": {
+      "title": "Projeler",
+      "description": "Kuzey Kıbrıs'ın en prestijli lokasyonlarında lüks konut projeleri. İskele, Girne, Long Beach, Esentepe bölgelerinde yatırım fırsatları."
+    },
+    "about": {
+      "title": "Hakkımızda",
+      "description": "Primevest Investment ekibini tanıyın. 21 yıllık finans deneyimi ve Kuzey Kıbrıs'taki derin yerel bilgiyle güvenilir gayrimenkul danışmanlığı."
+    },
+    "contact": {
+      "title": "İletişim",
+      "description": "Primevest Investment ile iletişime geçin. Kuzey Kıbrıs gayrimenkul yatırımı için ücretsiz danışmanlık randevusu alın."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında güncel bilgiler, pazar analizleri, yasal rehberler ve uzman görüşleri."
+    }
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "projects": "Projeler",
+    "about": "Hakkımızda",
+    "blog": "Blog",
+    "contact": "İletişim",
+    "getInfo": "Bilgi Alın",
+    "openMenu": "Menüyü aç",
+    "languageSwitcherLabel": "Dil seçimi"
+  },
+  "footer": {
+    "description": "Kuzey Kıbrıs'ta güvenilir gayrimenkul yatırım danışmanlığı. 21 yıllık finans deneyimi ile doğru zamanda, doğru lokasyonda, doğru yatırım.",
+    "quickLinks": "Hızlı Erişim",
+    "featuredProjects": "Öne Çıkan Projeler",
+    "contact": "İletişim",
+    "rights": "Tüm hakları saklıdır.",
+    "tagline": "Kuzey Kıbrıs'ın Güvenilir Yatırım Ortağı"
+  },
+  "home": {
+    "heroImageAlt": "Kuzey Kıbrıs gayrimenkul yatırımı",
+    "heroTagline": "Kuzey Kıbrıs'ın Uzman ve Güvenilir Çözüm Ortağınız",
+    "heroTitle": "Akdeniz'in Yükselen Değeri Kuzey Kıbrıs'ta",
+    "heroTitleHighlight": "Doğru Yatırım Fırsatları",
+    "heroSubtitle": "21 yıllık finans deneyimi ve Kuzey Kıbrıs'taki derin yerel bilgiyle, size özel stratejik gayrimenkul danışmanlığı sunuyoruz.",
+    "heroCtaProjects": "Projeleri Keşfedin",
+    "heroCtaCall": "Hemen Arayın",
+    "aboutTitle": "Neden Primevest Investment?",
+    "aboutIntro": "Primevest Investment, gayrimenkulü duygusal bir tercih olarak değil; analitik ve sürdürülebilir bir yatırım enstrümanı olarak değerlendirir.",
+    "aboutListIntro": "Her yatırım kararı;",
+    "aboutListItems": [
+      "GBP bazlı değerleme",
+      "Amortisman süresi",
+      "Kira ve doluluk potansiyeli",
+      "Bölgesel talep dinamikleri",
+      "Proje ve teslim riskleri"
+    ],
+    "aboutListOutro": "üzerinden modellenir. Odak noktamız; doğru yapılandırılmış, uzun vadede güçlü kalan yatırımlardır.",
+    "aboutBadges": ["Güvenilir", "Birebir Danışmanlık", "Uzman Ekip"],
+    "aboutCta": "Ekibimizi Tanıyın",
+    "aboutImageAlt": "Kuzey Kıbrıs lüks yaşam",
+    "featuredTitle": "Öne Çıkan Projeler",
+    "featuredSubtitle": "Kuzey Kıbrıs'ın en gözde lokasyonlarında, güçlü proje geliştiricilerden, yüksek standartlı ve değer odaklı yatırım fırsatları.",
+    "featuredCta": "Tüm Projeleri Görüntüleyin",
+    "whyTitle": "Neden Kuzey Kıbrıs'a Yatırım Yapmalısınız?",
+    "whySubtitle": "Akdeniz'in doğusundaki bu cennet adası, gayrimenkul yatırımcıları için eşsiz fırsatlar sunuyor.",
+    "whyItems": [
+      {
+        "icon": "trending-up",
+        "title": "Yüksek Yatırım Getirisi",
+        "description": "Kuzey Kıbrıs'ta gayrimenkul yatırımları 8-12 yıl gibi kısa sürede kendini amorti eder. Sürekli artan arazi ve konut değerleri ile güçlü kira getirisi sunar."
+      },
+      {
+        "icon": "globe",
+        "title": "Yabancı Yatırımcıya Açık",
+        "description": "Yabancı uyruklu yatırımcılar kolayca mülk satın alabilir. Kolay ve hızlı tapu işlemleri ile güvenli yatırım ortamı sağlanır."
+      },
+      {
+        "icon": "piggy-bank",
+        "title": "Vergi Avantajları",
+        "description": "Düşük vergi oranları ve yatırımcı dostu politikalar sayesinde net getirinizi maksimize edin. Döviz bazlı kira geliri (GBP) elde edin."
+      },
+      {
+        "icon": "sun",
+        "title": "Akdeniz Yaşam Kalitesi",
+        "description": "Yılda 300+ güneşli gün, bozulmamış doğa, güvenli yaşam ortamı ve düşük nüfus yoğunluğu ile Akdeniz'in en yaşanılabilir noktası."
+      },
+      {
+        "icon": "map-pin",
+        "title": "Stratejik Konum",
+        "description": "Avrupa, Orta Doğu ve Afrika'nın kesişim noktasında, Türkiye'ye 45-75 dakika uçuş mesafesinde stratejik lokasyon avantajı."
+      },
+      {
+        "icon": "building-2",
+        "title": "Gelişen Altyapı",
+        "description": "Yeni havalimanı, otobanlar, üniversiteler ve turizm yatırımları ile hızla gelişen altyapı. Sürekli değer kazanan bir pazar."
+      }
+    ],
+    "ctaTitle": "Yatırımınıza Bugün Başlayın",
+    "ctaText": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında sorularınız mı var? Size özel danışmanlık için hemen iletişime geçin. İlk görüşmemiz ücretsizdir.",
+    "ctaWhatsapp": "WhatsApp ile Yazın",
+    "ctaFormTitle": "Ücretsiz Danışmanlık",
+    "ctaFormSubtitle": "Bilgilerinizi bırakın, uzman ekibimiz sizi arasın."
+  },
+  "projects": {
+    "badge": "Proje",
+    "title": "Projelerimiz",
+    "subtitle": "Kuzey Kıbrıs'ın en değerli lokasyonlarında özenle seçilmiş gayrimenkul projeleri.",
+    "girneTitle": "Girne Bölgesi",
+    "girneSubtitle": "Esentepe, Tatlısu, Bahçeli — Akdeniz'in en güzel sahillerinde lüks yaşam projeleri.",
+    "iskeleTitle": "İskele Bölgesi",
+    "iskeleSubtitle": "Long Beach ve çevresinde — Kuzey Kıbrıs'ın en hızlı gelişen yatırım bölgesi."
+  },
+  "projectCard": {
+    "statusSale": "Satışta",
+    "statusPresale": "Ön Satış",
+    "beds": "Yatak",
+    "viewDetails": "Detayları İncele"
+  },
+  "projectDetail": {
+    "allProjects": "Tüm Projeler",
+    "statusSale": "Satışta",
+    "statusPresale": "Ön Satış",
+    "countryName": "Kuzey Kıbrıs",
+    "whatsappCta": "WhatsApp ile Bilgi Alın",
+    "call": "Arayın",
+    "whatsappMessage": "Merhaba, {project} projesi hakkında bilgi almak istiyorum.",
+    "specBedrooms": "Yatak Odası",
+    "specArea": "Alan",
+    "specCompletion": "Teslim",
+    "specTotalUnits": "Toplam Ünite",
+    "unitTypes": "Daire Tipleri",
+    "aboutProject": "Proje Hakkında",
+    "features": "Özellikler & Tesisler",
+    "sidebarTitle": "Bu Proje Hakkında Bilgi Alın",
+    "sidebarText": "Fiyat, ödeme planı ve detaylar için formu doldurun.",
+    "similarTitle": "Benzer Projeler",
+    "similarSubtitle": "{region} bölgesindeki diğer yatırım fırsatları"
+  },
+  "regions": {
+    "girne": "Girne",
+    "iskele": "İskele"
+  },
+  "gallery": {
+    "mainImageAlt": "Ana görsel",
+    "imageAlt": "Görsel",
+    "morePhotos": "Foto",
+    "close": "Kapat",
+    "previous": "Önceki",
+    "next": "Sonraki"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "subtitle": "Güvene dayalı danışmanlık modelimizle Kuzey Kıbrıs'ta doğru yatırımın adresi.",
+    "storyTitle": "Primevest Investment Hikayesi",
+    "storyParagraph1": "Primevest Investment, 21 yılı aşkın bankacılık ve finans deneyimini gayrimenkul yatırım danışmanlığıyla birleştiren Gülay Yıldız tarafından kurulmuştur. Garanti BBVA, ING Bank ve Türk Ekonomi Bankası gibi sektörün önde gelen kurumlarında edindiği güçlü kurumsal altyapıyı, son 8 yılında Kuzey Kıbrıs'ta şube müdürü olarak yönettiği operasyonel ve stratejik deneyimle pekiştirmiştir.",
+    "storyParagraph2": "Kuzey Kıbrıs'ta 8 yılı aşkın saha deneyimi, güçlü yerel ağı ve çift vatandaşlığın sağladığı çok yönlü bakış açısı ile Primevest; yatırımcılara yalnızca fırsat sunmaz, doğru yapılandırılmış, sürdürülebilir ve güvenli yatırım modelleri geliştirir.",
+    "storyMotto": "Bizim yaklaşımımız nettir: Doğru zaman, doğru lokasyon, doğru proje.",
+    "storyParagraph3": "Primevest olarak amacımız; yatırımcıyı yalnızca bir mülkle buluşturmak değil, sermayesini koruyan ve büyüten stratejik kararlar almasına rehberlik etmektir. Her yatırım bizim için bir işlem değil, uzun vadeli bir güven ilişkisinin başlangıcıdır.",
+    "storyImageAlt": "Kuzey Kıbrıs manzarası",
+    "valuesTitle": "Değerlerimiz",
+    "values": [
+      {
+        "icon": "heart",
+        "title": "Güven",
+        "description": "Müşterilerimizle güvene dayalı, şeffaf ilişkiler kuruyoruz. Her adımda dürüst ve açık iletişim."
+      },
+      {
+        "icon": "target",
+        "title": "Strateji",
+        "description": "21 yıllık finans deneyimimizi stratejik yatırım danışmanlığına dönüştürüyoruz."
+      },
+      {
+        "icon": "eye",
+        "title": "Vizyon",
+        "description": "Teknolojiyi yatırım dünyasıyla buluşturan yenilikçi yaklaşımımızla geleceğe bakıyoruz."
+      },
+      {
+        "icon": "users",
+        "title": "Birebir İlgi",
+        "description": "Her yatırımcıya özel, kişiye özel danışmanlık modeli ile yanındayız."
+      }
+    ],
+    "teamTitle": "Ekibimiz",
+    "teamSubtitle": "Finans, teknoloji ve gayrimenkul alanlarında uzman kadromuzla size en doğru yönlendirmeyi sunuyoruz.",
+    "ctaTitle": "Birlikte Çalışalım",
+    "ctaText": "Kuzey Kıbrıs'ta doğru yatırım için uzman ekibimizle tanışın.",
+    "ctaContact": "İletişime Geçin",
+    "ctaWhatsapp": "WhatsApp ile Yazın"
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında sorularınız mı var? Hemen bize ulaşın.",
+    "reachTitle": "Bize Ulaşın",
+    "reachText": "Size özel danışmanlık için hemen iletişime geçin. İlk görüşmemiz ücretsizdir.",
+    "phoneLabel": "Telefon",
+    "whatsappLabel": "WhatsApp",
+    "whatsappAction": "Hemen Yazın",
+    "whatsappNote": "Hızlı yanıt garantisi",
+    "emailLabel": "E-posta",
+    "addressLabel": "Ofis Adresi",
+    "hoursLabel": "Çalışma Saatleri",
+    "hoursDays": "Pazartesi - Cumartesi",
+    "hoursTime": "09:00 - 18:00",
+    "instagramLabel": "Instagram",
+    "formTitle": "Bilgi Talep Formu",
+    "formSubtitle": "Formu doldurun, uzman ekibimiz en kısa sürede size dönüş yapsın.",
+    "mapTitle": "Primevest Investment Ofis Konumu"
+  },
+  "blog": {
+    "badge": "Yatırım Rehberi",
+    "title": "Blog",
+    "subtitle": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında bilmeniz gereken her şey: pazar analizleri, yasal süreçler ve uzman tavsiyeleri.",
+    "readMore": "Devamını Okuyun",
+    "ctaTitle": "Yatırım Danışmanlığı Almak İster Misiniz?",
+    "ctaText": "Yazılarımızda bahsettiğimiz fırsatları değerlendirmek için uzman ekibimizle görüşün. İlk danışmanlık ücretsizdir.",
+    "ctaContact": "İletişime Geçin",
+    "ctaWhatsapp": "WhatsApp ile Yazın"
+  },
+  "blogPost": {
+    "allPosts": "Tüm Yazılar",
+    "advisoryTitle": "Yatırım Danışmanlığı",
+    "advisoryText": "Kuzey Kıbrıs'ta yatırım yapmak ister misiniz? Uzman ekibimizle ücretsiz görüşme planlayın.",
+    "otherPosts": "Diğer Yazılar",
+    "relatedPosts": "Benzer Yazılar"
+  },
+  "contactForm": {
+    "namePlaceholder": "Adınız Soyadınız *",
+    "phonePlaceholder": "Telefon Numaranız *",
+    "emailPlaceholder": "E-posta Adresiniz",
+    "interestPlaceholder": "İlgilendiğiniz Proje",
+    "generalInfo": "Genel Bilgi",
+    "messagePlaceholder": "Mesajınız",
+    "submit": "Mesaj Gönderin",
+    "submitCompact": "Hemen Bilgi Alın",
+    "sending": "Gönderiliyor...",
+    "privacyNote": "Bilgileriniz gizli tutulur ve üçüncü şahıslarla paylaşılmaz.",
+    "error": "Bir hata oluştu. Lütfen tekrar deneyin veya WhatsApp ile ulaşın.",
+    "successTitle": "Mesajınız Gönderildi",
+    "successText": "En kısa sürede sizinle iletişime geçeceğiz.",
+    "whatsappPrompt": "Hemen yanıt almak ister misiniz?",
+    "whatsappContinue": "WhatsApp ile Devam Edin",
+    "whatsappIntro": "Merhaba, web siteniz üzerinden iletişime geçmek istiyorum.",
+    "whatsappName": "Ad Soyad",
+    "whatsappPhone": "Telefon",
+    "whatsappEmail": "E-posta",
+    "whatsappInterest": "İlgilenilen Proje",
+    "whatsappMessage": "Mesaj"
+  },
+  "whatsappFab": {
+    "tooltipText": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında sorularınız mı var? Hemen yazın, size yardımcı olalım.",
+    "cta": "WhatsApp ile Yazın",
+    "close": "Kapat",
+    "open": "WhatsApp ile iletişime geçin"
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "text": "Aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+    "backHome": "Ana Sayfaya Dön"
+  }
+}

@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { Send, Loader2, CheckCircle, MessageCircle } from "lucide-react";
-import { COMPANY } from "@/app/_lib/data";
+import { COMPANY, PROJECT_NAMES } from "@/app/_lib/data";
+import type { Dictionary } from "@/app/_lib/dictionaries";
+
+type ContactFormDict = Dictionary["contactForm"];
 
 interface FormData {
   name: string;
@@ -12,21 +15,27 @@ interface FormData {
   message: string;
 }
 
-function buildWhatsAppUrl(data: FormData) {
+function buildWhatsAppUrl(data: FormData, dict: ContactFormDict) {
   const lines = [
-    `Merhaba, web siteniz üzerinden iletişime geçmek istiyorum.`,
+    dict.whatsappIntro,
     ``,
-    `Ad Soyad: ${data.name}`,
-    `Telefon: ${data.phone}`,
+    `${dict.whatsappName}: ${data.name}`,
+    `${dict.whatsappPhone}: ${data.phone}`,
   ];
-  if (data.email) lines.push(`E-posta: ${data.email}`);
-  if (data.interest) lines.push(`İlgilenilen Proje: ${data.interest}`);
-  if (data.message) lines.push(`Mesaj: ${data.message}`);
+  if (data.email) lines.push(`${dict.whatsappEmail}: ${data.email}`);
+  if (data.interest) lines.push(`${dict.whatsappInterest}: ${data.interest}`);
+  if (data.message) lines.push(`${dict.whatsappMessage}: ${data.message}`);
 
   return `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
-export function ContactForm({ variant = "default" }: { variant?: "default" | "compact" }) {
+export function ContactForm({
+  dict,
+  variant = "default",
+}: {
+  dict: ContactFormDict;
+  variant?: "default" | "compact";
+}) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -53,7 +62,7 @@ export function ContactForm({ variant = "default" }: { variant?: "default" | "co
       if (!res.ok) throw new Error();
       setSubmitted(true);
     } catch {
-      setError("Bir hata oluştu. Lütfen tekrar deneyin veya WhatsApp ile ulaşın.");
+      setError(dict.error);
     } finally {
       setLoading(false);
     }
@@ -66,24 +75,20 @@ export function ContactForm({ variant = "default" }: { variant?: "default" | "co
           <CheckCircle className="w-8 h-8 text-green-600" />
         </div>
         <h3 className="text-xl font-bold text-primary mb-2">
-          Mesajınız Gönderildi
+          {dict.successTitle}
         </h3>
-        <p className="text-text-light text-sm">
-          En kısa sürede sizinle iletişime geçeceğiz.
-        </p>
+        <p className="text-text-light text-sm">{dict.successText}</p>
 
         <div className="mt-6 pt-6 border-t border-border">
-          <p className="text-text-muted text-sm mb-3">
-            Hemen yanıt almak ister misiniz?
-          </p>
+          <p className="text-text-muted text-sm mb-3">{dict.whatsappPrompt}</p>
           <a
-            href={buildWhatsAppUrl(formData)}
+            href={buildWhatsAppUrl(formData, dict)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fb855] text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all w-full"
           >
             <MessageCircle className="w-5 h-5" />
-            WhatsApp ile Devam Edin
+            {dict.whatsappContinue}
           </a>
         </div>
       </div>
@@ -98,7 +103,7 @@ export function ContactForm({ variant = "default" }: { variant?: "default" | "co
         <input
           type="text"
           name="name"
-          placeholder="Adınız Soyadınız *"
+          placeholder={dict.namePlaceholder}
           required
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -107,7 +112,7 @@ export function ContactForm({ variant = "default" }: { variant?: "default" | "co
         <input
           type="tel"
           name="phone"
-          placeholder="Telefon Numaranız *"
+          placeholder={dict.phonePlaceholder}
           required
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -117,7 +122,7 @@ export function ContactForm({ variant = "default" }: { variant?: "default" | "co
           <input
             type="email"
             name="email"
-            placeholder="E-posta Adresiniz"
+            placeholder={dict.emailPlaceholder}
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
@@ -130,18 +135,13 @@ export function ContactForm({ variant = "default" }: { variant?: "default" | "co
             onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
             className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
           >
-            <option value="">İlgilendiğiniz Proje</option>
-            <option value="Grand Sapphire Blu">Grand Sapphire Blu</option>
-            <option value="Querencia">Querencia</option>
-            <option value="D-Point">D-Point</option>
-            <option value="Phuket Wellness">Phuket Wellness</option>
-            <option value="Aloha Beach Resort">Aloha Beach Resort</option>
-            <option value="Bahamas">Bahamas</option>
-            <option value="Casa Del Mare">Casa Del Mare</option>
-            <option value="Courtyard Platinum">Courtyard Platinum</option>
-            <option value="Hawaii">Hawaii</option>
-            <option value="Ocean Life Residence">Ocean Life Residence</option>
-            <option value="Genel Bilgi">Genel Bilgi</option>
+            <option value="">{dict.interestPlaceholder}</option>
+            {PROJECT_NAMES.map((name) => (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            ))}
+            <option value={dict.generalInfo}>{dict.generalInfo}</option>
           </select>
         )}
       </div>
@@ -149,7 +149,7 @@ export function ContactForm({ variant = "default" }: { variant?: "default" | "co
       {!isCompact && (
         <textarea
           name="message"
-          placeholder="Mesajınız"
+          placeholder={dict.messagePlaceholder}
           rows={4}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -169,19 +169,17 @@ export function ContactForm({ variant = "default" }: { variant?: "default" | "co
         {loading ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            Gönderiliyor...
+            {dict.sending}
           </>
         ) : (
           <>
             <Send className="w-4 h-4" />
-            {isCompact ? "Hemen Bilgi Alın" : "Mesaj Gönderin"}
+            {isCompact ? dict.submitCompact : dict.submit}
           </>
         )}
       </button>
 
-      <p className="text-xs text-text-muted text-center">
-        Bilgileriniz gizli tutulur ve üçüncü şahıslarla paylaşılmaz.
-      </p>
+      <p className="text-xs text-text-muted text-center">{dict.privacyNote}</p>
     </form>
   );
 }

@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "defaultTitle": "Primevest Investment | North Cyprus Real Estate Investment Advisory",
+    "titleTemplate": "%s | Primevest Investment",
+    "description": "Trusted real estate investment advisory in North Cyprus. 21 years of finance experience — the right investment at the right time, in the right location. Luxury residential projects and strategic advisory.",
+    "ogDescription": "Trusted real estate investment advisory in North Cyprus. Luxury residential projects and strategic advisory.",
+    "keywords": [
+      "North Cyprus real estate",
+      "North Cyprus property investment",
+      "TRNC investment",
+      "Cyprus property",
+      "real estate advisory",
+      "Iskele projects",
+      "Kyrenia projects",
+      "Long Beach",
+      "Esentepe",
+      "luxury apartments",
+      "investment opportunities"
+    ],
+    "projects": {
+      "title": "Projects",
+      "description": "Luxury residential projects in North Cyprus' most prestigious locations. Investment opportunities in Iskele, Kyrenia, Long Beach and Esentepe."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Meet the Primevest Investment team. Trusted real estate advisory built on 21 years of finance experience and deep local knowledge of North Cyprus."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Primevest Investment. Book a free consultation for your North Cyprus real estate investment."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Up-to-date insights on North Cyprus real estate investment: market analyses, legal guides and expert opinions."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About Us",
+    "blog": "Blog",
+    "contact": "Contact",
+    "getInfo": "Get Info",
+    "openMenu": "Open menu",
+    "languageSwitcherLabel": "Language selection"
+  },
+  "footer": {
+    "description": "Trusted real estate investment advisory in North Cyprus. 21 years of finance experience — the right investment at the right time, in the right location.",
+    "quickLinks": "Quick Links",
+    "featuredProjects": "Featured Projects",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "tagline": "Your Trusted Investment Partner in North Cyprus"
+  },
+  "home": {
+    "heroImageAlt": "North Cyprus real estate investment",
+    "heroTagline": "Your Expert and Trusted Partner in North Cyprus",
+    "heroTitle": "The Right Investment Opportunities in North Cyprus,",
+    "heroTitleHighlight": "the Rising Star of the Mediterranean",
+    "heroSubtitle": "With 21 years of finance experience and deep local knowledge of North Cyprus, we deliver strategic real estate advisory tailored to you.",
+    "heroCtaProjects": "Explore Our Projects",
+    "heroCtaCall": "Call Us Now",
+    "aboutTitle": "Why Primevest Investment?",
+    "aboutIntro": "Primevest Investment treats real estate not as an emotional choice, but as an analytical and sustainable investment instrument.",
+    "aboutListIntro": "Every investment decision is modelled on:",
+    "aboutListItems": [
+      "GBP-based valuation",
+      "Payback period",
+      "Rental and occupancy potential",
+      "Regional demand dynamics",
+      "Project and delivery risks"
+    ],
+    "aboutListOutro": "Our focus is on well-structured investments that stay strong over the long term.",
+    "aboutBadges": ["Trusted", "One-on-One Advisory", "Expert Team"],
+    "aboutCta": "Meet Our Team",
+    "aboutImageAlt": "Luxury living in North Cyprus",
+    "featuredTitle": "Featured Projects",
+    "featuredSubtitle": "High-standard, value-driven investment opportunities from strong developers in North Cyprus' most sought-after locations.",
+    "featuredCta": "View All Projects",
+    "whyTitle": "Why Invest in North Cyprus?",
+    "whySubtitle": "This paradise island in the eastern Mediterranean offers unique opportunities for real estate investors.",
+    "whyItems": [
+      {
+        "icon": "trending-up",
+        "title": "High Return on Investment",
+        "description": "Real estate investments in North Cyprus pay for themselves in as little as 8-12 years. Steadily rising land and property values deliver strong rental yields."
+      },
+      {
+        "icon": "globe",
+        "title": "Open to Foreign Investors",
+        "description": "Foreign nationals can easily purchase property. Simple, fast title deed procedures provide a secure investment environment."
+      },
+      {
+        "icon": "piggy-bank",
+        "title": "Tax Advantages",
+        "description": "Maximise your net return with low tax rates and investor-friendly policies. Earn rental income in foreign currency (GBP)."
+      },
+      {
+        "icon": "sun",
+        "title": "Mediterranean Quality of Life",
+        "description": "With 300+ days of sunshine a year, unspoilt nature, a safe living environment and low population density — one of the most liveable spots in the Mediterranean."
+      },
+      {
+        "icon": "map-pin",
+        "title": "Strategic Location",
+        "description": "At the crossroads of Europe, the Middle East and Africa, just a 45-75 minute flight from Türkiye — a strategic location advantage."
+      },
+      {
+        "icon": "building-2",
+        "title": "Growing Infrastructure",
+        "description": "Rapidly developing infrastructure with a new airport, motorways, universities and tourism investments. A market that keeps gaining value."
+      }
+    ],
+    "ctaTitle": "Start Your Investment Today",
+    "ctaText": "Have questions about real estate investment in North Cyprus? Get in touch now for personalised advisory. Your first consultation is free.",
+    "ctaWhatsapp": "Message Us on WhatsApp",
+    "ctaFormTitle": "Free Consultation",
+    "ctaFormSubtitle": "Leave your details and our expert team will call you."
+  },
+  "projects": {
+    "badge": "Projects",
+    "title": "Our Projects",
+    "subtitle": "Carefully selected real estate projects in North Cyprus' most valuable locations.",
+    "girneTitle": "Kyrenia Region",
+    "girneSubtitle": "Esentepe, Tatlisu, Bahceli — luxury living projects on the Mediterranean's most beautiful shores.",
+    "iskeleTitle": "Iskele Region",
+    "iskeleSubtitle": "Long Beach and its surroundings — North Cyprus' fastest-growing investment region."
+  },
+  "projectCard": {
+    "statusSale": "For Sale",
+    "statusPresale": "Pre-Sale",
+    "beds": "Beds",
+    "viewDetails": "View Details"
+  },
+  "projectDetail": {
+    "allProjects": "All Projects",
+    "statusSale": "For Sale",
+    "statusPresale": "Pre-Sale",
+    "countryName": "North Cyprus",
+    "whatsappCta": "Get Info on WhatsApp",
+    "call": "Call",
+    "whatsappMessage": "Hello, I would like to get information about the {project} project.",
+    "specBedrooms": "Bedrooms",
+    "specArea": "Area",
+    "specCompletion": "Completion",
+    "specTotalUnits": "Total Units",
+    "unitTypes": "Unit Types",
+    "aboutProject": "About the Project",
+    "features": "Features & Amenities",
+    "sidebarTitle": "Get Info About This Project",
+    "sidebarText": "Fill in the form for prices, payment plans and details.",
+    "similarTitle": "Similar Projects",
+    "similarSubtitle": "More investment opportunities in the {region} region"
+  },
+  "regions": {
+    "girne": "Kyrenia",
+    "iskele": "Iskele"
+  },
+  "gallery": {
+    "mainImageAlt": "Main image",
+    "imageAlt": "Image",
+    "morePhotos": "Photos",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "The address of the right investment in North Cyprus, with an advisory model built on trust.",
+    "storyTitle": "The Primevest Investment Story",
+    "storyParagraph1": "Primevest Investment was founded by Gülay Yıldız, who combines more than 21 years of banking and finance experience with real estate investment advisory. She built a strong institutional foundation at leading banks such as Garanti BBVA, ING Bank and Türk Ekonomi Bankası, reinforced by the operational and strategic experience of managing a branch in North Cyprus for the last 8 years of her career.",
+    "storyParagraph2": "With more than 8 years of on-the-ground experience in North Cyprus, a strong local network and the multifaceted perspective of dual citizenship, Primevest does more than present opportunities — it develops well-structured, sustainable and secure investment models for its investors.",
+    "storyMotto": "Our approach is clear: the right time, the right location, the right project.",
+    "storyParagraph3": "At Primevest, our goal is not simply to match an investor with a property, but to guide them towards strategic decisions that protect and grow their capital. For us, every investment is not a transaction but the beginning of a long-term relationship built on trust.",
+    "storyImageAlt": "North Cyprus scenery",
+    "valuesTitle": "Our Values",
+    "values": [
+      {
+        "icon": "heart",
+        "title": "Trust",
+        "description": "We build transparent relationships with our clients, founded on trust. Honest, open communication at every step."
+      },
+      {
+        "icon": "target",
+        "title": "Strategy",
+        "description": "We turn 21 years of finance experience into strategic investment advisory."
+      },
+      {
+        "icon": "eye",
+        "title": "Vision",
+        "description": "We look to the future with an innovative approach that brings technology into the world of investment."
+      },
+      {
+        "icon": "users",
+        "title": "Personal Attention",
+        "description": "We stand by every investor with a personalised, one-on-one advisory model."
+      }
+    ],
+    "teamTitle": "Our Team",
+    "teamSubtitle": "With experts in finance, technology and real estate, we give you the most accurate guidance.",
+    "ctaTitle": "Let's Work Together",
+    "ctaText": "Meet our expert team for the right investment in North Cyprus.",
+    "ctaContact": "Get in Touch",
+    "ctaWhatsapp": "Message Us on WhatsApp"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have questions about real estate investment in North Cyprus? Reach out to us now.",
+    "reachTitle": "Get in Touch",
+    "reachText": "Contact us now for personalised advisory. Your first consultation is free.",
+    "phoneLabel": "Phone",
+    "whatsappLabel": "WhatsApp",
+    "whatsappAction": "Message Us Now",
+    "whatsappNote": "Fast response guaranteed",
+    "emailLabel": "Email",
+    "addressLabel": "Office Address",
+    "hoursLabel": "Working Hours",
+    "hoursDays": "Monday - Saturday",
+    "hoursTime": "09:00 - 18:00",
+    "instagramLabel": "Instagram",
+    "formTitle": "Information Request Form",
+    "formSubtitle": "Fill in the form and our expert team will get back to you as soon as possible.",
+    "mapTitle": "Primevest Investment Office Location"
+  },
+  "blog": {
+    "badge": "Investment Guide",
+    "title": "Blog",
+    "subtitle": "Everything you need to know about real estate investment in North Cyprus: market analyses, legal processes and expert advice.",
+    "readMore": "Read More",
+    "ctaTitle": "Would You Like Investment Advisory?",
+    "ctaText": "Talk to our expert team to act on the opportunities covered in our articles. Your first consultation is free.",
+    "ctaContact": "Get in Touch",
+    "ctaWhatsapp": "Message Us on WhatsApp"
+  },
+  "blogPost": {
+    "allPosts": "All Posts",
+    "advisoryTitle": "Investment Advisory",
+    "advisoryText": "Would you like to invest in North Cyprus? Schedule a free consultation with our expert team.",
+    "otherPosts": "Other Posts",
+    "relatedPosts": "Related Posts"
+  },
+  "contactForm": {
+    "namePlaceholder": "Your Full Name *",
+    "phonePlaceholder": "Your Phone Number *",
+    "emailPlaceholder": "Your Email Address",
+    "interestPlaceholder": "Project of Interest",
+    "generalInfo": "General Information",
+    "messagePlaceholder": "Your Message",
+    "submit": "Send Message",
+    "submitCompact": "Get Info Now",
+    "sending": "Sending...",
+    "privacyNote": "Your details are kept confidential and never shared with third parties.",
+    "error": "Something went wrong. Please try again or reach us on WhatsApp.",
+    "successTitle": "Your Message Has Been Sent",
+    "successText": "We will get back to you as soon as possible.",
+    "whatsappPrompt": "Want an answer right away?",
+    "whatsappContinue": "Continue on WhatsApp",
+    "whatsappIntro": "Hello, I would like to get in touch via your website.",
+    "whatsappName": "Full Name",
+    "whatsappPhone": "Phone",
+    "whatsappEmail": "Email",
+    "whatsappInterest": "Project of Interest",
+    "whatsappMessage": "Message"
+  },
+  "whatsappFab": {
+    "tooltipText": "Have questions about real estate investment in North Cyprus? Message us now — we're happy to help.",
+    "cta": "Message Us on WhatsApp",
+    "close": "Close",
+    "open": "Contact us on WhatsApp"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "text": "The page you are looking for does not exist or may have been moved.",
+    "backHome": "Back to Home"
+  }
+}

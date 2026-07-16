@@ -1,26 +1,48 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { MapPin, Phone, Mail, Globe, Clock, MessageCircle } from "lucide-react";
 import { COMPANY, getWhatsAppLink } from "@/app/_lib/data";
+import { getDictionary } from "@/app/_lib/dictionaries";
+import { hasLocale, pageAlternates, paths } from "@/app/_lib/i18n";
 import { ContactForm } from "@/app/_components/contact-form";
 
-export const metadata: Metadata = {
-  title: "İletişim",
-  description:
-    "Primevest Investment ile iletişime geçin. Kuzey Kıbrıs gayrimenkul yatırımı için ücretsiz danışmanlık randevusu alın.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(locale)) return {};
+  const dict = await getDictionary(locale);
+  return {
+    title: dict.meta.contact.title,
+    description: dict.meta.contact.description,
+    alternates: pageAlternates(locale, {
+      tr: paths.contact("tr"),
+      en: paths.contact("en"),
+    }),
+  };
+}
 
-export default function ContactPage() {
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
+
   return (
     <>
       {/* Header */}
       <section className="bg-primary pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">
-            İletişim
+            {dict.contact.title}
           </h1>
           <p className="text-white/70 mt-4 max-w-2xl mx-auto text-lg">
-            Kuzey Kıbrıs gayrimenkul yatırımı hakkında sorularınız mı var?
-            Hemen bize ulaşın.
+            {dict.contact.subtitle}
           </p>
         </div>
       </section>
@@ -34,11 +56,10 @@ export default function ContactPage() {
               <div>
                 <div className="section-divider mb-4" />
                 <h2 className="text-2xl font-bold text-primary">
-                  Bize Ulaşın
+                  {dict.contact.reachTitle}
                 </h2>
                 <p className="text-text-light mt-2">
-                  Size özel danışmanlık için hemen iletişime geçin. İlk
-                  görüşmemiz ücretsizdir.
+                  {dict.contact.reachText}
                 </p>
               </div>
 
@@ -52,7 +73,9 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-text-muted">Telefon</div>
+                    <div className="text-sm text-text-muted">
+                      {dict.contact.phoneLabel}
+                    </div>
                     <div className="font-semibold text-primary">
                       {COMPANY.phone}
                     </div>
@@ -64,7 +87,7 @@ export default function ContactPage() {
 
                 {/* WhatsApp */}
                 <a
-                  href={getWhatsAppLink()}
+                  href={getWhatsAppLink(locale)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-4 group"
@@ -73,12 +96,14 @@ export default function ContactPage() {
                     <MessageCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-text-muted">WhatsApp</div>
+                    <div className="text-sm text-text-muted">
+                      {dict.contact.whatsappLabel}
+                    </div>
                     <div className="font-semibold text-primary">
-                      Hemen Yazın
+                      {dict.contact.whatsappAction}
                     </div>
                     <div className="text-sm text-text-light">
-                      Hızlı yanıt garantisi
+                      {dict.contact.whatsappNote}
                     </div>
                   </div>
                 </a>
@@ -92,7 +117,9 @@ export default function ContactPage() {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-text-muted">E-posta</div>
+                    <div className="text-sm text-text-muted">
+                      {dict.contact.emailLabel}
+                    </div>
                     <div className="font-semibold text-primary">
                       {COMPANY.email}
                     </div>
@@ -105,12 +132,15 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-text-muted">Ofis Adresi</div>
+                    <div className="text-sm text-text-muted">
+                      {dict.contact.addressLabel}
+                    </div>
                     <div className="font-semibold text-primary">
                       {COMPANY.address.street}
                     </div>
                     <div className="text-sm text-text-light">
-                      {COMPANY.address.city}, {COMPANY.address.country}
+                      {COMPANY.address.city[locale]},{" "}
+                      {COMPANY.address.country[locale]}
                     </div>
                   </div>
                 </div>
@@ -121,12 +151,14 @@ export default function ContactPage() {
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-text-muted">Çalışma Saatleri</div>
+                    <div className="text-sm text-text-muted">
+                      {dict.contact.hoursLabel}
+                    </div>
                     <div className="font-semibold text-primary">
-                      Pazartesi - Cumartesi
+                      {dict.contact.hoursDays}
                     </div>
                     <div className="text-sm text-text-light">
-                      09:00 - 18:00
+                      {dict.contact.hoursTime}
                     </div>
                   </div>
                 </div>
@@ -142,7 +174,9 @@ export default function ContactPage() {
                     <Globe className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-text-muted">Instagram</div>
+                    <div className="text-sm text-text-muted">
+                      {dict.contact.instagramLabel}
+                    </div>
                     <div className="font-semibold text-primary">
                       {COMPANY.instagram}
                     </div>
@@ -155,13 +189,12 @@ export default function ContactPage() {
             <div className="lg:col-span-3">
               <div className="bg-surface rounded-2xl p-8">
                 <h3 className="text-xl font-bold text-primary mb-1">
-                  Bilgi Talep Formu
+                  {dict.contact.formTitle}
                 </h3>
                 <p className="text-text-light text-sm mb-6">
-                  Formu doldurun, uzman ekibimiz en kısa sürede size dönüş
-                  yapsın.
+                  {dict.contact.formSubtitle}
                 </p>
-                <ContactForm />
+                <ContactForm dict={dict.contactForm} />
               </div>
             </div>
           </div>
@@ -176,7 +209,7 @@ export default function ContactPage() {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Primevest Investment Ofis Konumu"
+          title={dict.contact.mapTitle}
         />
       </section>
     </>
