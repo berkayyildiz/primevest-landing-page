@@ -65,20 +65,6 @@ export const TEAM: TeamMember[] = [
     image: "/images/team/yagmur-guzel.jpeg",
     bio: "Mustafa Kemal Üniversitesi Bilişim Güvenliği bölümünden mezun olmuştur. Primevest Investment'ta markanın dijital kimliğini tasarlıyor ve bilişim bilgisini gayrimenkul ile yatırım bilgisiyle birleştirerek yenilikçi çözümler üretiyor. Teknoloji ve yatırım danışmanlığını birleştiren yaklaşımıyla fark yaratmayı hedeflemektedir.",
   },
-  {
-    name: "Taşkın Şen",
-    title: "Danışman",
-    titleEn: "Consultant",
-    image: "/images/team/taskin-sen.jpeg",
-    bio: "Otomotiv sektöründe satış, satış sonrası hizmetler ve operasyon yönetimi alanlarında 20 yılı aşkın deneyime sahiptir. Volkswagen, Audi, Seat ve Ford markalarında satış ve servis organizasyonlarının yönetiminde aktif rol almıştır. Stratejik planlama, ekip yönetimi ve müşteri odaklı yaklaşımıyla öne çıkan Şen, bu kapsamlı deneyimini emlak ve yatırım danışmanlığı alanında değerlendirmektedir.",
-  },
-  {
-    name: "Zeki Kayar",
-    title: "Danışman",
-    titleEn: "Consultant",
-    image: "/images/team/zeki-kayar.jpeg",
-    bio: "Primevest Investment ekibinin deneyimli danışmanlarından biri olarak müşterilerine güvenilir ve profesyonel hizmet sunmaktadır.",
-  },
 ];
 
 function generateImages(
