@@ -1,42 +1,42 @@
 {
   "meta": {
-    "defaultTitle": "Primevest Investment | Kuzey Kıbrıs Gayrimenkul Yatırım Danışmanlığı",
+    "defaultTitle": "Primevest Investment | Yatırım ve Finansal Danışmanlık",
     "titleTemplate": "%s | Primevest Investment",
-    "description": "Kuzey Kıbrıs'ta güvenilir gayrimenkul yatırım danışmanlığı. 21 yıllık finans deneyimi ile doğru zamanda, doğru lokasyonda, doğru yatırım. Lüks konut projeleri, stratejik danışmanlık.",
-    "ogDescription": "Kuzey Kıbrıs'ta güvenilir gayrimenkul yatırım danışmanlığı. Lüks konut projeleri ve stratejik danışmanlık.",
+    "description": "Kuzey Kıbrıs merkezli bağımsız yatırım ve finansal danışmanlık. 22 yıllık bankacılık ve ekonomi deneyimiyle bireysel yatırım danışmanlığı, finansal planlama ve portföy stratejisi.",
+    "ogDescription": "Kuzey Kıbrıs merkezli bağımsız yatırım ve finansal danışmanlık. Bireysel yatırım danışmanlığı, finansal planlama ve portföy stratejisi.",
     "keywords": [
-      "Kuzey Kıbrıs gayrimenkul",
+      "yatırım danışmanlığı",
+      "finansal danışmanlık",
+      "bireysel yatırım danışmanlığı",
+      "finansal planlama",
+      "portföy çeşitlendirmesi",
+      "birikim stratejisi",
+      "Kuzey Kıbrıs ekonomi",
       "KKTC yatırım",
-      "North Cyprus property",
-      "Kıbrıs emlak",
-      "gayrimenkul danışmanlık",
-      "İskele projeler",
-      "Girne projeler",
-      "Long Beach",
-      "Esentepe",
-      "lüks konut",
-      "yatırım fırsatları"
+      "KKTC finansal danışmanlık",
+      "emeklilik planlaması",
+      "döviz bazlı birikim"
     ],
-    "projects": {
-      "title": "Projeler",
-      "description": "Kuzey Kıbrıs'ın en prestijli lokasyonlarında lüks konut projeleri. İskele, Girne, Long Beach, Esentepe bölgelerinde yatırım fırsatları."
+    "services": {
+      "title": "Hizmetler",
+      "description": "Bireysel yatırım danışmanlığı, finansal planlama, portföy analizi ve Kuzey Kıbrıs'ta finansal rehberlik. Güvene dayalı, birebir danışmanlık modeli."
     },
     "about": {
       "title": "Hakkımızda",
-      "description": "Primevest Investment ekibini tanıyın. 21 yıllık finans deneyimi ve Kuzey Kıbrıs'taki derin yerel bilgiyle güvenilir gayrimenkul danışmanlığı."
+      "description": "Primevest Investment ekibini tanıyın. 22 yıllık bankacılık ve ekonomi deneyimi, Kuzey Kıbrıs'ta 8 yıllık saha bilgisiyle güvenilir yatırım ve finansal danışmanlık."
     },
     "contact": {
       "title": "İletişim",
-      "description": "Primevest Investment ile iletişime geçin. Kuzey Kıbrıs gayrimenkul yatırımı için ücretsiz danışmanlık randevusu alın."
+      "description": "Primevest Investment ile iletişime geçin. Yatırım ve finansal danışmanlık için ücretsiz ön görüşme randevusu alın."
     },
     "blog": {
       "title": "Blog",
-      "description": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında güncel bilgiler, pazar analizleri, yasal rehberler ve uzman görüşleri."
+      "description": "Yatırım, birikim, finansal planlama ve Kuzey Kıbrıs ekonomisi üzerine güncel analizler, rehberler ve uzman görüşleri."
     }
   },
   "nav": {
     "home": "Ana Sayfa",
-    "projects": "Projeler",
+    "services": "Hizmetler",
     "about": "Hakkımızda",
     "blog": "Blog",
     "contact": "İletişim",
@@ -45,134 +45,195 @@
     "languageSwitcherLabel": "Dil seçimi"
   },
   "footer": {
-    "description": "Kuzey Kıbrıs'ta güvenilir gayrimenkul yatırım danışmanlığı. 21 yıllık finans deneyimi ile doğru zamanda, doğru lokasyonda, doğru yatırım.",
+    "description": "Kuzey Kıbrıs merkezli bağımsız yatırım ve finansal danışmanlık. 22 yıllık bankacılık ve ekonomi deneyimiyle; doğru analiz, doğru strateji, doğru zamanlama.",
     "quickLinks": "Hızlı Erişim",
-    "featuredProjects": "Öne Çıkan Projeler",
+    "servicesTitle": "Hizmetlerimiz",
     "contact": "İletişim",
     "rights": "Tüm hakları saklıdır.",
-    "tagline": "Kuzey Kıbrıs'ın Güvenilir Yatırım Ortağı"
+    "tagline": "Kuzey Kıbrıs'ın Güvenilir Finansal Danışmanı"
   },
   "home": {
-    "heroImageAlt": "Kuzey Kıbrıs gayrimenkul yatırımı",
-    "heroTagline": "Kuzey Kıbrıs'ın Uzman ve Güvenilir Çözüm Ortağınız",
-    "heroTitle": "Akdeniz'in Yükselen Değeri Kuzey Kıbrıs'ta",
-    "heroTitleHighlight": "Doğru Yatırım Fırsatları",
-    "heroSubtitle": "21 yıllık finans deneyimi ve Kuzey Kıbrıs'taki derin yerel bilgiyle, size özel stratejik gayrimenkul danışmanlığı sunuyoruz.",
-    "heroCtaProjects": "Projeleri Keşfedin",
-    "heroCtaCall": "Hemen Arayın",
-    "aboutTitle": "Neden Primevest Investment?",
-    "aboutIntro": "Primevest Investment, gayrimenkulü duygusal bir tercih olarak değil; analitik ve sürdürülebilir bir yatırım enstrümanı olarak değerlendirir.",
-    "aboutListIntro": "Her yatırım kararı;",
-    "aboutListItems": [
-      "GBP bazlı değerleme",
-      "Amortisman süresi",
-      "Kira ve doluluk potansiyeli",
-      "Bölgesel talep dinamikleri",
-      "Proje ve teslim riskleri"
+    "heroTagline": "Ekonomi Bilgisi, Yerel Uzmanlık, Güvene Dayalı Danışmanlık",
+    "heroTitle": "Finansal Geleceğinizi",
+    "heroTitleHighlight": "Stratejiyle Şekillendirin",
+    "heroSubtitle": "22 yıllık bankacılık ve ekonomi deneyimi, Kuzey Kıbrıs'ta 8 yıllık saha bilgisi. Hedeflerinize ve risk profilinize özel, birebir yatırım ve finansal danışmanlık.",
+    "heroCtaServices": "Hizmetlerimizi Keşfedin",
+    "heroCtaCall": "Ücretsiz Ön Görüşme",
+    "heroStats": [
+      {
+        "value": "22+",
+        "label": "Yıl Bankacılık ve Finans Deneyimi"
+      },
+      {
+        "value": "8",
+        "label": "Yıl Kuzey Kıbrıs'ta Saha Bilgisi"
+      },
+      {
+        "value": "1:1",
+        "label": "Birebir Danışmanlık Modeli"
+      }
     ],
-    "aboutListOutro": "üzerinden modellenir. Odak noktamız; doğru yapılandırılmış, uzun vadede güçlü kalan yatırımlardır.",
-    "aboutBadges": ["Güvenilir", "Birebir Danışmanlık", "Uzman Ekip"],
-    "aboutCta": "Ekibimizi Tanıyın",
-    "aboutImageAlt": "Kuzey Kıbrıs lüks yaşam",
-    "featuredTitle": "Öne Çıkan Projeler",
-    "featuredSubtitle": "Kuzey Kıbrıs'ın en gözde lokasyonlarında, güçlü proje geliştiricilerden, yüksek standartlı ve değer odaklı yatırım fırsatları.",
-    "featuredCta": "Tüm Projeleri Görüntüleyin",
-    "whyTitle": "Neden Kuzey Kıbrıs'a Yatırım Yapmalısınız?",
-    "whySubtitle": "Akdeniz'in doğusundaki bu cennet adası, gayrimenkul yatırımcıları için eşsiz fırsatlar sunuyor.",
+    "founderBadge": "Kurucu & Direktör",
+    "founderTitle": "Ekonominin İçinden Gelen Bir İsim: Gülay Yıldız",
+    "founderParagraph1": "Garanti BBVA, ING Bank ve Türk Ekonomi Bankası'nda özel bankacılık, ticari bankacılık ve şube müdürlüğü görevlerinde 22 yılı aşkın deneyim. Kariyerinin son 8 yılında Kuzey Kıbrıs'ta şube müdürü olarak KKTC ekonomisini, bankacılık sistemini ve piyasa dinamiklerini sahada yönetti.",
+    "founderParagraph2": "Türkiye ve KKTC çift vatandaşlığının sunduğu çift perspektifle; iki ekonomiyi eş zamanlı okuyor, yatırımcılarına satış odaklı değil, güvene dayalı birebir danışmanlık sunuyor.",
+    "founderHighlights": [
+      "22+ yıl bankacılık ve ekonomi deneyimi",
+      "Özel bankacılık, ticari bankacılık ve şube yöneticiliği",
+      "Kuzey Kıbrıs'ta 8 yıl şube müdürlüğü",
+      "TC ve KKTC çift vatandaşlığı — çift ekonomik perspektif"
+    ],
+    "founderCta": "Hikayemizi Okuyun",
+    "founderImageAlt": "Gülay Yıldız — Primevest Investment Kurucusu",
+    "servicesTitle": "Size Nasıl Yardımcı Olabiliriz?",
+    "servicesSubtitle": "Birikiminizi korumaktan uzun vadeli yatırım stratejisine; her adımda yanınızda olan bütüncül finansal danışmanlık.",
+    "servicesCta": "Tüm Hizmetleri İnceleyin",
+    "whyTitle": "Neden Primevest?",
+    "whySubtitle": "Yatırım kararlarınızda pazarlama değil analiz, ürün değil strateji, satış değil güven arıyorsanız doğru yerdesiniz.",
     "whyItems": [
       {
-        "icon": "trending-up",
-        "title": "Yüksek Yatırım Getirisi",
-        "description": "Kuzey Kıbrıs'ta gayrimenkul yatırımları 8-12 yıl gibi kısa sürede kendini amorti eder. Sürekli artan arazi ve konut değerleri ile güçlü kira getirisi sunar."
-      },
-      {
-        "icon": "globe",
-        "title": "Yabancı Yatırımcıya Açık",
-        "description": "Yabancı uyruklu yatırımcılar kolayca mülk satın alabilir. Kolay ve hızlı tapu işlemleri ile güvenli yatırım ortamı sağlanır."
-      },
-      {
-        "icon": "piggy-bank",
-        "title": "Vergi Avantajları",
-        "description": "Düşük vergi oranları ve yatırımcı dostu politikalar sayesinde net getirinizi maksimize edin. Döviz bazlı kira geliri (GBP) elde edin."
-      },
-      {
-        "icon": "sun",
-        "title": "Akdeniz Yaşam Kalitesi",
-        "description": "Yılda 300+ güneşli gün, bozulmamış doğa, güvenli yaşam ortamı ve düşük nüfus yoğunluğu ile Akdeniz'in en yaşanılabilir noktası."
+        "icon": "landmark",
+        "title": "Bankacılık Kökenli Uzmanlık",
+        "description": "22 yıllık kurumsal bankacılık disiplini: risk analizi, kredi değerlendirmesi ve yatırım finansmanı bilgisi danışmanlığımızın temelidir."
       },
       {
         "icon": "map-pin",
-        "title": "Stratejik Konum",
-        "description": "Avrupa, Orta Doğu ve Afrika'nın kesişim noktasında, Türkiye'ye 45-75 dakika uçuş mesafesinde stratejik lokasyon avantajı."
+        "title": "Kıbrıs'ta Yerel Hâkimiyet",
+        "description": "KKTC ekonomisi, bankacılık sistemi ve mevzuat bilgisi masa başından değil, 8 yıllık saha deneyiminden gelir."
       },
       {
-        "icon": "building-2",
-        "title": "Gelişen Altyapı",
-        "description": "Yeni havalimanı, otobanlar, üniversiteler ve turizm yatırımları ile hızla gelişen altyapı. Sürekli değer kazanan bir pazar."
+        "icon": "users",
+        "title": "Birebir Danışmanlık",
+        "description": "Standart paketler yok. Hedefleriniz, risk profiliniz ve gelir yapınıza göre kurgulanan kişiye özel strateji var."
+      },
+      {
+        "icon": "shield",
+        "title": "Bağımsız ve Şeffaf",
+        "description": "Ürün satmayız, komisyon kovalamayız. Tek gündemimiz yatırımcının çıkarı; modelimiz güvene dayalı danışmanlıktır."
+      },
+      {
+        "icon": "pie-chart",
+        "title": "Bütüncül Finansal Bakış",
+        "description": "Birikim, yatırım, döviz dengesi ve emeklilik tek çatı altında; parçalar değil bütün planlanır."
+      },
+      {
+        "icon": "trending-up",
+        "title": "Uzun Vadeli Değer",
+        "description": "Kısa vadeli kazanç vaadi değil; doğru yapılandırılmış, sürdürülebilir ve zamana dayanıklı stratejiler."
       }
     ],
-    "ctaTitle": "Yatırımınıza Bugün Başlayın",
-    "ctaText": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında sorularınız mı var? Size özel danışmanlık için hemen iletişime geçin. İlk görüşmemiz ücretsizdir.",
+    "ctaTitle": "Finansal Yol Haritanızı Birlikte Çizelim",
+    "ctaText": "Birikiminizi nasıl değerlendireceğinizi mi düşünüyorsunuz? Size özel danışmanlık için hemen iletişime geçin. İlk görüşmemiz ücretsizdir.",
     "ctaWhatsapp": "WhatsApp ile Yazın",
-    "ctaFormTitle": "Ücretsiz Danışmanlık",
+    "ctaFormTitle": "Ücretsiz Ön Görüşme",
     "ctaFormSubtitle": "Bilgilerinizi bırakın, uzman ekibimiz sizi arasın."
   },
-  "projects": {
-    "badge": "Proje",
-    "title": "Projelerimiz",
-    "subtitle": "Kuzey Kıbrıs'ın en değerli lokasyonlarında özenle seçilmiş gayrimenkul projeleri.",
-    "girneTitle": "Girne Bölgesi",
-    "girneSubtitle": "Esentepe, Tatlısu, Bahçeli — Akdeniz'in en güzel sahillerinde lüks yaşam projeleri.",
-    "iskeleTitle": "İskele Bölgesi",
-    "iskeleSubtitle": "Long Beach ve çevresinde — Kuzey Kıbrıs'ın en hızlı gelişen yatırım bölgesi."
-  },
-  "projectCard": {
-    "statusSale": "Satışta",
-    "statusPresale": "Ön Satış",
-    "beds": "Yatak",
-    "viewDetails": "Detayları İncele"
-  },
-  "projectDetail": {
-    "allProjects": "Tüm Projeler",
-    "statusSale": "Satışta",
-    "statusPresale": "Ön Satış",
-    "countryName": "Kuzey Kıbrıs",
-    "whatsappCta": "WhatsApp ile Bilgi Alın",
-    "call": "Arayın",
-    "whatsappMessage": "Merhaba, {project} projesi hakkında bilgi almak istiyorum.",
-    "specBedrooms": "Yatak Odası",
-    "specArea": "Alan",
-    "specCompletion": "Teslim",
-    "specTotalUnits": "Toplam Ünite",
-    "unitTypes": "Daire Tipleri",
-    "aboutProject": "Proje Hakkında",
-    "features": "Özellikler & Tesisler",
-    "sidebarTitle": "Bu Proje Hakkında Bilgi Alın",
-    "sidebarText": "Fiyat, ödeme planı ve detaylar için formu doldurun.",
-    "similarTitle": "Benzer Projeler",
-    "similarSubtitle": "{region} bölgesindeki diğer yatırım fırsatları"
-  },
-  "regions": {
-    "girne": "Girne",
-    "iskele": "İskele"
-  },
-  "gallery": {
-    "mainImageAlt": "Ana görsel",
-    "imageAlt": "Görsel",
-    "morePhotos": "Foto",
-    "close": "Kapat",
-    "previous": "Önceki",
-    "next": "Sonraki"
+  "services": {
+    "badge": "Hizmetlerimiz",
+    "title": "Yatırım ve Finansal Danışmanlık Hizmetleri",
+    "subtitle": "Satış odaklı değil, güvene dayalı bir modelle; birikiminizin her aşamasında yanınızdayız.",
+    "items": [
+      {
+        "id": "bireysel-yatirim-danismanligi",
+        "icon": "line-chart",
+        "title": "Bireysel Yatırım Danışmanlığı",
+        "description": "Hedeflerinize ve risk profilinize özel yatırım stratejisi. Birikiminizin hangi araçlarda, hangi vadede ve hangi para biriminde değerlendirileceğini birlikte yapılandırıyoruz.",
+        "features": [
+          "Hedef ve risk profili analizi",
+          "Kişiye özel varlık dağılımı",
+          "Düzenli strateji görüşmeleri"
+        ]
+      },
+      {
+        "id": "finansal-planlama",
+        "icon": "target",
+        "title": "Finansal Planlama ve Birikim Stratejisi",
+        "description": "Acil durum fonundan uzun vadeli hedeflere; gelirinizi, harcamalarınızı ve birikiminizi tek bir plan altında topluyoruz.",
+        "features": [
+          "Katmanlı hedef planlaması",
+          "Bütçe ve nakit akışı analizi",
+          "Birikim disiplini kurgusu"
+        ]
+      },
+      {
+        "id": "portfoy-analizi",
+        "icon": "pie-chart",
+        "title": "Portföy Analizi ve Çeşitlendirme",
+        "description": "Mevcut varlıklarınızın bağımsız değerlendirmesi: yoğunlaşma riskleri, para birimi dengesi ve vade yapısı analiz edilir, dengeli bir dağılım önerilir.",
+        "features": [
+          "Mevcut portföyün röntgeni",
+          "Varlık, vade ve döviz çeşitlendirmesi",
+          "Periyodik yeniden dengeleme"
+        ]
+      },
+      {
+        "id": "kibris-finansal-rehberlik",
+        "icon": "landmark",
+        "title": "Kuzey Kıbrıs'ta Finansal Rehberlik",
+        "description": "KKTC'de bankacılık, mevduat ve finansal işleyiş hakkında yerel uzmanlık. Adaya yeni gelenler ve iki ülke arasında yaşayanlar için uçtan uca rehberlik.",
+        "features": [
+          "Banka ve mevduat değerlendirmesi",
+          "KKTC-Türkiye finansal köprüsü",
+          "Yerel mevzuat ve işleyiş bilgisi"
+        ]
+      },
+      {
+        "id": "emeklilik-planlamasi",
+        "icon": "piggy-bank",
+        "title": "Emeklilik ve Uzun Vadeli Birikim",
+        "description": "Bileşik getirinin gücünü zamanla buluşturan, disiplinli ve sürdürülebilir emeklilik planlaması. Bugünden başlayarak yarını yapılandırıyoruz.",
+        "features": [
+          "Emeklilik hedefi modellemesi",
+          "Uzun vadeli birikim araçları",
+          "Düzenli gözden geçirme"
+        ]
+      },
+      {
+        "id": "ikinci-gorus",
+        "icon": "scale",
+        "title": "Bağımsız İkinci Görüş",
+        "description": "Size sunulan bir yatırım teklifini ya da mevcut stratejinizi tarafsız bir gözle değerlendiriyoruz. Karar sizin; analiz bizden.",
+        "features": [
+          "Teklif ve ürün analizi",
+          "Risk ve maliyet karşılaştırması",
+          "Tarafsız değerlendirme raporu"
+        ]
+      }
+    ],
+    "processTitle": "Nasıl Çalışıyoruz?",
+    "processSubtitle": "Dört adımlı, şeffaf ve güvene dayalı bir danışmanlık süreci.",
+    "processSteps": [
+      {
+        "title": "Tanışma ve Hedef Analizi",
+        "description": "Ücretsiz ilk görüşmede sizi, hedeflerinizi ve beklentilerinizi dinliyoruz."
+      },
+      {
+        "title": "Finansal Durum ve Risk Profili",
+        "description": "Gelir-gider dengeniz, varlıklarınız ve gerçek risk toleransınız birlikte analiz edilir."
+      },
+      {
+        "title": "Kişiye Özel Strateji",
+        "description": "Hedeflerinize uygun varlık dağılımı, vade yapısı ve para birimi dengesi kurgulanır."
+      },
+      {
+        "title": "Düzenli Takip ve Revizyon",
+        "description": "Plan yaşayan bir belgedir; piyasalar ve hayatınız değiştikçe birlikte güncelleriz."
+      }
+    ],
+    "ctaTitle": "İlk Görüşme Ücretsiz",
+    "ctaText": "Hangi hizmetin size uygun olduğundan emin değil misiniz? Tanışma görüşmesinde birlikte netleştirelim.",
+    "ctaContact": "Randevu Alın",
+    "ctaWhatsapp": "WhatsApp ile Yazın"
   },
   "about": {
     "title": "Hakkımızda",
-    "subtitle": "Güvene dayalı danışmanlık modelimizle Kuzey Kıbrıs'ta doğru yatırımın adresi.",
+    "subtitle": "Ekonomi bilgisini Kuzey Kıbrıs'taki yerel uzmanlıkla birleştiren, güvene dayalı danışmanlık.",
     "storyTitle": "Primevest Investment Hikayesi",
-    "storyParagraph1": "Primevest Investment, 21 yılı aşkın bankacılık ve finans deneyimini gayrimenkul yatırım danışmanlığıyla birleştiren Gülay Yıldız tarafından kurulmuştur. Garanti BBVA, ING Bank ve Türk Ekonomi Bankası gibi sektörün önde gelen kurumlarında edindiği güçlü kurumsal altyapıyı, son 8 yılında Kuzey Kıbrıs'ta şube müdürü olarak yönettiği operasyonel ve stratejik deneyimle pekiştirmiştir.",
-    "storyParagraph2": "Kuzey Kıbrıs'ta 8 yılı aşkın saha deneyimi, güçlü yerel ağı ve çift vatandaşlığın sağladığı çok yönlü bakış açısı ile Primevest; yatırımcılara yalnızca fırsat sunmaz, doğru yapılandırılmış, sürdürülebilir ve güvenli yatırım modelleri geliştirir.",
-    "storyMotto": "Bizim yaklaşımımız nettir: Doğru zaman, doğru lokasyon, doğru proje.",
-    "storyParagraph3": "Primevest olarak amacımız; yatırımcıyı yalnızca bir mülkle buluşturmak değil, sermayesini koruyan ve büyüten stratejik kararlar almasına rehberlik etmektir. Her yatırım bizim için bir işlem değil, uzun vadeli bir güven ilişkisinin başlangıcıdır.",
-    "storyImageAlt": "Kuzey Kıbrıs manzarası",
+    "storyParagraph1": "Primevest Investment, 22 yılı aşkın bankacılık ve ekonomi deneyimini bireysel yatırım danışmanlığıyla birleştiren Gülay Yıldız tarafından kurulmuştur. Garanti BBVA, ING Bank ve Türk Ekonomi Bankası gibi sektörün önde gelen kurumlarında özel bankacılık, ticari bankacılık ve şube müdürlüğü görevlerinde edindiği güçlü kurumsal altyapıyı; kariyerinin son 8 yılında Kuzey Kıbrıs'ta şube müdürü olarak yönettiği operasyonel ve stratejik deneyimle pekiştirmiştir.",
+    "storyParagraph2": "KKTC ekonomisine, bankacılık sistemine ve piyasa dinamiklerine sahada edinilmiş hâkimiyeti, güçlü yerel ağı ve çift vatandaşlığın sağladığı çok yönlü bakış açısıyla Primevest; yatırımcılara hazır ürünler sunmaz — hedeflerine ve risk profillerine uygun, doğru yapılandırılmış ve sürdürülebilir finansal stratejiler geliştirir.",
+    "storyMotto": "Bizim yaklaşımımız nettir: Doğru analiz, doğru strateji, doğru zamanlama.",
+    "storyParagraph3": "Primevest olarak amacımız; yatırımcıyı bir ürünle buluşturmak değil, sermayesini koruyan ve büyüten stratejik kararlar almasına rehberlik etmektir. Her yatırımcı bizim için bir işlem değil, uzun vadeli bir güven ilişkisinin başlangıcıdır.",
+    "storyImageAlt": "Gülay Yıldız — Güçlü Kadınlar dergisi röportajından",
     "valuesTitle": "Değerlerimiz",
     "values": [
       {
@@ -183,12 +244,12 @@
       {
         "icon": "target",
         "title": "Strateji",
-        "description": "21 yıllık finans deneyimimizi stratejik yatırım danışmanlığına dönüştürüyoruz."
+        "description": "22 yıllık bankacılık ve ekonomi deneyimimizi kişiye özel yatırım stratejilerine dönüştürüyoruz."
       },
       {
         "icon": "eye",
         "title": "Vizyon",
-        "description": "Teknolojiyi yatırım dünyasıyla buluşturan yenilikçi yaklaşımımızla geleceğe bakıyoruz."
+        "description": "Teknolojiyi finans dünyasıyla buluşturan yenilikçi yaklaşımımızla geleceğe bakıyoruz."
       },
       {
         "icon": "users",
@@ -197,15 +258,15 @@
       }
     ],
     "teamTitle": "Ekibimiz",
-    "teamSubtitle": "Finans, teknoloji ve gayrimenkul alanlarında uzman kadromuzla size en doğru yönlendirmeyi sunuyoruz.",
+    "teamSubtitle": "Finans, ekonomi ve teknoloji alanlarında uzman kadromuzla size en doğru yönlendirmeyi sunuyoruz.",
     "ctaTitle": "Birlikte Çalışalım",
-    "ctaText": "Kuzey Kıbrıs'ta doğru yatırım için uzman ekibimizle tanışın.",
+    "ctaText": "Finansal hedefleriniz için uzman ekibimizle tanışın. İlk görüşmemiz ücretsizdir.",
     "ctaContact": "İletişime Geçin",
     "ctaWhatsapp": "WhatsApp ile Yazın"
   },
   "contact": {
     "title": "İletişim",
-    "subtitle": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında sorularınız mı var? Hemen bize ulaşın.",
+    "subtitle": "Yatırım ve finansal danışmanlık hakkında sorularınız mı var? Hemen bize ulaşın.",
     "reachTitle": "Bize Ulaşın",
     "reachText": "Size özel danışmanlık için hemen iletişime geçin. İlk görüşmemiz ücretsizdir.",
     "phoneLabel": "Telefon",
@@ -223,19 +284,19 @@
     "mapTitle": "Primevest Investment Ofis Konumu"
   },
   "blog": {
-    "badge": "Yatırım Rehberi",
+    "badge": "Finans Rehberi",
     "title": "Blog",
-    "subtitle": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında bilmeniz gereken her şey: pazar analizleri, yasal süreçler ve uzman tavsiyeleri.",
+    "subtitle": "Yatırım, birikim, finansal planlama ve Kuzey Kıbrıs ekonomisi üzerine bilmeniz gereken her şey: analizler, rehberler ve uzman görüşleri.",
     "readMore": "Devamını Okuyun",
-    "ctaTitle": "Yatırım Danışmanlığı Almak İster Misiniz?",
-    "ctaText": "Yazılarımızda bahsettiğimiz fırsatları değerlendirmek için uzman ekibimizle görüşün. İlk danışmanlık ücretsizdir.",
+    "ctaTitle": "Finansal Danışmanlık Almak İster Misiniz?",
+    "ctaText": "Yazılarımızda ele aldığımız stratejileri kendi hedeflerinize uyarlamak için uzman ekibimizle görüşün. İlk danışmanlık ücretsizdir.",
     "ctaContact": "İletişime Geçin",
     "ctaWhatsapp": "WhatsApp ile Yazın"
   },
   "blogPost": {
     "allPosts": "Tüm Yazılar",
-    "advisoryTitle": "Yatırım Danışmanlığı",
-    "advisoryText": "Kuzey Kıbrıs'ta yatırım yapmak ister misiniz? Uzman ekibimizle ücretsiz görüşme planlayın.",
+    "advisoryTitle": "Finansal Danışmanlık",
+    "advisoryText": "Birikiminizi bir plana bağlamak ister misiniz? Uzman ekibimizle ücretsiz görüşme planlayın.",
     "otherPosts": "Diğer Yazılar",
     "relatedPosts": "Benzer Yazılar"
   },
@@ -243,7 +304,7 @@
     "namePlaceholder": "Adınız Soyadınız *",
     "phonePlaceholder": "Telefon Numaranız *",
     "emailPlaceholder": "E-posta Adresiniz",
-    "interestPlaceholder": "İlgilendiğiniz Proje",
+    "interestPlaceholder": "İlgilendiğiniz Hizmet",
     "generalInfo": "Genel Bilgi",
     "messagePlaceholder": "Mesajınız",
     "submit": "Mesaj Gönderin",
@@ -259,11 +320,11 @@
     "whatsappName": "Ad Soyad",
     "whatsappPhone": "Telefon",
     "whatsappEmail": "E-posta",
-    "whatsappInterest": "İlgilenilen Proje",
+    "whatsappInterest": "İlgilenilen Hizmet",
     "whatsappMessage": "Mesaj"
   },
   "whatsappFab": {
-    "tooltipText": "Kuzey Kıbrıs gayrimenkul yatırımı hakkında sorularınız mı var? Hemen yazın, size yardımcı olalım.",
+    "tooltipText": "Yatırım ve finansal danışmanlık hakkında sorularınız mı var? Hemen yazın, size yardımcı olalım.",
     "cta": "WhatsApp ile Yazın",
     "close": "Kapat",
     "open": "WhatsApp ile iletişime geçin"

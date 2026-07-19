@@ -1,42 +1,42 @@
 {
   "meta": {
-    "defaultTitle": "Primevest Investment | North Cyprus Real Estate Investment Advisory",
+    "defaultTitle": "Primevest Investment | Investment & Financial Advisory",
     "titleTemplate": "%s | Primevest Investment",
-    "description": "Trusted real estate investment advisory in North Cyprus. 21 years of finance experience — the right investment at the right time, in the right location. Luxury residential projects and strategic advisory.",
-    "ogDescription": "Trusted real estate investment advisory in North Cyprus. Luxury residential projects and strategic advisory.",
+    "description": "Independent investment and financial advisory based in North Cyprus. Personal investment advisory, financial planning and portfolio strategy built on 22 years of banking and economics experience.",
+    "ogDescription": "Independent investment and financial advisory based in North Cyprus. Personal investment advisory, financial planning and portfolio strategy.",
     "keywords": [
-      "North Cyprus real estate",
-      "North Cyprus property investment",
+      "investment advisory",
+      "financial advisory",
+      "personal investment advisory",
+      "financial planning",
+      "portfolio diversification",
+      "savings strategy",
+      "North Cyprus economy",
       "TRNC investment",
-      "Cyprus property",
-      "real estate advisory",
-      "Iskele projects",
-      "Kyrenia projects",
-      "Long Beach",
-      "Esentepe",
-      "luxury apartments",
-      "investment opportunities"
+      "North Cyprus financial advisor",
+      "retirement planning",
+      "foreign currency savings"
     ],
-    "projects": {
-      "title": "Projects",
-      "description": "Luxury residential projects in North Cyprus' most prestigious locations. Investment opportunities in Iskele, Kyrenia, Long Beach and Esentepe."
+    "services": {
+      "title": "Services",
+      "description": "Personal investment advisory, financial planning, portfolio analysis and financial guidance in North Cyprus. A trust-based, one-on-one advisory model."
     },
     "about": {
       "title": "About Us",
-      "description": "Meet the Primevest Investment team. Trusted real estate advisory built on 21 years of finance experience and deep local knowledge of North Cyprus."
+      "description": "Meet the Primevest Investment team. Trusted investment and financial advisory built on 22 years of banking and economics experience and 8 years of on-the-ground knowledge of North Cyprus."
     },
     "contact": {
       "title": "Contact",
-      "description": "Get in touch with Primevest Investment. Book a free consultation for your North Cyprus real estate investment."
+      "description": "Get in touch with Primevest Investment. Book a free initial consultation for investment and financial advisory."
     },
     "blog": {
       "title": "Blog",
-      "description": "Up-to-date insights on North Cyprus real estate investment: market analyses, legal guides and expert opinions."
+      "description": "Up-to-date analyses, guides and expert views on investing, saving, financial planning and the North Cyprus economy."
     }
   },
   "nav": {
     "home": "Home",
-    "projects": "Projects",
+    "services": "Services",
     "about": "About Us",
     "blog": "Blog",
     "contact": "Contact",
@@ -45,134 +45,195 @@
     "languageSwitcherLabel": "Language selection"
   },
   "footer": {
-    "description": "Trusted real estate investment advisory in North Cyprus. 21 years of finance experience — the right investment at the right time, in the right location.",
+    "description": "Independent investment and financial advisory based in North Cyprus. 22 years of banking and economics experience — the right analysis, the right strategy, the right timing.",
     "quickLinks": "Quick Links",
-    "featuredProjects": "Featured Projects",
+    "servicesTitle": "Our Services",
     "contact": "Contact",
     "rights": "All rights reserved.",
-    "tagline": "Your Trusted Investment Partner in North Cyprus"
+    "tagline": "Your Trusted Financial Advisor in North Cyprus"
   },
   "home": {
-    "heroImageAlt": "North Cyprus real estate investment",
-    "heroTagline": "Your Expert and Trusted Partner in North Cyprus",
-    "heroTitle": "The Right Investment Opportunities in North Cyprus,",
-    "heroTitleHighlight": "the Rising Star of the Mediterranean",
-    "heroSubtitle": "With 21 years of finance experience and deep local knowledge of North Cyprus, we deliver strategic real estate advisory tailored to you.",
-    "heroCtaProjects": "Explore Our Projects",
-    "heroCtaCall": "Call Us Now",
-    "aboutTitle": "Why Primevest Investment?",
-    "aboutIntro": "Primevest Investment treats real estate not as an emotional choice, but as an analytical and sustainable investment instrument.",
-    "aboutListIntro": "Every investment decision is modelled on:",
-    "aboutListItems": [
-      "GBP-based valuation",
-      "Payback period",
-      "Rental and occupancy potential",
-      "Regional demand dynamics",
-      "Project and delivery risks"
+    "heroTagline": "Economic Insight, Local Expertise, Trust-Based Advisory",
+    "heroTitle": "Shape Your Financial Future",
+    "heroTitleHighlight": "with Strategy",
+    "heroSubtitle": "22 years of banking and economics experience, 8 years of on-the-ground knowledge of North Cyprus. One-on-one investment and financial advisory tailored to your goals and risk profile.",
+    "heroCtaServices": "Explore Our Services",
+    "heroCtaCall": "Free Initial Consultation",
+    "heroStats": [
+      {
+        "value": "22+",
+        "label": "Years in Banking & Finance"
+      },
+      {
+        "value": "8",
+        "label": "Years On the Ground in North Cyprus"
+      },
+      {
+        "value": "1:1",
+        "label": "One-on-One Advisory Model"
+      }
     ],
-    "aboutListOutro": "Our focus is on well-structured investments that stay strong over the long term.",
-    "aboutBadges": ["Trusted", "One-on-One Advisory", "Expert Team"],
-    "aboutCta": "Meet Our Team",
-    "aboutImageAlt": "Luxury living in North Cyprus",
-    "featuredTitle": "Featured Projects",
-    "featuredSubtitle": "High-standard, value-driven investment opportunities from strong developers in North Cyprus' most sought-after locations.",
-    "featuredCta": "View All Projects",
-    "whyTitle": "Why Invest in North Cyprus?",
-    "whySubtitle": "This paradise island in the eastern Mediterranean offers unique opportunities for real estate investors.",
+    "founderBadge": "Founder & Director",
+    "founderTitle": "A Name from Inside the Economy: Gülay Yıldız",
+    "founderParagraph1": "More than 22 years of experience in private banking, commercial banking and branch management at Garanti BBVA, ING Bank and Türk Ekonomi Bankası. For the last 8 years of her career, she managed the TRNC economy, banking system and market dynamics first-hand as a branch manager in North Cyprus.",
+    "founderParagraph2": "With the dual perspective of Turkish and TRNC citizenship, she reads both economies simultaneously and offers investors trust-based, one-on-one advisory — never a sales pitch.",
+    "founderHighlights": [
+      "22+ years of banking and economics experience",
+      "Private banking, commercial banking and branch leadership",
+      "8 years as a branch manager in North Cyprus",
+      "Dual Turkish and TRNC citizenship — a dual economic perspective"
+    ],
+    "founderCta": "Read Our Story",
+    "founderImageAlt": "Gülay Yıldız — Founder of Primevest Investment",
+    "servicesTitle": "How Can We Help You?",
+    "servicesSubtitle": "From protecting your savings to long-term investment strategy — holistic financial advisory at your side every step of the way.",
+    "servicesCta": "View All Services",
+    "whyTitle": "Why Primevest?",
+    "whySubtitle": "If you are looking for analysis instead of marketing, strategy instead of products, and trust instead of sales — you are in the right place.",
     "whyItems": [
       {
-        "icon": "trending-up",
-        "title": "High Return on Investment",
-        "description": "Real estate investments in North Cyprus pay for themselves in as little as 8-12 years. Steadily rising land and property values deliver strong rental yields."
-      },
-      {
-        "icon": "globe",
-        "title": "Open to Foreign Investors",
-        "description": "Foreign nationals can easily purchase property. Simple, fast title deed procedures provide a secure investment environment."
-      },
-      {
-        "icon": "piggy-bank",
-        "title": "Tax Advantages",
-        "description": "Maximise your net return with low tax rates and investor-friendly policies. Earn rental income in foreign currency (GBP)."
-      },
-      {
-        "icon": "sun",
-        "title": "Mediterranean Quality of Life",
-        "description": "With 300+ days of sunshine a year, unspoilt nature, a safe living environment and low population density — one of the most liveable spots in the Mediterranean."
+        "icon": "landmark",
+        "title": "Banking-Grade Expertise",
+        "description": "22 years of institutional banking discipline: risk analysis, credit assessment and investment financing knowledge underpin our advisory."
       },
       {
         "icon": "map-pin",
-        "title": "Strategic Location",
-        "description": "At the crossroads of Europe, the Middle East and Africa, just a 45-75 minute flight from Türkiye — a strategic location advantage."
+        "title": "Local Command of Cyprus",
+        "description": "Our knowledge of the TRNC economy, banking system and regulations comes from 8 years in the field — not from behind a desk."
       },
       {
-        "icon": "building-2",
-        "title": "Growing Infrastructure",
-        "description": "Rapidly developing infrastructure with a new airport, motorways, universities and tourism investments. A market that keeps gaining value."
+        "icon": "users",
+        "title": "One-on-One Advisory",
+        "description": "No standard packages. A bespoke strategy built around your goals, risk profile and income structure."
+      },
+      {
+        "icon": "shield",
+        "title": "Independent and Transparent",
+        "description": "We don't sell products or chase commissions. Our only agenda is the investor's interest; our model is trust-based advisory."
+      },
+      {
+        "icon": "pie-chart",
+        "title": "A Holistic Financial View",
+        "description": "Savings, investments, currency balance and retirement under one roof — we plan the whole, not the parts."
+      },
+      {
+        "icon": "trending-up",
+        "title": "Long-Term Value",
+        "description": "No short-term profit promises; well-structured, sustainable strategies built to endure."
       }
     ],
-    "ctaTitle": "Start Your Investment Today",
-    "ctaText": "Have questions about real estate investment in North Cyprus? Get in touch now for personalised advisory. Your first consultation is free.",
+    "ctaTitle": "Let's Draw Your Financial Road Map Together",
+    "ctaText": "Wondering how to put your savings to work? Get in touch now for personalised advisory. Your first consultation is free.",
     "ctaWhatsapp": "Message Us on WhatsApp",
-    "ctaFormTitle": "Free Consultation",
+    "ctaFormTitle": "Free Initial Consultation",
     "ctaFormSubtitle": "Leave your details and our expert team will call you."
   },
-  "projects": {
-    "badge": "Projects",
-    "title": "Our Projects",
-    "subtitle": "Carefully selected real estate projects in North Cyprus' most valuable locations.",
-    "girneTitle": "Kyrenia Region",
-    "girneSubtitle": "Esentepe, Tatlisu, Bahceli — luxury living projects on the Mediterranean's most beautiful shores.",
-    "iskeleTitle": "Iskele Region",
-    "iskeleSubtitle": "Long Beach and its surroundings — North Cyprus' fastest-growing investment region."
-  },
-  "projectCard": {
-    "statusSale": "For Sale",
-    "statusPresale": "Pre-Sale",
-    "beds": "Beds",
-    "viewDetails": "View Details"
-  },
-  "projectDetail": {
-    "allProjects": "All Projects",
-    "statusSale": "For Sale",
-    "statusPresale": "Pre-Sale",
-    "countryName": "North Cyprus",
-    "whatsappCta": "Get Info on WhatsApp",
-    "call": "Call",
-    "whatsappMessage": "Hello, I would like to get information about the {project} project.",
-    "specBedrooms": "Bedrooms",
-    "specArea": "Area",
-    "specCompletion": "Completion",
-    "specTotalUnits": "Total Units",
-    "unitTypes": "Unit Types",
-    "aboutProject": "About the Project",
-    "features": "Features & Amenities",
-    "sidebarTitle": "Get Info About This Project",
-    "sidebarText": "Fill in the form for prices, payment plans and details.",
-    "similarTitle": "Similar Projects",
-    "similarSubtitle": "More investment opportunities in the {region} region"
-  },
-  "regions": {
-    "girne": "Kyrenia",
-    "iskele": "Iskele"
-  },
-  "gallery": {
-    "mainImageAlt": "Main image",
-    "imageAlt": "Image",
-    "morePhotos": "Photos",
-    "close": "Close",
-    "previous": "Previous",
-    "next": "Next"
+  "services": {
+    "badge": "Our Services",
+    "title": "Investment & Financial Advisory Services",
+    "subtitle": "A trust-based — never sales-driven — model, at your side at every stage of your savings journey.",
+    "items": [
+      {
+        "id": "personal-investment-advisory",
+        "icon": "line-chart",
+        "title": "Personal Investment Advisory",
+        "description": "An investment strategy tailored to your goals and risk profile. Together we structure which instruments, maturities and currencies your savings should work in.",
+        "features": [
+          "Goal and risk profile analysis",
+          "Bespoke asset allocation",
+          "Regular strategy reviews"
+        ]
+      },
+      {
+        "id": "financial-planning",
+        "icon": "target",
+        "title": "Financial Planning & Savings Strategy",
+        "description": "From the emergency fund to long-term goals — we bring your income, spending and savings together under a single plan.",
+        "features": [
+          "Layered goal planning",
+          "Budget and cash-flow analysis",
+          "A built-in savings discipline"
+        ]
+      },
+      {
+        "id": "portfolio-analysis",
+        "icon": "pie-chart",
+        "title": "Portfolio Analysis & Diversification",
+        "description": "An independent assessment of your existing assets: concentration risks, currency balance and maturity structure are analysed and a balanced allocation proposed.",
+        "features": [
+          "An X-ray of your current portfolio",
+          "Asset, maturity and currency diversification",
+          "Periodic rebalancing"
+        ]
+      },
+      {
+        "id": "north-cyprus-financial-guidance",
+        "icon": "landmark",
+        "title": "Financial Guidance in North Cyprus",
+        "description": "Local expertise on banking, deposits and how finance works in the TRNC. End-to-end guidance for newcomers to the island and those living between the two countries.",
+        "features": [
+          "Bank and deposit assessment",
+          "The TRNC-Türkiye financial bridge",
+          "Local regulations and market practice"
+        ]
+      },
+      {
+        "id": "retirement-long-term-savings",
+        "icon": "piggy-bank",
+        "title": "Retirement & Long-Term Savings",
+        "description": "Disciplined, sustainable retirement planning that puts the power of compounding to work over time. We structure tomorrow, starting today.",
+        "features": [
+          "Retirement goal modelling",
+          "Long-term savings instruments",
+          "Regular reviews"
+        ]
+      },
+      {
+        "id": "independent-second-opinion",
+        "icon": "scale",
+        "title": "Independent Second Opinion",
+        "description": "We evaluate an investment proposal you have received — or your current strategy — with an impartial eye. The decision is yours; the analysis is ours.",
+        "features": [
+          "Proposal and product analysis",
+          "Risk and cost comparison",
+          "An impartial assessment report"
+        ]
+      }
+    ],
+    "processTitle": "How We Work",
+    "processSubtitle": "A four-step advisory process — transparent and built on trust.",
+    "processSteps": [
+      {
+        "title": "Introduction & Goal Analysis",
+        "description": "In a free first meeting, we listen to you, your goals and your expectations."
+      },
+      {
+        "title": "Financial Situation & Risk Profile",
+        "description": "Your income and spending balance, assets and true risk tolerance are analysed together."
+      },
+      {
+        "title": "A Bespoke Strategy",
+        "description": "An asset allocation, maturity structure and currency balance matched to your goals."
+      },
+      {
+        "title": "Regular Review & Revision",
+        "description": "A plan is a living document; as markets and your life change, we update it together."
+      }
+    ],
+    "ctaTitle": "The First Consultation Is Free",
+    "ctaText": "Not sure which service fits you? Let's clarify it together in an introductory meeting.",
+    "ctaContact": "Book an Appointment",
+    "ctaWhatsapp": "Message Us on WhatsApp"
   },
   "about": {
     "title": "About Us",
-    "subtitle": "The address of the right investment in North Cyprus, with an advisory model built on trust.",
+    "subtitle": "Trust-based advisory that combines economic insight with local expertise in North Cyprus.",
     "storyTitle": "The Primevest Investment Story",
-    "storyParagraph1": "Primevest Investment was founded by Gülay Yıldız, who combines more than 21 years of banking and finance experience with real estate investment advisory. She built a strong institutional foundation at leading banks such as Garanti BBVA, ING Bank and Türk Ekonomi Bankası, reinforced by the operational and strategic experience of managing a branch in North Cyprus for the last 8 years of her career.",
-    "storyParagraph2": "With more than 8 years of on-the-ground experience in North Cyprus, a strong local network and the multifaceted perspective of dual citizenship, Primevest does more than present opportunities — it develops well-structured, sustainable and secure investment models for its investors.",
-    "storyMotto": "Our approach is clear: the right time, the right location, the right project.",
-    "storyParagraph3": "At Primevest, our goal is not simply to match an investor with a property, but to guide them towards strategic decisions that protect and grow their capital. For us, every investment is not a transaction but the beginning of a long-term relationship built on trust.",
-    "storyImageAlt": "North Cyprus scenery",
+    "storyParagraph1": "Primevest Investment was founded by Gülay Yıldız, who combines more than 22 years of banking and economics experience with personal investment advisory. She built a strong institutional foundation in private banking, commercial banking and branch management at leading banks such as Garanti BBVA, ING Bank and Türk Ekonomi Bankası — reinforced by the operational and strategic experience of managing a branch in North Cyprus for the last 8 years of her career.",
+    "storyParagraph2": "With first-hand command of the TRNC economy, its banking system and market dynamics, a strong local network and the multifaceted perspective of dual citizenship, Primevest does not hand investors ready-made products — it develops well-structured, sustainable financial strategies matched to their goals and risk profiles.",
+    "storyMotto": "Our approach is clear: the right analysis, the right strategy, the right timing.",
+    "storyParagraph3": "At Primevest, our goal is not to match an investor with a product, but to guide them towards strategic decisions that protect and grow their capital. For us, every investor marks not a transaction but the beginning of a long-term relationship built on trust.",
+    "storyImageAlt": "Gülay Yıldız — from her Güçlü Kadınlar magazine interview",
     "valuesTitle": "Our Values",
     "values": [
       {
@@ -183,12 +244,12 @@
       {
         "icon": "target",
         "title": "Strategy",
-        "description": "We turn 21 years of finance experience into strategic investment advisory."
+        "description": "We turn 22 years of banking and economics experience into bespoke investment strategies."
       },
       {
         "icon": "eye",
         "title": "Vision",
-        "description": "We look to the future with an innovative approach that brings technology into the world of investment."
+        "description": "We look to the future with an innovative approach that brings technology into the world of finance."
       },
       {
         "icon": "users",
@@ -197,15 +258,15 @@
       }
     ],
     "teamTitle": "Our Team",
-    "teamSubtitle": "With experts in finance, technology and real estate, we give you the most accurate guidance.",
+    "teamSubtitle": "With experts in finance, economics and technology, we give you the most accurate guidance.",
     "ctaTitle": "Let's Work Together",
-    "ctaText": "Meet our expert team for the right investment in North Cyprus.",
+    "ctaText": "Meet our expert team for your financial goals. Your first consultation is free.",
     "ctaContact": "Get in Touch",
     "ctaWhatsapp": "Message Us on WhatsApp"
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Have questions about real estate investment in North Cyprus? Reach out to us now.",
+    "subtitle": "Have questions about investment and financial advisory? Reach out to us now.",
     "reachTitle": "Get in Touch",
     "reachText": "Contact us now for personalised advisory. Your first consultation is free.",
     "phoneLabel": "Phone",
@@ -223,19 +284,19 @@
     "mapTitle": "Primevest Investment Office Location"
   },
   "blog": {
-    "badge": "Investment Guide",
+    "badge": "Finance Guide",
     "title": "Blog",
-    "subtitle": "Everything you need to know about real estate investment in North Cyprus: market analyses, legal processes and expert advice.",
+    "subtitle": "Everything you need to know about investing, saving, financial planning and the North Cyprus economy: analyses, guides and expert views.",
     "readMore": "Read More",
-    "ctaTitle": "Would You Like Investment Advisory?",
-    "ctaText": "Talk to our expert team to act on the opportunities covered in our articles. Your first consultation is free.",
+    "ctaTitle": "Would You Like Financial Advisory?",
+    "ctaText": "Talk to our expert team to adapt the strategies covered in our articles to your own goals. Your first consultation is free.",
     "ctaContact": "Get in Touch",
     "ctaWhatsapp": "Message Us on WhatsApp"
   },
   "blogPost": {
     "allPosts": "All Posts",
-    "advisoryTitle": "Investment Advisory",
-    "advisoryText": "Would you like to invest in North Cyprus? Schedule a free consultation with our expert team.",
+    "advisoryTitle": "Financial Advisory",
+    "advisoryText": "Would you like to put your savings on a plan? Schedule a free consultation with our expert team.",
     "otherPosts": "Other Posts",
     "relatedPosts": "Related Posts"
   },
@@ -243,7 +304,7 @@
     "namePlaceholder": "Your Full Name *",
     "phonePlaceholder": "Your Phone Number *",
     "emailPlaceholder": "Your Email Address",
-    "interestPlaceholder": "Project of Interest",
+    "interestPlaceholder": "Service of Interest",
     "generalInfo": "General Information",
     "messagePlaceholder": "Your Message",
     "submit": "Send Message",
@@ -259,11 +320,11 @@
     "whatsappName": "Full Name",
     "whatsappPhone": "Phone",
     "whatsappEmail": "Email",
-    "whatsappInterest": "Project of Interest",
+    "whatsappInterest": "Service of Interest",
     "whatsappMessage": "Message"
   },
   "whatsappFab": {
-    "tooltipText": "Have questions about real estate investment in North Cyprus? Message us now — we're happy to help.",
+    "tooltipText": "Have questions about investment and financial advisory? Message us now — we're happy to help.",
     "cta": "Message Us on WhatsApp",
     "close": "Close",
     "open": "Contact us on WhatsApp"

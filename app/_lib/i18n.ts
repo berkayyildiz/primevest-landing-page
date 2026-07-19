@@ -12,11 +12,11 @@ export function hasLocale(value: string | undefined): value is Locale {
   return (locales as readonly string[]).includes(value ?? "");
 }
 
-// The filesystem routes use the Turkish segment names (app/[locale]/projeler,
+// The filesystem routes use the Turkish segment names (app/[locale]/hizmetler,
 // hakkimizda, iletisim). English visitors see the `en` segments below;
 // next.config.ts rewrites them to the internal Turkish-named routes.
 export const ROUTE_SEGMENTS = {
-  projects: { tr: "projeler", en: "projects" },
+  services: { tr: "hizmetler", en: "services" },
   about: { tr: "hakkimizda", en: "about" },
   contact: { tr: "iletisim", en: "contact" },
   blog: { tr: "blog", en: "blog" },
@@ -26,9 +26,7 @@ export type RouteKey = keyof typeof ROUTE_SEGMENTS;
 
 export const paths = {
   home: (locale: Locale) => `/${locale}`,
-  projects: (locale: Locale) => `/${locale}/${ROUTE_SEGMENTS.projects[locale]}`,
-  project: (locale: Locale, slug: string) =>
-    `/${locale}/${ROUTE_SEGMENTS.projects[locale]}/${slug}`,
+  services: (locale: Locale) => `/${locale}/${ROUTE_SEGMENTS.services[locale]}`,
   about: (locale: Locale) => `/${locale}/${ROUTE_SEGMENTS.about[locale]}`,
   contact: (locale: Locale) => `/${locale}/${ROUTE_SEGMENTS.contact[locale]}`,
   blog: (locale: Locale) => `/${locale}/${ROUTE_SEGMENTS.blog[locale]}`,
@@ -40,33 +38,33 @@ export const paths = {
 // client-side language switcher can translate URLs without importing the
 // full blog content.
 export const BLOG_SLUGS = {
+  advisory: {
+    tr: "bireysel-yatirim-danismanligi-nedir",
+    en: "what-is-personal-investment-advisory",
+  },
+  cyprusEconomy: {
+    tr: "kuzey-kibris-ekonomisi-ve-finansal-gorunum",
+    en: "north-cyprus-economy-financial-outlook",
+  },
+  banking: {
+    tr: "kktc-de-bankacilik-ve-mevduat-rehberi",
+    en: "banking-and-deposits-in-north-cyprus",
+  },
+  portfolio: {
+    tr: "portfoy-cesitlendirmesi-rehberi",
+    en: "portfolio-diversification-guide",
+  },
+  fxSavings: {
+    tr: "doviz-bazli-birikim-stratejileri",
+    en: "foreign-currency-savings-strategies",
+  },
   press: {
     tr: "primevest-investment-basinda",
     en: "primevest-investment-in-the-press",
   },
-  investmentGuide: {
-    tr: "kuzey-kibrista-gayrimenkul-yatirimi-rehberi",
-    en: "north-cyprus-property-investment-guide",
-  },
-  market2026: {
-    tr: "2026-kuzey-kibris-emlak-piyasasi",
-    en: "north-cyprus-real-estate-market-2026",
-  },
-  titleDeeds: {
-    tr: "kuzey-kibrista-tapu-islemleri",
-    en: "north-cyprus-title-deed-process",
-  },
-  rentalIncome: {
-    tr: "kuzey-kibrista-kira-getirisi",
-    en: "north-cyprus-rental-income",
-  },
-  longBeach: {
-    tr: "long-beach-iskele-yatirim-rehberi",
-    en: "long-beach-iskele-investment-guide",
-  },
-  lifeQuality: {
-    tr: "kuzey-kibrista-yasam-kalitesi",
-    en: "quality-of-life-in-north-cyprus",
+  financialPlanning: {
+    tr: "finansal-hedef-planlamasi",
+    en: "financial-goal-planning",
   },
 } as const;
 
@@ -83,8 +81,8 @@ export function translateBlogSlug(slug: string, to: Locale): string {
 
 // Maps a pathname to its equivalent in the target locale. Used by the
 // language switcher. Segments are matched against every locale's names
-// because during SSR of a rewritten URL (e.g. /en/projects) usePathname
-// reports the internal path (/en/projeler), while the hydrated client
+// because during SSR of a rewritten URL (e.g. /en/services) usePathname
+// reports the internal path (/en/hizmetler), while the hydrated client
 // reports the public one — both must resolve identically.
 export function getAlternatePath(pathname: string, target: Locale): string {
   const [first, second, third] = pathname.split("/").filter(Boolean);
@@ -124,8 +122,8 @@ export const OG_LOCALES: Record<Locale, string> = {
   en: "en_US",
 };
 
-// en-GB: the North Cyprus property market is priced in GBP and primarily
-// addresses UK-oriented international buyers.
+// en-GB: savings and major transactions in North Cyprus are commonly GBP-based
+// and the English-speaking audience is primarily UK-oriented.
 export const DATE_LOCALES: Record<Locale, string> = {
   tr: "tr-TR",
   en: "en-GB",

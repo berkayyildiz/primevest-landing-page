@@ -91,7 +91,7 @@ export function Navbar({
 
   const navLinks = [
     { href: paths.home(locale), label: dict.home },
-    { href: paths.projects(locale), label: dict.projects },
+    { href: paths.services(locale), label: dict.services },
     { href: paths.about(locale), label: dict.about },
     { href: paths.blog(locale), label: dict.blog },
     { href: paths.contact(locale), label: dict.contact },

@@ -2,17 +2,60 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Target, Heart, Eye, Users } from "lucide-react";
-import { getTeam, getWhatsAppLink } from "@/app/_lib/data";
+import { ArrowRight } from "lucide-react";
+import { COMPANY, getFounder, getTeam, getWhatsAppLink } from "@/app/_lib/data";
 import { getDictionary } from "@/app/_lib/dictionaries";
-import { hasLocale, pageAlternates, paths } from "@/app/_lib/i18n";
+import {
+  hasLocale,
+  pageAlternates,
+  paths,
+  SITE_URL,
+  type Locale,
+} from "@/app/_lib/i18n";
+import { DICT_ICONS } from "@/app/_components/service-icons";
 
-const VALUE_ICONS: Record<string, React.ReactNode> = {
-  heart: <Heart className="w-7 h-7" />,
-  target: <Target className="w-7 h-7" />,
-  eye: <Eye className="w-7 h-7" />,
-  users: <Users className="w-7 h-7" />,
-};
+// Person schema for the founder: her economics and Cyprus background is the
+// centrepiece of the brand, so it is exposed to search engines explicitly.
+function FounderJsonLd({ locale }: { locale: Locale }) {
+  const founder = getFounder(locale);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: founder.name,
+    jobTitle: founder.title,
+    ...(founder.image ? { image: `${SITE_URL}${founder.image}` } : {}),
+    worksFor: {
+      "@type": "FinancialService",
+      name: COMPANY.name,
+      url: `${SITE_URL}${paths.home(locale)}`,
+    },
+    knowsAbout:
+      locale === "tr"
+        ? [
+            "Yatırım danışmanlığı",
+            "Finansal planlama",
+            "Bankacılık",
+            "Ekonomi",
+            "Kuzey Kıbrıs ekonomisi",
+          ]
+        : [
+            "Investment advisory",
+            "Financial planning",
+            "Banking",
+            "Economics",
+            "North Cyprus economy",
+          ],
+    nationality: ["TR", "Northern Cyprus"],
+    url: `${SITE_URL}${paths.about(locale)}`,
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
 
 export async function generateMetadata({
   params,
@@ -78,12 +121,12 @@ export default async function AboutPage({
                 {dict.about.storyParagraph3}
               </p>
             </div>
-            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-[480px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/projects/aloha-beach-resort/1.jpg"
+                src="/images/press/guclu-kadinlar-gulay-yildiz.jpg"
                 alt={dict.about.storyImageAlt}
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
@@ -107,7 +150,7 @@ export default async function AboutPage({
                 className="bg-white rounded-2xl p-7 text-center hover:shadow-lg transition-all border border-transparent hover:border-accent/20"
               >
                 <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mx-auto">
-                  {VALUE_ICONS[value.icon]}
+                  {DICT_ICONS[value.icon]}
                 </div>
                 <h3 className="text-lg font-bold text-primary mt-4">
                   {value.title}
@@ -202,6 +245,8 @@ export default async function AboutPage({
           </div>
         </div>
       </section>
+
+      <FounderJsonLd locale={locale} />
     </>
   );
 }

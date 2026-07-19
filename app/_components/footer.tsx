@@ -5,24 +5,21 @@ import { COMPANY } from "@/app/_lib/data";
 import { getDictionary } from "@/app/_lib/dictionaries";
 import { paths, type Locale } from "@/app/_lib/i18n";
 
-const FEATURED_PROJECT_LINKS = [
-  { slug: "grand-sapphire-blu", label: "Grand Sapphire Blu" },
-  { slug: "querencia", label: "Querencia" },
-  { slug: "d-point", label: "D-Point" },
-  { slug: "phuket-wellness", label: "Phuket Wellness" },
-  { slug: "aloha-beach-resort", label: "Aloha Beach Resort" },
-];
-
 export async function Footer({ locale }: { locale: Locale }) {
   const dict = await getDictionary(locale);
 
   const quickLinks = [
     { href: paths.home(locale), label: dict.nav.home },
-    { href: paths.projects(locale), label: dict.nav.projects },
+    { href: paths.services(locale), label: dict.nav.services },
     { href: paths.about(locale), label: dict.nav.about },
     { href: paths.blog(locale), label: dict.nav.blog },
     { href: paths.contact(locale), label: dict.nav.contact },
   ];
+
+  const serviceLinks = dict.services.items.map((service) => ({
+    href: `${paths.services(locale)}#${service.id}`,
+    label: service.title,
+  }));
 
   return (
     <footer className="bg-primary text-white">
@@ -61,16 +58,16 @@ export async function Footer({ locale }: { locale: Locale }) {
             </ul>
           </div>
 
-          {/* Projects */}
+          {/* Services */}
           <div>
             <h3 className="text-gold font-semibold mb-4 text-sm uppercase tracking-wider">
-              {dict.footer.featuredProjects}
+              {dict.footer.servicesTitle}
             </h3>
             <ul className="space-y-3">
-              {FEATURED_PROJECT_LINKS.map((link) => (
-                <li key={link.slug}>
+              {serviceLinks.map((link) => (
+                <li key={link.href}>
                   <Link
-                    href={paths.project(locale, link.slug)}
+                    href={link.href}
                     className="text-white/70 hover:text-gold transition-colors text-sm"
                   >
                     {link.label}

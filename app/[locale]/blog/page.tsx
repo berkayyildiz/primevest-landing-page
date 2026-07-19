@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Calendar, Clock, ArrowRight, BookOpen, Phone } from "lucide-react";
@@ -12,6 +11,7 @@ import {
   pageAlternates,
   paths,
 } from "@/app/_lib/i18n";
+import { PostCover } from "@/app/_components/blog-cover";
 
 export async function generateMetadata({
   params,
@@ -67,12 +67,9 @@ export default async function BlogPage({
             className="block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all border border-transparent hover:border-accent/20 group"
           >
             <div className="grid md:grid-cols-2">
-              <div className="relative h-64 md:h-auto min-h-[280px]">
-                <Image
-                  src={featured.image}
-                  alt={featured.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+              <div className="relative h-64 md:h-auto min-h-[280px] overflow-hidden">
+                <PostCover
+                  post={featured}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
@@ -119,12 +116,9 @@ export default async function BlogPage({
                 href={paths.blogPost(locale, post.slug)}
                 className="block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-accent/20 group"
               >
-                <div className="relative h-48">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                <div className="relative h-48 overflow-hidden">
+                  <PostCover
+                    post={post}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>

@@ -8,7 +8,9 @@ export interface BlogPost {
   date: string;
   readTime: string;
   category: string;
-  image: string;
+  // Most posts use a branded generated cover (see BlogCover); only posts with
+  // real photography (e.g. press clippings) carry an image file.
+  image: string | null;
   content: string;
 }
 
@@ -20,447 +22,477 @@ interface BlogPostL10n {
   content: string;
 }
 
-const BLOG_BASE: { key: BlogKey; date: string; image: string }[] = [
-  { key: "press", date: "2026-04-05", image: "/images/blog/basinda-biz.jpeg" },
+// Array order is irrelevant: getBlogPosts sorts newest-first, and the blog
+// index features the first (i.e. most recent) post.
+const BLOG_BASE: { key: BlogKey; date: string; image: string | null }[] = [
+  { key: "advisory", date: "2026-07-08", image: null },
+  { key: "cyprusEconomy", date: "2026-06-22", image: null },
+  { key: "banking", date: "2026-06-02", image: null },
+  { key: "portfolio", date: "2026-05-12", image: null },
+  { key: "fxSavings", date: "2026-04-20", image: null },
   {
-    key: "investmentGuide",
-    date: "2026-03-15",
-    image: "/images/blog/kuzey-kibris-yatirim.webp",
+    key: "press",
+    date: "2026-04-05",
+    image: "/images/press/guclu-kadinlar-gulay-yildiz.jpg",
   },
-  {
-    key: "market2026",
-    date: "2026-02-28",
-    image: "/images/blog/emlak-piyasasi-2026.webp",
-  },
-  {
-    key: "titleDeeds",
-    date: "2026-01-20",
-    image: "/images/blog/tapu-islemleri.jpg",
-  },
-  {
-    key: "rentalIncome",
-    date: "2026-03-01",
-    image: "/images/blog/kira-getirisi.jpg",
-  },
-  {
-    key: "longBeach",
-    date: "2026-02-10",
-    image: "/images/blog/long-beach.webp",
-  },
-  {
-    key: "lifeQuality",
-    date: "2026-01-05",
-    image: "/images/blog/yasam-kalitesi.jpg",
-  },
+  { key: "financialPlanning", date: "2026-03-10", image: null },
 ];
 
 const BLOG_L10N: Record<Locale, Record<BlogKey, BlogPostL10n>> = {
   tr: {
+    advisory: {
+      title: "Bireysel Yatırım Danışmanlığı Nedir, Kimler İçin Uygundur?",
+      excerpt:
+        "Bireysel yatırım danışmanlığı ne sunar, banka ürün satışından nasıl ayrışır ve hangi durumlarda profesyonel destek almak fark yaratır? Kapsamlı bir başlangıç rehberi.",
+      readTime: "7 dk",
+      category: "Yatırım Rehberi",
+      content: `Birikimini değerlendirmek isteyen pek çok kişi aynı sorularla karşılaşır: Hangi araca, ne zaman, ne kadar? Bireysel yatırım danışmanlığı; bu soruları sizin adınıza değil, sizinle birlikte cevaplayan, hedeflerinize ve risk profilinize göre şekillenen profesyonel bir rehberlik hizmetidir.
+
+## Ürün Satışı Değil, Yol Arkadaşlığı
+
+Klasik modelde yatırımcıya çoğu zaman bir ürün satılır; komisyon ürünü satan tarafın motivasyonudur. Güvene dayalı danışmanlık modelinde ise danışmanın tek gündemi yatırımcının kendisidir: mevcut finansal durum, hedefler, zaman ufku ve risk toleransı birlikte analiz edilir, strateji buna göre kurulur. Primevest Investment'ın satış odaklı değil, birebir danışmanlık odaklı modelinin temeli budur.
+
+## Danışmanlık Süreci Nasıl İşler?
+
+**1. Tanışma ve Hedef Analizi**
+
+İlk görüşmede finansal hedefleriniz netleştirilir: birikim mi, düzenli ek gelir mi, emeklilik mi, çocuğunuzun eğitimi mi? Hedefi olmayan yatırım, rotası olmayan yolculuğa benzer.
+
+**2. Finansal Durum ve Risk Profili**
+
+Gelir-gider dengeniz, mevcut varlıklarınız ve borçlarınız birlikte incelenir. Piyasa dalgalanmalarına ne kadar tahammülünüz olduğu — yani gerçek risk profiliniz — dürüstçe ortaya konur.
+
+**3. Strateji ve Yapılandırma**
+
+Hedef ve profile uygun bir varlık dağılımı modellenir: vade yapısı, para birimi dengesi, likidite ihtiyacı ve getiri beklentisi birlikte optimize edilir.
+
+**4. Düzenli Takip ve Revizyon**
+
+Hayat değişir, piyasalar değişir. İyi bir danışmanlık ilişkisi tek seferlik bir görüşme değil; düzenli gözden geçirme ve gerektiğinde rota düzeltmesi içeren uzun vadeli bir süreçtir.
+
+## Kimler İçin Uygundur?
+
+Bireysel yatırım danışmanlığı yalnızca büyük servet sahipleri için değildir. Düzenli birikim yapmaya başlayan bir profesyonel, emekliliğe hazırlanan bir çalışan, farklı para birimlerinde geliri olan bir gurbetçi veya birikimini enflasyona karşı korumak isteyen herkes için anlamlıdır. Önemli olan tutar değil; birikiminizi bir plana bağlama kararlılığıdır.
+
+## Doğru Danışmanı Seçmek
+
+Danışmanınızın deneyimini, hangi kurumlarda görev aldığını ve gelir modelinin şeffaf olup olmadığını sorgulayın. 22 yılı aşkın bankacılık deneyimi ve Kuzey Kıbrıs'taki güçlü yerel bilgisiyle Primevest Investment, her yatırımcıya birebir ve güvene dayalı bir danışmanlık ilişkisi sunar.
+
+Bu içerik yalnızca bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.`,
+    },
+    cyprusEconomy: {
+      title: "Kuzey Kıbrıs Ekonomisi: Dinamikler, Fırsatlar ve Dikkat Edilmesi Gerekenler",
+      excerpt:
+        "KKTC ekonomisinin taşıyıcı sektörleri, para birimi dinamikleri ve bireysel yatırımcı için anlamı. 8 yılı sahada geçmiş bir bankacı perspektifinden Kuzey Kıbrıs ekonomisine bakış.",
+      readTime: "8 dk",
+      category: "Ekonomi",
+      content: `Kuzey Kıbrıs, kendine özgü dinamikleri olan küçük ama hareketli bir ekonomidir. Doğru okunduğunda bireysel yatırımcıya önemli fırsatlar sunar; ancak bu fırsatları değerlendirmek, yerel işleyişi yakından tanımayı gerektirir. Primevest Investment kurucusu Gülay Yıldız'ın 8 yılı aşkın süre KKTC'de şube müdürü olarak edindiği saha deneyimi, bu yazının temelini oluşturuyor.
+
+## Ekonominin Taşıyıcı Sütunları
+
+KKTC ekonomisinin belkemiğini hizmet sektörü oluşturur. Uluslararası öğrencileriyle yükseköğrenim, yıl boyu canlı kalan turizm ve bunlara eşlik eden ticaret ile inşaat sektörleri istihdamın ve döviz girdisinin ana kaynaklarıdır. Genç ve uluslararası bir nüfusun varlığı, iç talebi sürekli besler.
+
+## Çok Para Birimli Bir Günlük Hayat
+
+Kuzey Kıbrıs'ın en ayırt edici finansal özelliği, çok para birimli yapısıdır. Günlük harcamalarda Türk Lirası kullanılırken; birikimler, kiralar ve büyük ölçekli işlemler yaygın olarak Sterlin, Euro veya Dolar üzerinden yapılır. Bu yapı, bireysel yatırımcı için hem doğal bir döviz çeşitlendirmesi imkânı hem de doğru yönetilmesi gereken bir kur riski anlamına gelir.
+
+## Faiz ve Mevduat Ortamı
+
+KKTC bankacılık sisteminde hem TL hem döviz mevduatları için sunulan koşullar, Türkiye ve Avrupa'daki alternatiflerle karşılaştırıldığında dönem dönem cazip seviyelere ulaşabilmektedir. Ancak banka seçimi, mevduat sigortası kapsamı ve vade yapısı gibi konular uzman değerlendirmesi gerektirir; getiri tek başına karar kriteri olmamalıdır.
+
+## Bireysel Yatırımcı İçin Ne Anlama Geliyor?
+
+Kuzey Kıbrıs'ta yaşayan, çalışan veya gelir elde eden bir yatırımcı için üç temel soru öne çıkar: Birikimi hangi para biriminde tutmalı? Hangi vade ve araç karışımı hedeflere uygun? Türkiye ile KKTC arasındaki ekonomik köprü nasıl doğru kullanılır? Bu soruların cevabı kişiye göre değişir — tek tip bir doğru yoktur.
+
+## Yerel Bilginin Değeri
+
+Küçük ekonomilerde bilgi asimetrisi büyüktür: doğru bilgiye yakın olanla olmayan arasındaki fark, getiriye doğrudan yansır. Hem Türkiye hem KKTC vatandaşı olan ve iki ekonomiyi de içeriden tanıyan bir danışmanla çalışmak, bu asimetriyi yatırımcının lehine çevirir.
+
+Bu içerik yalnızca bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.`,
+    },
+    banking: {
+      title: "KKTC'de Bankacılık ve Mevduat: Bilinmesi Gerekenler",
+      excerpt:
+        "Kuzey Kıbrıs'ta hesap açma, mevduat seçenekleri, mevduat sigortası ve banka seçiminde dikkat edilmesi gerekenler — 8 yıl KKTC'de şube yönetmiş bir bankacının rehberi.",
+      readTime: "6 dk",
+      category: "Finansal Rehber",
+      content: `Kuzey Kıbrıs'a taşınan, burada çalışmaya başlayan veya birikiminin bir kısmını adada değerlendirmek isteyen herkesin ilk temas noktası bankacılık sistemidir. Sistemin işleyişini bilmek, hem zaman kazandırır hem de birikiminizi daha güvenli yapılandırmanızı sağlar.
+
+## KKTC Bankacılık Sisteminin Yapısı
+
+Kuzey Kıbrıs'ta yerel sermayeli bankalar, Türkiye kökenli bankaların şubeleri ve kamu bankaları birlikte faaliyet gösterir. Sistem KKTC Merkez Bankası tarafından düzenlenir ve denetlenir. Banka sayısının nüfusa oranla yüksek olması rekabeti canlı tutar; bu da mevduat sahibi için pazarlık alanı yaratır.
+
+## Hesap Açma ve Günlük İşlemler
+
+Hesap açmak için kimlik, adres belgesi ve gelir kaynağını gösteren temel evraklar yeterlidir; süreç Türkiye'dekine benzer şekilde ilerler. TL, Sterlin, Euro ve Dolar hesapları yaygın olarak kullanılır. Dijital bankacılık altyapısı son yıllarda belirgin şekilde gelişmiştir.
+
+## Mevduat Seçenekleri ve Vade Yapısı
+
+KKTC'de vadeli mevduat, bireysel birikimciler için en yaygın araçtır. Hem TL hem döviz mevduatlarında farklı vade seçenekleri sunulur. Doğru vade yapısı; likidite ihtiyacınıza, kur beklentinize ve hedeflerinize göre kurgulanmalıdır. Tek bir bankada, tek bir para biriminde ve tek bir vadede yoğunlaşmak en sık görülen hatadır.
+
+## Mevduat Sigortası ve Güvence
+
+KKTC'de mevduatlar, yasal düzenlemelerle belirlenen limitler dâhilinde Tasarruf Mevduatı Sigortası Fonu güvencesi altındadır. Güvence limitlerini ve kapsamı bilmek, birikimin birden fazla kurum arasında nasıl dağıtılacağına karar verirken kritik önem taşır.
+
+## Banka Seçiminde Nelere Bakılmalı?
+
+Yalnızca en yüksek faizi sunan bankaya yönelmek yerine; kurumun sermaye yapısı, geçmişi, hizmet kalitesi ve döviz işlemlerindeki kabiliyeti birlikte değerlendirilmelidir. 22 yıllık bankacılık deneyimiyle Primevest Investment, bu değerlendirmeyi yatırımcı adına yapılandırır ve birikiminizi kurumlar arasında doğru dağıtmanız için yol gösterir.
+
+Bu içerik yalnızca bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.`,
+    },
+    portfolio: {
+      title: "Portföy Çeşitlendirmesi: Riski Yönetmenin Altın Kuralı",
+      excerpt:
+        "Tüm yumurtaları aynı sepete koymamak neden bu kadar önemli? Varlık sınıfı, para birimi ve vade çeşitlendirmesiyle dengeli bir portföy kurmanın temelleri.",
+      readTime: "6 dk",
+      category: "Yatırım Rehberi",
+      content: `Yatırım dünyasının en eski öğüdü hâlâ en değerlisidir: Tüm yumurtaları aynı sepete koymayın. Çeşitlendirme, getiriyi artırma vaadinden önce bir risk yönetimi disiplinidir — ve bireysel yatırımcının kontrolündeki en güçlü araçtır.
+
+## Çeşitlendirme Neden İşe Yarar?
+
+Farklı varlık sınıfları aynı ekonomik olaylara farklı tepkiler verir. Faizler yükselirken mevduat cazipleşir; enflasyonist dönemlerde reel varlıklar öne çıkar; belirsizlik dönemlerinde altın ve güçlü para birimleri güvenli liman görevi görür. Portföyünüz bu tepkileri dengeleyecek şekilde kurulduğunda, tek bir olayın tüm birikiminizi etkilemesi engellenir.
+
+## Üç Boyutlu Çeşitlendirme
+
+**Varlık sınıfı çeşitlendirmesi**
+
+Mevduat, döviz, kıymetli madenler, fonlar ve diğer araçlar arasında hedeflerinize uygun bir dağılım kurmak ilk adımdır. Her varlık sınıfının rolü farklıdır: kimi güvence, kimi büyüme, kimi likidite sağlar.
+
+**Para birimi çeşitlendirmesi**
+
+Geliriniz, harcamalarınız ve birikiminiz farklı para birimlerindeyse kur riski hayatınızın bir parçasıdır. Özellikle Kuzey Kıbrıs gibi çok para birimli ekonomilerde TL, Sterlin ve Euro arasındaki denge bilinçli kurulmalıdır.
+
+**Vade çeşitlendirmesi**
+
+Tüm birikimi tek vadeye bağlamak, hem likidite riskini hem de yeniden fiyatlama riskini büyütür. Kademeli vade yapısı — bir kısmı kısa, bir kısmı orta, bir kısmı uzun vadede — hem esneklik hem istikrar sağlar.
+
+## Aşırı Çeşitlendirme de Bir Risktir
+
+Çeşitlendirmenin amacı karmaşa değil dengedir. Takip edemeyeceğiniz kadar çok araca dağılmış bir portföy, hiç çeşitlendirilmemiş bir portföy kadar sorunludur. İdeal yapı; sayıca yönetilebilir, rolü net araçlardan oluşur.
+
+## Kişiye Özel Denge
+
+Doğru dağılım; yaşınıza, gelir yapınıza, hedeflerinize ve risk toleransınıza bağlıdır. Primevest Investment olarak her yatırımcının dengesini birlikte kuruyor, piyasa koşulları değiştikçe birlikte güncelliyoruz.
+
+Bu içerik yalnızca bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.`,
+    },
+    fxSavings: {
+      title: "Döviz Bazlı Birikim Stratejileri: Kur Riskini Fırsata Çevirmek",
+      excerpt:
+        "Geliri TL, birikimi döviz olanlar için pratik stratejiler: para birimi dengesi, kademeli alım ve çok para birimli ekonomilerde birikim yönetimi.",
+      readTime: "6 dk",
+      category: "Yatırım Rehberi",
+      content: `Türkiye ve Kuzey Kıbrıs gibi ekonomilerde birikim yapan herkes, ister istemez bir kur stratejisi yürütür — çoğu zaman farkında olmadan. Birikimin hangi para biriminde tutulduğu, en az ne kadar birikim yapıldığı kadar önemlidir.
+
+## Neden Döviz Bazlı Düşünmeliyiz?
+
+Birikimin amacı satın alma gücünü korumak ve büyütmektir. Harcamalarınızın veya gelecekteki hedeflerinizin bir kısmı döviz cinsindense — yurt dışında eğitim, Sterlin bazlı kira, uluslararası seyahat — birikimin tamamını TL'de tutmak, hedefle birikim arasında bir kur açığı oluşturur.
+
+## Gelir-Harcama-Birikim Uyumu
+
+Sağlıklı bir kur stratejisinin ilk kuralı uyumdur: birikiminizin para birimi dağılımı, gelecekteki harcama planınızı yansıtmalıdır. Kuzey Kıbrıs'ta bu denge özellikle önemlidir; günlük hayat TL ile dönerken kiralar ve büyük harcamalar çoğunlukla Sterlin bazlıdır. Bu yapıda Sterlin, birikim planlamasının doğal bir bileşeni hâline gelir.
+
+## Kademeli Alım: Zamanlama Stresine Son
+
+Kur seviyesini mükemmel zamanlamaya çalışmak, profesyoneller için bile kazanılması zor bir oyundur. Düzenli aralıklarla, sabit tutarlarla alım yapmak (maliyet ortalaması) hem zamanlama riskini dağıtır hem de birikim disiplinini otomatikleştirir.
+
+## Döviz Mevduatının Rolü
+
+Döviz birikimini yastık altında tutmak, onu getiriden mahrum bırakmaktır. KKTC ve Türkiye'de döviz mevduatlarına sunulan koşullar dönemsel olarak farklılaşır; doğru kurum ve vade seçimiyle döviz birikimi hem korunur hem çalışır. Ancak burada banka güvencesi, vade uyumu ve stopaj gibi detaylar kararı etkiler.
+
+## Dengeyi Korumak
+
+Kur hareketleri portföydeki dengeyi zamanla bozar: güçlenen para biriminin payı büyür. Belirli aralıklarla dağılımı hedefe geri çekmek (rebalancing), "pahalıyken sat, ucuzken al" disiplinini kendiliğinden uygular.
+
+Primevest Investment olarak; gelir yapınıza ve hedeflerinize uygun para birimi dengesini birlikte kuruyor, iki ekonomiyi de içeriden tanıyan perspektifimizle birikiminizi yapılandırıyoruz.
+
+Bu içerik yalnızca bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.`,
+    },
     press: {
       title: "Primevest Investment Güçlü Kadınlar Dergisi'nde",
       excerpt:
-        "Kurucumuz Gülay Yıldız, Güçlü Kadınlar dergisinde yer aldı. KKTC'de Primevest Investment ile gayrimenkul yatırımı üzerine kapsamlı röportaj.",
+        "Kurucumuz Gülay Yıldız, Güçlü Kadınlar dergisine konuk oldu: 22 yıllık bankacılık kariyeri, Kuzey Kıbrıs'ta kendi danışmanlık şirketini kurma yolculuğu ve kadın girişimciliği üzerine samimi bir röportaj.",
       readTime: "5 dk",
       category: "Medya",
-      content: `Primevest Investment'ın kurucu ortağı ve direktörü Gülay Yıldız, Güçlü Kadınlar dergisinin özel sayısında geniş yer aldı. Röportajda Gülay Yıldız, 21 yıllık bankacılık kariyerinden gayrimenkul sektörüne geçiş hikayesini, Kuzey Kıbrıs'taki yatırım fırsatlarını ve Primevest Investment'ın vizyonunu paylaştı.
+      content: `Primevest Investment'ın kurucu ortağı ve direktörü Gülay Yıldız, Güçlü Kadınlar dergisinin özel sayısında geniş yer aldı. Röportajda Gülay Yıldız; 22 yıllık bankacılık ve finans kariyerini, kurumsal hayattan kendi danışmanlık şirketini kurmaya uzanan dönüşümünü ve Kuzey Kıbrıs'taki yolculuğunu anlattı.
 
 ## Bankacılıktan Girişimciliğe
 
-Gülay Yıldız, Garanti BBVA, ING Bank ve Türk Ekonomi Bankası gibi sektörün önde gelen kurumlarında özel bankacılık, ticari bankacılık ve şube müdürlüğü görevlerinde bulunmuş deneyimli bir finans profesyoneli. Bankacılık kariyerinin son 8 yılını Kuzey Kıbrıs'ta geçiren Yıldız, bu süreçte edindiği derin sektör bilgisi ve geniş networkü ile Primevest Investment'ı kurdu.
+Garanti BBVA, ING Bank ve Türk Ekonomi Bankası gibi sektörün önde gelen kurumlarında özel bankacılık, ticari bankacılık ve şube müdürlüğü görevlerinde bulunan Gülay Yıldız, kariyerinin son 8 yılını Kuzey Kıbrıs'ta şube müdürü olarak geçirdi. Röportajda bu dönüm noktasını şöyle anlatıyor: "Uzun yıllar bankacılık yaptıktan sonra kısa sürede kendi ofisimi kurduğum dönem benim için dönüm noktasıydı. Ofisimin kapısını ilk gün açtığımda, doğru bir karar verdiğimi ve yeniden başlayabilmenin mümkün olduğunu kendime kanıtladığımı hissettim."
 
-## Güvene Dayalı Danışmanlık
+## Satış Değil, Güven
 
-Röportajda öne çıkan en önemli mesaj, Primevest'in satış odaklı değil, güvene dayalı danışmanlık modeli oldu. Gülay Yıldız, her yatırımcıya birebir, stratejik danışmanlık sunarak doğru zamanda, doğru lokasyonda ve doğru proje seçimini sağladıklarını vurguladı.
+Röportajın en güçlü mesajı, Gülay Yıldız'ın çalışma felsefesiydi: "Beni farklılaştıran en önemli yaklaşım, hiçbir zaman sadece satış odaklı düşünmemem oldu. Bankacılık geçmişim sayesinde yatırımın arkasındaki finansal sürdürülebilirliği, riskleri ve uzun vadeli getiriyi doğru analiz etmeyi öğrendim. Uzun vadeli güven ilişkisi, benim için her zaman kısa vadeli kazançtan daha değerli oldu."
 
-## Kuzey Kıbrıs'ın Potansiyeli
+## Zor Zamanlarda Çözüm Üretmek
 
-Dergide ayrıca Kuzey Kıbrıs'ın gayrimenkul yatırımları açısından sunduğu eşsiz fırsatlara da değinildi. Yılda 300'den fazla güneşli gün, düşük nüfus yoğunluğu, güvenli yaşam ortamı ve yatırımcı dostu politikalar ile adanın Akdeniz'in yükselen değeri olduğu ifade edildi.
+Kriz anlarında soğukkanlı kalabilmenin kariyerindeki en büyük kazanım olduğunu vurgulayan Yıldız, "En büyük ilhamım, zor zamanlarda paniğe kapılmak yerine çözüm üretmeye odaklanmak gerektiğini öğrenmem oldu. Bugün karar verirken önce sakin kalmaya ve durumu doğru analiz etmeye çalışmam bunun bir sonucu" dedi.
 
-## Primevest Vizyonu
+## Kadınlara Mesaj
 
-Gülay Yıldız, Primevest Investment'ın geleceğe dair vizyonunu şu sözlerle özetledi: Hem KKTC hem TC vatandaşlığı, geniş yerel ağ ve derin sektör bilgisi ile yatırımcılara en doğru yönlendirmeyi sunmaya devam edeceklerini belirtti.
+Dergi aracılığıyla yolun başındaki kadınlara seslenen Gülay Yıldız'ın mesajı netti: "Kendinize yeniden başlama cesaretini verdiğiniz an, hayatınızın yönü değişmeye başlar; vazgeçmeyin."
 
-Bu röportaj, Primevest Investment'ın sektördeki güçlü konumunu ve Gülay Yıldız'ın liderliğindeki vizyoner yaklaşımını bir kez daha gözler önüne serdi.`,
+Bu röportaj; Primevest Investment'ın güvene dayalı danışmanlık vizyonunu ve Gülay Yıldız'ın ekonomi birikimiyle Kuzey Kıbrıs'taki öncü konumunu bir kez daha gözler önüne serdi.`,
     },
-    investmentGuide: {
-      title: "Kuzey Kıbrıs'ta Gayrimenkul Yatırımı: Kapsamlı Rehber",
+    financialPlanning: {
+      title: "Finansal Hedef Planlaması: Birikimden Yatırıma Geçişin Yol Haritası",
       excerpt:
-        "Kuzey Kıbrıs'ta gayrimenkul yatırımı yapmayı düşünüyorsanız bilmeniz gereken her şey: pazar dinamikleri, bölge analizi, yasal süreçler ve uzman tavsiyeleri.",
-      readTime: "8 dk",
-      category: "Yatırım Rehberi",
-      content: `Kuzey Kıbrıs, son yıllarda gayrimenkul yatırımcılarının radarına giren en cazip destinasyonlardan biri haline gelmiştir. Akdeniz'in doğusunda, stratejik konumuyla Avrupa, Orta Doğu ve Afrika'nın kesişim noktasında yer alan ada, yatırımcılara benzersiz fırsatlar sunmaktadır.
-
-## Neden Kuzey Kıbrıs?
-
-Kuzey Kıbrıs'ın gayrimenkul yatırımları için öne çıkan birçok avantajı bulunmaktadır. Yılda 300'den fazla güneşli gün, bozulmamış doğal güzellikler ve güvenli yaşam ortamı ile hem yaşam hem yatırım için ideal bir lokasyondur.
-
-## Pazar Dinamikleri
-
-Son 5 yılda Kuzey Kıbrıs gayrimenkul pazarı istikrarlı bir büyüme göstermiştir. Özellikle İskele, Girne ve Gazimağusa bölgeleri yoğun ilgi görmektedir. Long Beach, Esentepe ve Tatlısu gibi bölgeler en hızlı değer kazanan lokasyonlar arasındadır.
-
-## Yatırım Süreci
-
-Kuzey Kıbrıs'ta mülk satın alma süreci oldukça basittir. Yabancı uyruklular bir mülk satın alabilir ve tapu işlemleri güvenli bir şekilde gerçekleştirilir. Profesyonel danışmanlık hizmeti almanız, sürecin sorunsuz ilerlemesi açısından büyük önem taşır.
-
-## Bölge Karşılaştırması
-
-**İskele / Long Beach:** En yoğun ilgi gören bölge. Uzun sahil şeridi, gelişen altyapı ve çok sayıda yeni proje ile dikkat çeker. Kira getirisi ve değer artışı potansiyeli yüksektir.
-
-**Girne / Esentepe:** Muhteşem dağ ve deniz manzaraları, sakin yaşam ortamı. Tatil amaçlı kiralamalar için ideal lokasyon.
-
-**Girne / Tatlısu:** Gelişmekte olan bölge, uygun fiyatlar ve yüksek değer artışı potansiyeli.
-
-## Sonuç
-
-Kuzey Kıbrıs gayrimenkul pazarı, doğru rehberlik ve stratejik seçimlerle mükemmel getiriler sağlayabilir. Primevest Investment olarak, 21 yılı aşan finans deneyimimiz ve Kuzey Kıbrıs'taki güçlü yerel networkümüzle yatırımcılarımıza en doğru yönlendirmeyi sunuyoruz.`,
-    },
-    market2026: {
-      title: "2026'da Kuzey Kıbrıs Emlak Piyasası: Trendler ve Beklentiler",
-      excerpt:
-        "2026 yılında Kuzey Kıbrıs gayrimenkul piyasasında neler bekleniyor? Güncel trendler, fiyat hareketleri ve yatırım fırsatları.",
-      readTime: "6 dk",
-      category: "Pazar Analizi",
-      content: `2026 yılı Kuzey Kıbrıs gayrimenkul piyasası için heyecan verici gelişmelerin yaşandığı bir dönem olmaya devam etmektedir.
-
-## Güncel Trendler
-
-Kuzey Kıbrıs'ta gayrimenkul sektörü, artan uluslararası ilgi ve altyapı yatırımları ile güçlü bir ivme kazanmıştır. Özellikle lüks konut segmentinde talep artışı dikkat çekmektedir.
-
-## Fiyat Hareketleri
-
-Kuzey Kıbrıs genelinde konut fiyatları istikrarlı bir yükseliş trendi göstermektedir. Bölgesel bazda bakıldığında, Long Beach ve Esentepe en yüksek değer artışı gösteren lokasyonlardır.
-
-## Yatırım Fırsatları
-
-Ön satış döneminde satın alınan projeler, tamamlanma sürecinde önemli değer artışı potansiyeli taşımaktadır. Özellikle denize yakın konumdaki projeler ve wellness konseptli konutlar yoğun ilgi görmektedir.
-
-## Kira Getirisi
-
-Kısa dönem tatil kiralamaları özellikle yaz aylarında cazip getiriler sunmaktadır. Döviz bazlı (GBP/EUR) kira gelirleri, Türk Lirası bazlı yatırım maliyetleri düşünüldüğünde önemli bir avantaj oluşturmaktadır.
-
-## Uzman Görüşü
-
-Primevest Investment olarak, 2026 yılının Kuzey Kıbrıs gayrimenkul yatırımları için güçlü bir dönem olacağını öngörüyoruz. Doğru proje seçimi ve zamanlama ile yatırımcılar önemli kazanımlar elde edebilir.`,
-    },
-    titleDeeds: {
-      title: "Kuzey Kıbrıs'ta Tapu İşlemleri ve Yasal Süreçler",
-      excerpt:
-        "Yabancı yatırımcılar için Kuzey Kıbrıs'ta mülk satın alma, tapu işlemleri ve yasal süreçler hakkında bilmeniz gerekenler.",
+        "Acil durum fonundan uzun vadeli yatırıma: finansal hedeflerinizi katmanlara ayırmak, önceliklendirmek ve her katman için doğru aracı seçmek.",
       readTime: "7 dk",
-      category: "Yasal Bilgiler",
-      content: `Kuzey Kıbrıs'ta gayrimenkul satın almayı planlayan yabancı yatırımcıların en çok merak ettiği konuların başında tapu işlemleri ve yasal süreçler gelmektedir.
+      category: "Finansal Planlama",
+      content: `Birikim yapmak bir başlangıçtır; ama birikimin bir planı yoksa, en küçük beklenmedik harcama veya en cazip görünen fırsat tüm dengeyi bozabilir. Finansal hedef planlaması, birikiminizi katmanlara ayırarak her lirayı bir amaca bağlar.
 
-## Yabancıların Mülk Edinme Hakkı
+## Birinci Katman: Acil Durum Fonu
 
-Kuzey Kıbrıs'ta yabancı uyruklular mülk satın alabilmektedir. Bakanlar Kurulu'ndan alınan satın alma izni ile tapu tescili gerçekleştirilir.
+Her finansal planın temeli, 3-6 aylık yaşam giderini karşılayacak, kolay erişilebilir bir acil durum fonudur. Bu fon getiri için değil, güvence için vardır; kısa vadeli ve likit araçlarda tutulmalıdır. Acil durum fonu olmayan yatırımcı, piyasanın en yanlış anında yatırımını bozmak zorunda kalır.
 
-## Tapu Türleri
+## İkinci Katman: Orta Vadeli Hedefler
 
-Kuzey Kıbrıs'ta farklı tapu türleri bulunmaktadır. Her tapu türünün kendine özgü avantajları ve dikkat edilmesi gereken noktaları mevcuttur. Profesyonel danışmanlık hizmeti bu konuda büyük önem taşımaktadır.
+Araç değişimi, eğitim, evlilik, taşınma gibi 1-5 yıl içindeki hedefler bu katmandadır. Buradaki altın kural, hedefin para birimiyle biriktirme aracının para birimini uyumlu tutmaktır. Vade sonu belli olan hedefler için dalgalanması yüksek araçlardan uzak durmak esastır.
 
-## Satın Alma Süreci
+## Üçüncü Katman: Uzun Vadeli Büyüme
 
-Mülk seçimi yapıldıktan sonra satış sözleşmesi hazırlanır, depozito ödenir ve tapu başvuru süreci başlatılır. Bu süreçte güvenilir bir danışmanla çalışmak, olası riskleri minimize eder.
+Emeklilik ve nesiller arası birikim gibi 10 yıl ve ötesindeki hedefler, zamanın ve bileşik getirinin en güçlü çalıştığı alandır. Bu katmanda kısa vadeli dalgalanmalara tahammül daha yüksektir; strateji sabır ve disiplin üzerine kurulur.
 
-## Vergi ve Harçlar
+## Bileşik Getirinin Sessiz Gücü
 
-Mülk satın alımında çeşitli vergi ve harçlar ödenmektedir. Bunlar tapu harcı, damga vergisi ve KDV'den oluşabilir. Detaylı maliyet analizi için uzman danışmanlık almanız önerilir.
+Einstein'a atfedilen söz abartılı olsa da gerçeği yansıtır: bileşik getiri, dünyanın en güçlü finansal kuvvetlerindendir. Erken başlamak, yüksek getiri kovalamaktan neredeyse her zaman daha etkilidir. Düzenli ve otomatik birikim, iradeden bağımsız bir sistem kurar.
 
-## Primevest Farkı
+## Plan Yaşayan Bir Belgedir
 
-Primevest Investment, kurucu Gülay Yıldız'ın 21 yıllık bankacılık deneyimi ve Kuzey Kıbrıs'taki 8 yıllık birikimi ile müşterilerine yasal süreçlerde de güvenilir rehberlik sunmaktadır. Her yatırımcıya özel, birebir danışmanlık yaklaşımımızla tapu sürecinin her aşamasında yanınızdayız.`,
-    },
-    rentalIncome: {
-      title: "Kuzey Kıbrıs'ta Kira Getirisi: Yatırımınızdan Maksimum Verim",
-      excerpt:
-        "Kuzey Kıbrıs'ta gayrimenkul kira getirisi potansiyeli, kısa ve uzun dönem kiralama stratejileri ve döviz bazlı gelir avantajları.",
-      readTime: "6 dk",
-      category: "Yatırım Rehberi",
-      content: `Kuzey Kıbrıs'ta gayrimenkul yatırımının en cazip yönlerinden biri, sunduğu kira getirisi potansiyelidir. Özellikle turizm sezonunda kısa dönem kiralamalar, yatırımcılara döviz bazlı önemli gelirler sağlamaktadır.
+Gelir değişir, aile büyür, hedefler evrilir. İyi bir finansal plan yılda en az bir kez gözden geçirilir; büyük yaşam olaylarında ise beklemeden güncellenir.
 
-## Kısa Dönem Kiralama
+Primevest Investment olarak; hedeflerinizi birlikte katmanlara ayırıyor, her katman için doğru aracı ve vadeyi yapılandırıyor, planınızı düzenli aralıklarla birlikte gözden geçiriyoruz. İlk görüşmemiz ücretsizdir.
 
-Kuzey Kıbrıs'ın yılda 300'den fazla güneşli günü ve Akdeniz iklimi, adayı yıl boyunca çekici bir tatil destinasyonu haline getirmektedir. Özellikle Mayıs-Ekim döneminde kısa dönem kiralamalar yoğun talep görmektedir. Denize yakın lokasyonlardaki daireler, haftalık ve aylık kiralama ile yüksek getiri sağlayabilir.
-
-## Uzun Dönem Kiralama
-
-Üniversite öğrencileri, çalışanlar ve uzun süreli tatilciler uzun dönem kiralama talebini oluşturmaktadır. Özellikle Gazimağusa ve Lefkoşa'daki üniversite bölgeleri, istikrarlı kira getirisi sunan lokasyonlardır.
-
-## Döviz Bazlı Gelir Avantajı
-
-Kuzey Kıbrıs'ta kiralar genellikle GBP veya EUR bazında belirlenmektedir. Türk Lirası bazlı yatırım maliyetleri düşünüldüğünde, döviz kurundaki hareketler yatırımcıya ek avantaj sağlayabilmektedir.
-
-## Profesyonel Yönetim
-
-Yatırımınızdan maksimum verim almak için profesyonel mülk yönetimi hizmeti almanız önerilir. Kiracı bulma, bakım ve takip süreçlerinin profesyonelce yönetilmesi, kira getirisi sürekliliği açısından büyük önem taşır.
-
-## Primevest ile Yatırım Planlama
-
-Primevest Investment olarak, yatırımcılarımıza sadece mülk seçimi değil, kira getirisi potansiyeli analizi ve uzun vadeli yatırım stratejisi konularında da danışmanlık sunuyoruz.`,
-    },
-    longBeach: {
-      title: "Long Beach İskele: Kuzey Kıbrıs'ın En Popüler Yatırım Bölgesi",
-      excerpt:
-        "Long Beach İskele bölgesi neden yatırımcıların gözdesi? Bölge analizi, altyapı gelişmeleri ve öne çıkan projeler.",
-      readTime: "7 dk",
-      category: "Bölge Analizi",
-      content: `Long Beach, Kuzey Kıbrıs'ın İskele ilçesinde yer alan ve son yıllarda en yoğun gayrimenkul yatırımının yapıldığı bölgedir. Uzun kumsal sahili, gelişen altyapısı ve artan proje sayısı ile yatırımcıların gözdesi haline gelmiştir.
-
-## Neden Long Beach?
-
-Long Beach'i özel kılan birçok faktör bulunmaktadır. Kilometrelerce uzanan altın kumlu sahili, berrak denizi ve doğal güzellikleri ile Akdeniz'in en etkileyici kıyı şeritlerinden birini oluşturmaktadır. Bölgede hızla gelişen altyapı, yeni açılan restoranlar, marketler ve sosyal tesisler yaşam kalitesini sürekli artırmaktadır.
-
-## Altyapı Gelişmeleri
-
-Son yıllarda Long Beach bölgesinde önemli altyapı yatırımları gerçekleştirilmiştir. Yeni yollar, ticari alanlar ve sosyal tesisler bölgenin değerini artırmaya devam etmektedir. Planlanan marina projesi ve yeni otel yatırımları, bölgenin geleceğine dair güçlü sinyaller vermektedir.
-
-## Öne Çıkan Projeler
-
-Long Beach'te Querencia, D-Point, Grand Sapphire Blu ve Ocean Life Residence gibi prestijli projeler yatırımcılara farklı bütçe ve tercihlere uygun seçenekler sunmaktadır. Bu projeler modern mimarileri, zengin sosyal tesisleri ve denize yakınlıklarıyla öne çıkmaktadır.
-
-## Değer Artışı Potansiyeli
-
-Long Beach, Kuzey Kıbrıs'ta en yüksek değer artışı gösteren bölgelerden biridir. Artan talep, sınırlı arazi arzı ve devam eden altyapı yatırımları bölgedeki gayrimenkul değerlerinin yükselmeye devam edeceğine işaret etmektedir.
-
-## Yatırım Tavsiyesi
-
-Primevest Investment olarak, Long Beach bölgesindeki en uygun projeleri seçmenizde size rehberlik ediyoruz. Bütçenize, beklentilerinize ve yatırım amacınıza en uygun projeyi birlikte belirliyoruz.`,
-    },
-    lifeQuality: {
-      title: "Kuzey Kıbrıs'ta Yaşam Kalitesi: Akdeniz'in Saklı Cenneti",
-      excerpt:
-        "Kuzey Kıbrıs'ta yaşam nasıl? İklim, güvenlik, sağlık, eğitim ve günlük yaşam hakkında bilmeniz gerekenler.",
-      readTime: "5 dk",
-      category: "Yaşam Rehberi",
-      content: `Kuzey Kıbrıs sadece bir yatırım destinasyonu değil, aynı zamanda yüksek yaşam kalitesi sunan bir Akdeniz cennetidir. Pek çok yatırımcı, yatırım amaçlı satın aldığı mülkünde zamanla kendisi yaşamaya başlamaktadır.
-
-## İklim
-
-Kuzey Kıbrıs, yılda 300'den fazla güneşli gün ile tipik Akdeniz ikliminin tadını çıkarmak isteyenler için ideal bir lokasyondur. Kışlar ılıman geçerken, yazlar sıcak ve kurudur. Bu iklim yapısı, yıl boyunca açık hava aktivitelerine olanak tanır.
-
-## Güvenlik
-
-Kuzey Kıbrıs, düşük suç oranları ile bilinen güvenli bir yaşam ortamı sunar. Düşük nüfus yoğunluğu ve sıcak toplum yapısı, günlük yaşamda huzur ve konfor sağlar.
-
-## Sağlık ve Eğitim
-
-Adada modern hastaneler ve sağlık merkezleri bulunmaktadır. Ayrıca çok sayıda uluslararası üniversite, genç nüfusu ve akademik canlılığı bölgeye kazandırmaktadır.
-
-## Günlük Yaşam
-
-Kuzey Kıbrıs'ta günlük yaşam, Akdeniz kültürünün sıcaklığını yansıtır. Yerel restoranlar, kafeler, pazarlar ve sahil aktiviteleri zengin bir sosyal hayat sunar. Türkiye'ye 75 dakikalık uçuş mesafesi, aileye ve iş bağlantılarına kolay erişim sağlar.
-
-## Esentepe ve Çevresi
-
-Özellikle Girne'nin Esentepe bölgesi, doğal güzellikleri, sakin yaşam ortamı ve gelişen altyapısı ile hem yaşam hem yatırım için dikkat çeken bir lokasyondur. Phuket Wellness Resort ve Casa Del Mare gibi projeler bu bölgede yer almaktadır.
-
-## Sonuç
-
-Kuzey Kıbrıs, yatırım getirisinin ötesinde kaliteli bir yaşam vaadi sunar. Primevest Investment olarak, yatırımcılarımıza sadece mali değil, yaşam kalitesi perspektifinden de en doğru lokasyon ve proje önerilerini sunuyoruz.`,
+Bu içerik yalnızca bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.`,
     },
   },
   en: {
+    advisory: {
+      title: "What Is Personal Investment Advisory — and Who Is It For?",
+      excerpt:
+        "What does personal investment advisory actually offer, how does it differ from bank product sales, and when does professional guidance make a real difference? A comprehensive starter guide.",
+      readTime: "7 min",
+      category: "Investment Guide",
+      content: `Anyone looking to put their savings to work runs into the same questions: which instrument, when, and how much? Personal investment advisory is a professional guidance service that answers these questions with you — not for you — shaped around your goals and your risk profile.
+
+## A Companion, Not a Salesperson
+
+In the classic model, investors are usually sold a product; commission drives the seller's motivation. In a trust-based advisory model, the advisor's only agenda is the investor: your current financial situation, goals, time horizon and risk tolerance are analysed together, and the strategy is built on them. This is the foundation of Primevest Investment's one-on-one, advisory-first model.
+
+## How Does the Process Work?
+
+**1. Introduction and Goal Analysis**
+
+The first meeting clarifies your financial goals: building savings, generating regular additional income, retirement, your children's education? An investment without a goal is a journey without a route.
+
+**2. Financial Situation and Risk Profile**
+
+Your income and spending balance, existing assets and liabilities are reviewed together. How much market volatility you can genuinely tolerate — your true risk profile — is established honestly.
+
+**3. Strategy and Structuring**
+
+An asset allocation is modelled to match your goals and profile: maturity structure, currency balance, liquidity needs and return expectations are optimised together.
+
+**4. Regular Review and Revision**
+
+Life changes, and so do markets. A good advisory relationship is not a one-off meeting but a long-term process of regular reviews and course corrections when needed.
+
+## Who Is It For?
+
+Personal investment advisory is not only for the very wealthy. It makes sense for a professional who has started saving regularly, an employee preparing for retirement, an expat earning in multiple currencies, or anyone who wants to protect their savings against inflation. What matters is not the amount — it is the commitment to putting your savings on a plan.
+
+## Choosing the Right Advisor
+
+Ask about your advisor's experience, the institutions they have worked at, and whether their revenue model is transparent. With more than 22 years of banking experience and deep local knowledge of North Cyprus, Primevest Investment offers every investor a one-on-one relationship built on trust.
+
+This content is for information purposes only and does not constitute investment advice.`,
+    },
+    cyprusEconomy: {
+      title: "The North Cyprus Economy: Dynamics, Opportunities and Watch-Outs",
+      excerpt:
+        "The sectors that carry the TRNC economy, its currency dynamics and what they mean for individual investors — a view of North Cyprus through the eyes of a banker with 8 years in the field.",
+      readTime: "8 min",
+      category: "Economy",
+      content: `North Cyprus is a small but lively economy with dynamics all of its own. Read correctly, it offers individual investors significant opportunities; but capturing them requires close familiarity with how things work locally. The field experience of Primevest Investment founder Gülay Yıldız — who spent more than 8 years as a bank branch manager in the TRNC — forms the backbone of this article.
+
+## The Pillars of the Economy
+
+The backbone of the TRNC economy is the services sector. Higher education with its international student body, tourism that stays lively year-round, and the trade and construction activity that accompany them are the main sources of employment and foreign currency inflows. A young, international population keeps domestic demand consistently fed.
+
+## Daily Life in Multiple Currencies
+
+North Cyprus' most distinctive financial feature is its multi-currency structure. Daily spending runs in Turkish Lira, while savings, rents and larger transactions are commonly denominated in Sterling, Euro or Dollars. For the individual investor this means both a natural opportunity for currency diversification and an exchange-rate risk that needs to be managed deliberately.
+
+## The Interest Rate and Deposit Environment
+
+Conditions offered on both TL and foreign currency deposits in the TRNC banking system can, at times, reach attractive levels compared with alternatives in Türkiye and Europe. But bank selection, deposit insurance coverage and maturity structure all require expert assessment; yield alone should never be the deciding criterion.
+
+## What Does This Mean for Individual Investors?
+
+For an investor living, working or earning in North Cyprus, three questions stand out: In which currency should savings be held? Which mix of maturities and instruments fits the goals? And how is the economic bridge between Türkiye and the TRNC best used? The answers differ from person to person — there is no one-size-fits-all.
+
+## The Value of Local Knowledge
+
+In small economies, information asymmetry is large: the gap between those close to accurate information and those far from it shows up directly in returns. Working with an advisor who holds both Turkish and TRNC citizenship and knows both economies from the inside turns that asymmetry in the investor's favour.
+
+This content is for information purposes only and does not constitute investment advice.`,
+    },
+    banking: {
+      title: "Banking and Deposits in North Cyprus: What You Need to Know",
+      excerpt:
+        "Opening accounts, deposit options, deposit insurance and how to choose a bank in North Cyprus — a guide from a banker who managed a TRNC branch for 8 years.",
+      readTime: "6 min",
+      category: "Financial Guide",
+      content: `For anyone moving to North Cyprus, starting work here or looking to hold part of their savings on the island, the banking system is the first point of contact. Knowing how it works saves time and helps you structure your savings more securely.
+
+## The Structure of the TRNC Banking System
+
+Locally owned banks, branches of Türkiye-based banks and public banks all operate in North Cyprus. The system is regulated and supervised by the TRNC Central Bank. The high number of banks relative to the population keeps competition lively — which creates negotiating room for depositors.
+
+## Opening an Account and Day-to-Day Banking
+
+Opening an account requires identification, proof of address and basic documentation of your source of income; the process is similar to Türkiye's. TL, Sterling, Euro and Dollar accounts are all widely used, and digital banking infrastructure has improved markedly in recent years.
+
+## Deposit Options and Maturity Structure
+
+Term deposits are the most common instrument for individual savers in the TRNC, with a range of maturities offered in both TL and foreign currencies. The right maturity structure should be built around your liquidity needs, currency outlook and goals. Concentrating everything in a single bank, a single currency and a single maturity is the most common mistake.
+
+## Deposit Insurance and Protection
+
+Deposits in the TRNC are protected by the Savings Deposit Insurance Fund within limits set by law. Knowing those limits and what they cover is critical when deciding how to spread savings across more than one institution.
+
+## How to Choose a Bank
+
+Rather than simply chasing the highest rate, weigh the institution's capital strength, track record, service quality and capability in foreign currency transactions together. With 22 years of banking experience, Primevest Investment structures this assessment on the investor's behalf and guides you in allocating your savings across institutions.
+
+This content is for information purposes only and does not constitute investment advice.`,
+    },
+    portfolio: {
+      title: "Portfolio Diversification: The Golden Rule of Managing Risk",
+      excerpt:
+        "Why is not putting all your eggs in one basket so important? The fundamentals of building a balanced portfolio across asset classes, currencies and maturities.",
+      readTime: "6 min",
+      category: "Investment Guide",
+      content: `The oldest advice in investing is still the most valuable: don't put all your eggs in one basket. Before being a promise of higher returns, diversification is a risk-management discipline — and the most powerful tool within an individual investor's control.
+
+## Why Does Diversification Work?
+
+Different asset classes react differently to the same economic events. When rates rise, deposits become attractive; in inflationary periods, real assets come to the fore; in times of uncertainty, gold and strong currencies act as safe harbours. When your portfolio is built to balance these reactions, no single event can hit your entire savings at once.
+
+## Diversification in Three Dimensions
+
+**Across asset classes**
+
+The first step is an allocation across deposits, foreign currency, precious metals, funds and other instruments that fits your goals. Each asset class plays a different role: some provide security, some growth, some liquidity.
+
+**Across currencies**
+
+If your income, spending and savings run in different currencies, exchange-rate risk is part of your life. Especially in multi-currency economies like North Cyprus, the balance between TL, Sterling and Euro should be set deliberately.
+
+**Across maturities**
+
+Locking all savings into a single maturity magnifies both liquidity risk and repricing risk. A laddered maturity structure — part short, part medium, part long — delivers both flexibility and stability.
+
+## Over-Diversification Is Also a Risk
+
+The goal of diversification is balance, not complexity. A portfolio scattered across more instruments than you can follow is as problematic as one that isn't diversified at all. The ideal structure consists of a manageable number of instruments, each with a clear role.
+
+## A Balance That Is Yours
+
+The right allocation depends on your age, income structure, goals and risk tolerance. At Primevest Investment we build each investor's balance together — and update it together as market conditions change.
+
+This content is for information purposes only and does not constitute investment advice.`,
+    },
+    fxSavings: {
+      title: "Foreign Currency Savings Strategies: Turning FX Risk into Opportunity",
+      excerpt:
+        "Practical strategies for those who earn in TL and save in foreign currency: currency balance, cost averaging and managing savings in multi-currency economies.",
+      readTime: "6 min",
+      category: "Investment Guide",
+      content: `Anyone saving in economies like Türkiye and North Cyprus is, willingly or not, running a currency strategy — often without realising it. Which currency your savings sit in matters at least as much as how much you save.
+
+## Why Think in Currency Terms?
+
+The purpose of saving is to protect and grow purchasing power. If part of your spending or future goals is denominated in foreign currency — education abroad, Sterling-based rent, international travel — keeping all savings in TL opens a currency gap between the goal and the savings meant to fund it.
+
+## Aligning Income, Spending and Savings
+
+The first rule of a sound currency strategy is alignment: the currency mix of your savings should reflect your future spending plans. In North Cyprus this balance matters especially; daily life runs in TL while rents and larger outlays are mostly Sterling-based. In such a structure, Sterling becomes a natural component of savings planning.
+
+## Cost Averaging: An End to Timing Stress
+
+Trying to time exchange rates perfectly is a hard game to win even for professionals. Buying at regular intervals in fixed amounts (cost averaging) spreads timing risk and automates the discipline of saving.
+
+## The Role of Foreign Currency Deposits
+
+Keeping foreign currency savings under the mattress deprives them of any return. Conditions offered on foreign currency deposits in the TRNC and Türkiye vary over time; with the right institution and maturity, currency savings are both protected and productive. Details such as deposit insurance, maturity alignment and withholding tax all shape the decision.
+
+## Maintaining the Balance
+
+Currency moves gradually distort a portfolio's balance: the strengthening currency's share grows. Rebalancing back to target at set intervals applies the discipline of "sell high, buy low" automatically.
+
+At Primevest Investment, we build the currency balance that fits your income structure and goals — structuring your savings with a perspective that knows both economies from the inside.
+
+This content is for information purposes only and does not constitute investment advice.`,
+    },
     press: {
       title: "Primevest Investment Featured in Güçlü Kadınlar Magazine",
       excerpt:
-        "Our founder Gülay Yıldız was featured in Güçlü Kadınlar (Strong Women) magazine — an in-depth interview on real estate investment in North Cyprus with Primevest Investment.",
+        "Our founder Gülay Yıldız was featured in Güçlü Kadınlar (Strong Women) magazine: a candid interview on her 22-year banking career, building her own advisory firm in North Cyprus, and women's entrepreneurship.",
       readTime: "5 min",
       category: "Media",
-      content: `Gülay Yıldız, founding partner and director of Primevest Investment, was featured extensively in a special issue of Güçlü Kadınlar (Strong Women) magazine. In the interview, she shared the story of her transition from a 21-year banking career into real estate, the investment opportunities in North Cyprus and Primevest Investment's vision.
+      content: `Gülay Yıldız, founding partner and director of Primevest Investment, was featured extensively in a special issue of Güçlü Kadınlar (Strong Women) magazine. In the interview, she talked about her 22-year career in banking and finance, her transformation from corporate life to founding her own advisory firm, and her journey in North Cyprus.
 
 ## From Banking to Entrepreneurship
 
-Gülay Yıldız is an experienced finance professional who has held private banking, commercial banking and branch management roles at leading institutions such as Garanti BBVA, ING Bank and Türk Ekonomi Bankası. Having spent the last 8 years of her banking career in North Cyprus, she founded Primevest Investment on the deep industry knowledge and wide network she built during that time.
+Having held private banking, commercial banking and branch management roles at leading institutions such as Garanti BBVA, ING Bank and Türk Ekonomi Bankası, Gülay Yıldız spent the last 8 years of her career as a branch manager in North Cyprus. She describes the turning point: "After many years in banking, the period when I built my own office in a short time was a turning point for me. The day I first opened my office door, I felt I had made the right decision and proved to myself that starting again is possible."
 
-## Advisory Built on Trust
+## Trust, Not Sales
 
-The interview's key message was Primevest's trust-based — rather than sales-driven — advisory model. Gülay Yıldız emphasised that by providing one-on-one, strategic advisory to every investor, they ensure the right project is chosen at the right time and in the right location.
+The interview's strongest message was her working philosophy: "The most important approach that sets me apart is that I have never thought in purely sales-driven terms. Thanks to my banking background, I learned to analyse the financial sustainability, the risks and the long-term return behind an investment. A long-term relationship of trust has always been worth more to me than short-term gain."
 
-## The Potential of North Cyprus
+## Producing Solutions in Hard Times
 
-The magazine also touched on the unique opportunities North Cyprus offers for real estate investment. With more than 300 days of sunshine a year, low population density, a safe living environment and investor-friendly policies, the island was described as the rising star of the Mediterranean.
+Emphasising that staying calm in moments of crisis was the greatest lesson of her career, Yıldız said: "My greatest inspiration was learning that in difficult times you must focus on producing solutions rather than panicking. The fact that today I try to stay calm and analyse the situation correctly before deciding is a result of that."
 
-## The Primevest Vision
+## A Message to Women
 
-Gülay Yıldız summed up Primevest Investment's vision for the future: with both TRNC and Turkish citizenship, a wide local network and deep industry knowledge, they will continue to give investors the most accurate guidance.
+Speaking through the magazine to women at the start of their journey, her message was clear: "The moment you give yourself the courage to start again, the direction of your life begins to change; don't give up."
 
-The interview once again showcased Primevest Investment's strong position in the industry and the visionary approach under Gülay Yıldız's leadership.`,
+The interview once again showcased Primevest Investment's trust-based advisory vision and Gülay Yıldız's pioneering position in North Cyprus, built on her depth in economics and finance.`,
     },
-    investmentGuide: {
-      title: "Real Estate Investment in North Cyprus: A Comprehensive Guide",
+    financialPlanning: {
+      title: "Financial Goal Planning: A Road Map from Saving to Investing",
       excerpt:
-        "Everything you need to know if you are considering a real estate investment in North Cyprus: market dynamics, regional analysis, legal processes and expert advice.",
-      readTime: "8 min",
-      category: "Investment Guide",
-      content: `In recent years, North Cyprus has become one of the most attractive destinations on real estate investors' radar. Located in the eastern Mediterranean at the strategic crossroads of Europe, the Middle East and Africa, the island offers investors unique opportunities.
-
-## Why North Cyprus?
-
-North Cyprus has many standout advantages for real estate investment. With more than 300 days of sunshine a year, unspoilt natural beauty and a safe living environment, it is an ideal location for both living and investing.
-
-## Market Dynamics
-
-The North Cyprus real estate market has shown steady growth over the last 5 years. The Iskele, Kyrenia and Famagusta regions in particular attract intense interest. Areas such as Long Beach, Esentepe and Tatlisu are among the fastest-appreciating locations.
-
-## The Investment Process
-
-Buying property in North Cyprus is quite straightforward. Foreign nationals can purchase a property, and title deed procedures are carried out securely. Professional advisory support is essential for the process to run smoothly.
-
-## Regional Comparison
-
-**Iskele / Long Beach:** The most sought-after region. It stands out with its long coastline, developing infrastructure and a large number of new projects. Rental yield and capital appreciation potential are high.
-
-**Kyrenia / Esentepe:** Magnificent mountain and sea views and a calm living environment. An ideal location for holiday rentals.
-
-**Kyrenia / Tatlisu:** An up-and-coming area with affordable prices and high appreciation potential.
-
-## Conclusion
-
-With the right guidance and strategic choices, the North Cyprus real estate market can deliver excellent returns. At Primevest Investment, with more than 21 years of finance experience and a strong local network in North Cyprus, we give our investors the most accurate guidance.`,
-    },
-    market2026: {
-      title: "The North Cyprus Property Market in 2026: Trends and Outlook",
-      excerpt:
-        "What to expect from the North Cyprus real estate market in 2026? Current trends, price movements and investment opportunities.",
-      readTime: "6 min",
-      category: "Market Analysis",
-      content: `2026 continues to be a period of exciting developments for the North Cyprus real estate market.
-
-## Current Trends
-
-The real estate sector in North Cyprus has gained strong momentum on the back of growing international interest and infrastructure investment. Demand growth is particularly notable in the luxury residential segment.
-
-## Price Movements
-
-Residential prices across North Cyprus are on a steady upward trend. On a regional basis, Long Beach and Esentepe are the locations showing the highest appreciation.
-
-## Investment Opportunities
-
-Projects purchased during the pre-sale period carry significant appreciation potential as construction progresses. Projects close to the sea and wellness-concept residences are attracting particularly strong interest.
-
-## Rental Yields
-
-Short-term holiday rentals offer attractive returns, especially in the summer months. Rental income in foreign currency (GBP/EUR) is a significant advantage when investment costs are considered in Turkish Lira.
-
-## Expert View
-
-At Primevest Investment, we expect 2026 to be a strong year for real estate investment in North Cyprus. With the right project selection and timing, investors can achieve significant gains.`,
-    },
-    titleDeeds: {
-      title: "Title Deeds and Legal Processes in North Cyprus",
-      excerpt:
-        "What foreign investors need to know about buying property, title deed procedures and legal processes in North Cyprus.",
+        "From the emergency fund to long-term investing: layering your financial goals, prioritising them and choosing the right instrument for each layer.",
       readTime: "7 min",
-      category: "Legal Information",
-      content: `Title deed procedures and legal processes are among the questions foreign investors planning to buy real estate in North Cyprus ask most.
+      category: "Financial Planning",
+      content: `Saving is a beginning — but if your savings have no plan, the smallest unexpected expense or the most tempting-looking opportunity can upset the whole balance. Financial goal planning divides your savings into layers and ties every lira to a purpose.
 
-## Foreigners' Right to Own Property
+## Layer One: The Emergency Fund
 
-Foreign nationals can purchase property in North Cyprus. Title registration is completed once a purchase permit is obtained from the Council of Ministers.
+The foundation of every financial plan is an easily accessible emergency fund covering 3-6 months of living costs. This fund exists for security, not returns; it belongs in short-term, liquid instruments. An investor without an emergency fund ends up unwinding investments at the market's worst possible moment.
 
-## Types of Title Deed
+## Layer Two: Medium-Term Goals
 
-There are different types of title deed in North Cyprus. Each type has its own advantages and points to watch. Professional advisory support is extremely important on this subject.
+Goals within 1-5 years — a car, education, a wedding, a move — sit in this layer. The golden rule here is to match the currency of the savings instrument to the currency of the goal. For goals with a fixed end date, staying away from highly volatile instruments is essential.
 
-## The Purchase Process
+## Layer Three: Long-Term Growth
 
-Once a property is chosen, the sales contract is prepared, a deposit is paid and the title deed application process begins. Working with a trusted advisor during this process minimises potential risks.
+Goals 10 years and beyond — retirement, intergenerational savings — are where time and compounding work hardest. This layer tolerates short-term volatility better; the strategy is built on patience and discipline.
 
-## Taxes and Fees
+## The Quiet Power of Compounding
 
-Various taxes and fees are payable when purchasing a property. These can include title deed transfer fees, stamp duty and VAT. We recommend expert advisory for a detailed cost analysis.
+The saying attributed to Einstein may be exaggerated, but it reflects the truth: compound returns are among the most powerful financial forces in the world. Starting early beats chasing high returns almost every time. Regular, automated saving builds a system that doesn't depend on willpower.
 
-## The Primevest Difference
+## A Plan Is a Living Document
 
-With founder Gülay Yıldız's 21 years of banking experience and 8 years of accumulated knowledge in North Cyprus, Primevest Investment provides its clients with trusted guidance through the legal processes as well. With our personalised, one-on-one advisory approach, we are by your side at every stage of the title deed process.`,
-    },
-    rentalIncome: {
-      title: "Rental Income in North Cyprus: Maximum Return on Your Investment",
-      excerpt:
-        "The rental income potential of North Cyprus real estate, short and long-term rental strategies and the advantages of foreign-currency income.",
-      readTime: "6 min",
-      category: "Investment Guide",
-      content: `One of the most attractive aspects of real estate investment in North Cyprus is its rental income potential. Short-term rentals, especially during the tourism season, provide investors with significant foreign-currency income.
+Income changes, families grow, goals evolve. A good financial plan is reviewed at least once a year — and updated without delay after major life events.
 
-## Short-Term Rentals
+At Primevest Investment, we layer your goals together, structure the right instrument and maturity for each layer, and review your plan with you at regular intervals. Your first consultation is free.
 
-With more than 300 days of sunshine a year and a Mediterranean climate, the island is an attractive holiday destination all year round. Short-term rentals are in high demand, especially between May and October. Apartments in locations close to the sea can generate high returns through weekly and monthly rentals.
-
-## Long-Term Rentals
-
-University students, professionals and long-stay holidaymakers make up the demand for long-term rentals. University districts in Famagusta and Nicosia in particular are locations that offer stable rental income.
-
-## The Foreign-Currency Advantage
-
-Rents in North Cyprus are generally set in GBP or EUR. With investment costs considered in Turkish Lira, exchange rate movements can provide investors with an additional advantage.
-
-## Professional Management
-
-To get the maximum return on your investment, we recommend professional property management. Professional handling of tenant sourcing, maintenance and follow-up is essential for the continuity of rental income.
-
-## Investment Planning with Primevest
-
-At Primevest Investment, we advise our investors not only on property selection but also on rental yield analysis and long-term investment strategy.`,
-    },
-    longBeach: {
-      title: "Long Beach, Iskele: North Cyprus' Most Popular Investment Area",
-      excerpt:
-        "Why is the Long Beach, Iskele area an investor favourite? Regional analysis, infrastructure developments and standout projects.",
-      readTime: "7 min",
-      category: "Regional Analysis",
-      content: `Long Beach, located in the Iskele district of North Cyprus, is the area that has attracted the most intense real estate investment in recent years. With its long sandy coastline, developing infrastructure and growing number of projects, it has become an investor favourite.
-
-## Why Long Beach?
-
-Many factors make Long Beach special. With kilometres of golden sandy beach, crystal-clear sea and natural beauty, it forms one of the most impressive coastlines in the Mediterranean. The rapidly developing infrastructure, newly opened restaurants, supermarkets and social facilities continuously raise the quality of life in the area.
-
-## Infrastructure Developments
-
-Significant infrastructure investments have been made in the Long Beach area in recent years. New roads, commercial areas and social facilities continue to increase the region's value. The planned marina project and new hotel investments send strong signals about the area's future.
-
-## Standout Projects
-
-In Long Beach, prestigious projects such as Querencia, D-Point, Grand Sapphire Blu and Ocean Life Residence offer investors options for different budgets and preferences. These projects stand out with their modern architecture, rich social facilities and proximity to the sea.
-
-## Appreciation Potential
-
-Long Beach is one of the regions showing the highest appreciation in North Cyprus. Rising demand, limited land supply and ongoing infrastructure investment indicate that property values in the area will continue to climb.
-
-## Investment Advice
-
-At Primevest Investment, we guide you in choosing the most suitable projects in the Long Beach area. Together, we identify the project that best matches your budget, expectations and investment goals.`,
-    },
-    lifeQuality: {
-      title: "Quality of Life in North Cyprus: The Mediterranean's Hidden Paradise",
-      excerpt:
-        "What is life like in North Cyprus? What you need to know about the climate, safety, healthcare, education and daily life.",
-      readTime: "5 min",
-      category: "Lifestyle Guide",
-      content: `North Cyprus is not just an investment destination — it is a Mediterranean paradise offering a high quality of life. Many investors eventually move into the property they originally bought as an investment.
-
-## Climate
-
-With more than 300 days of sunshine a year, North Cyprus is an ideal location for anyone who wants to enjoy a typical Mediterranean climate. Winters are mild, while summers are hot and dry. This climate allows outdoor activities all year round.
-
-## Safety
-
-North Cyprus offers a safe living environment known for its low crime rates. Low population density and a warm community make daily life peaceful and comfortable.
-
-## Healthcare and Education
-
-The island has modern hospitals and medical centres. In addition, numerous international universities bring a young population and academic vibrancy to the region.
-
-## Daily Life
-
-Daily life in North Cyprus reflects the warmth of Mediterranean culture. Local restaurants, cafés, markets and beach activities offer a rich social life. A 75-minute flight to Türkiye provides easy access to family and business connections.
-
-## Esentepe and Its Surroundings
-
-The Esentepe area of Kyrenia in particular is a notable location for both living and investing, with its natural beauty, calm environment and developing infrastructure. Projects such as Phuket Wellness Resort and Casa Del Mare are located in this area.
-
-## Conclusion
-
-North Cyprus promises a quality of life that goes beyond investment returns. At Primevest Investment, we offer our investors the most suitable location and project recommendations not only from a financial perspective but also from a quality-of-life one.`,
+This content is for information purposes only and does not constitute investment advice.`,
     },
   },
 };
@@ -472,7 +504,7 @@ export function getBlogPosts(locale: Locale): BlogPost[] {
     date: base.date,
     image: base.image,
     ...BLOG_L10N[locale][base.key],
-  }));
+  })).sort((a, b) => b.date.localeCompare(a.date));
 }
 
 export function getBlogPostBySlug(

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
@@ -17,6 +16,7 @@ import {
 } from "@/app/_lib/i18n";
 import { COMPANY } from "@/app/_lib/data";
 import { ContactForm } from "@/app/_components/contact-form";
+import { PostCover } from "@/app/_components/blog-cover";
 
 // Blog slugs are localized, so they are generated per locale from the parent
 // [locale] params.
@@ -64,7 +64,10 @@ export async function generateMetadata({
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
-      images: [post.image],
+      // Explicit fallback: this openGraph object replaces the root
+      // file-convention image, so omitting `images` would leave imageless
+      // posts with no og:image at all.
+      images: [post.image ?? "/opengraph-image.png"],
     },
   };
 }
@@ -75,7 +78,7 @@ function BlogPostJsonLd({ post, locale }: { post: BlogPost; locale: Locale }) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: `${SITE_URL}${post.image}`,
+    image: `${SITE_URL}${post.image ?? "/opengraph-image.png"}`,
     datePublished: post.date,
     inLanguage: locale,
     author: {
@@ -144,12 +147,10 @@ export default async function BlogPostPage({
       <section className="bg-surface-dark">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              className="object-cover"
+            <PostCover
+              post={post}
               sizes="(max-width: 896px) 100vw, 896px"
+              imageClassName="object-cover object-top"
               priority
             />
           </div>
@@ -279,14 +280,8 @@ function RelatedPosts({
               href={paths.blogPost(locale, p.slug)}
               className="block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-accent/20 group"
             >
-              <div className="relative h-44">
-                <Image
-                  src={p.image}
-                  alt={p.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
+              <div className="relative h-44 overflow-hidden">
+                <PostCover post={p} sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
               <div className="p-5">
                 <span className="bg-accent/10 text-accent px-2.5 py-0.5 rounded-full font-medium text-xs">

@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { PROJECT_SLUGS } from "@/app/_lib/data";
 import { BLOG_SLUGS, locales, paths, SITE_URL } from "@/app/_lib/i18n";
 import { getBlogPosts } from "@/app/_lib/blog";
 
@@ -29,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       { lastModified: new Date(), changeFrequency: "weekly", priority: 1 }
     ),
     ...localizedEntries(
-      { tr: paths.projects("tr"), en: paths.projects("en") },
+      { tr: paths.services("tr"), en: paths.services("en") },
       { lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 }
     ),
     ...localizedEntries(
@@ -46,13 +45,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
   ];
 
-  const projectRoutes: MetadataRoute.Sitemap = PROJECT_SLUGS.flatMap((slug) =>
-    localizedEntries(
-      { tr: paths.project("tr", slug), en: paths.project("en", slug) },
-      { lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 }
-    )
-  );
-
   const blogRoutes: MetadataRoute.Sitemap = getBlogPosts("tr").flatMap(
     (post) =>
       localizedEntries(
@@ -68,5 +60,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       )
   );
 
-  return [...staticRoutes, ...projectRoutes, ...blogRoutes];
+  return [...staticRoutes, ...blogRoutes];
 }

@@ -7,7 +7,7 @@ import { Footer } from "../_components/footer";
 import { WhatsAppFAB } from "../_components/whatsapp-fab";
 import { Analytics } from "@vercel/analytics/react";
 import { getDictionary } from "../_lib/dictionaries";
-import { COMPANY, getWhatsAppLink } from "../_lib/data";
+import { COMPANY, getFounder, getWhatsAppLink } from "../_lib/data";
 import {
   hasLocale,
   locales,
@@ -73,9 +73,10 @@ function OrganizationJsonLd({
   locale: Locale;
   description: string;
 }) {
+  const founder = getFounder(locale);
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
+    "@type": "FinancialService",
     name: COMPANY.name,
     description,
     url: `${SITE_URL}${paths.home(locale)}`,
@@ -87,6 +88,11 @@ function OrganizationJsonLd({
       streetAddress: COMPANY.address.street,
       addressLocality: COMPANY.address.city[locale],
       addressCountry: COMPANY.address.country[locale],
+    },
+    founder: {
+      "@type": "Person",
+      name: founder.name,
+      jobTitle: founder.title,
     },
     sameAs: ["https://instagram.com/primevestinvestment"],
   };

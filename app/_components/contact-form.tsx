@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 import { Send, Loader2, CheckCircle, MessageCircle } from "lucide-react";
-import { COMPANY, PROJECT_NAMES } from "@/app/_lib/data";
+import { COMPANY, GENERAL_INTEREST_ID } from "@/app/_lib/data";
 import type { Dictionary } from "@/app/_lib/dictionaries";
 
 type ContactFormDict = Dictionary["contactForm"];
+
+interface ServiceOption {
+  id: string;
+  title: string;
+}
 
 interface FormData {
   name: string;
@@ -15,7 +20,11 @@ interface FormData {
   message: string;
 }
 
-function buildWhatsAppUrl(data: FormData, dict: ContactFormDict) {
+function buildWhatsAppUrl(
+  data: FormData,
+  interestLabel: string,
+  dict: ContactFormDict
+) {
   const lines = [
     dict.whatsappIntro,
     ``,
@@ -23,7 +32,7 @@ function buildWhatsAppUrl(data: FormData, dict: ContactFormDict) {
     `${dict.whatsappPhone}: ${data.phone}`,
   ];
   if (data.email) lines.push(`${dict.whatsappEmail}: ${data.email}`);
-  if (data.interest) lines.push(`${dict.whatsappInterest}: ${data.interest}`);
+  if (interestLabel) lines.push(`${dict.whatsappInterest}: ${interestLabel}`);
   if (data.message) lines.push(`${dict.whatsappMessage}: ${data.message}`);
 
   return `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
@@ -31,9 +40,13 @@ function buildWhatsAppUrl(data: FormData, dict: ContactFormDict) {
 
 export function ContactForm({
   dict,
+  services = [],
   variant = "default",
 }: {
   dict: ContactFormDict;
+  // Localized service options for the interest select (default variant only);
+  // pass dict.services.items. The submitted value is the locale-independent id.
+  services?: ServiceOption[];
   variant?: "default" | "compact";
 }) {
   const [submitted, setSubmitted] = useState(false);
@@ -68,6 +81,11 @@ export function ContactForm({
     }
   }
 
+  const interestLabel =
+    formData.interest === GENERAL_INTEREST_ID
+      ? dict.generalInfo
+      : services.find((s) => s.id === formData.interest)?.title ?? "";
+
   if (submitted) {
     return (
       <div className="text-center py-6">
@@ -82,7 +100,7 @@ export function ContactForm({
         <div className="mt-6 pt-6 border-t border-border">
           <p className="text-text-muted text-sm mb-3">{dict.whatsappPrompt}</p>
           <a
-            href={buildWhatsAppUrl(formData, dict)}
+            href={buildWhatsAppUrl(formData, interestLabel, dict)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fb855] text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all w-full"
@@ -136,12 +154,12 @@ export function ContactForm({
             className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
           >
             <option value="">{dict.interestPlaceholder}</option>
-            {PROJECT_NAMES.map((name) => (
-              <option key={name} value={name}>
-                {name}
+            {services.map((service) => (
+              <option key={service.id} value={service.id}>
+                {service.title}
               </option>
             ))}
-            <option value={dict.generalInfo}>{dict.generalInfo}</option>
+            <option value={GENERAL_INTEREST_ID}>{dict.generalInfo}</option>
           </select>
         )}
       </div>

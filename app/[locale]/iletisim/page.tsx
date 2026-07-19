@@ -194,7 +194,10 @@ export default async function ContactPage({
                 <p className="text-text-light text-sm mb-6">
                   {dict.contact.formSubtitle}
                 </p>
-                <ContactForm dict={dict.contactForm} />
+                <ContactForm
+                  dict={dict.contactForm}
+                  services={dict.services.items}
+                />
               </div>
             </div>
           </div>
