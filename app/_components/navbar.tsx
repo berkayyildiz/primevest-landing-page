@@ -21,12 +21,10 @@ function rememberLocale(target: Locale) {
 
 function LanguageSwitcher({
   locale,
-  scrolled,
   label,
   className = "",
 }: {
   locale: Locale;
-  scrolled: boolean;
   label: string;
   className?: string;
 }) {
@@ -35,22 +33,13 @@ function LanguageSwitcher({
   return (
     <div
       aria-label={label}
-      className={`flex items-center gap-1 text-sm font-semibold ${className}`}
+      className={`flex items-center gap-1 font-mono text-xs tracking-widest ${className}`}
     >
       {locales.map((target, i) => (
         <span key={target} className="flex items-center gap-1">
-          {i > 0 && (
-            <span className={scrolled ? "text-border" : "text-white/40"}>
-              |
-            </span>
-          )}
+          {i > 0 && <span className="text-white/25">/</span>}
           {target === locale ? (
-            <span
-              aria-current="true"
-              className={`px-1.5 py-1 rounded ${
-                scrolled ? "text-accent" : "text-white"
-              }`}
-            >
+            <span aria-current="true" className="px-1.5 py-1 text-gold-light">
               {target.toUpperCase()}
             </span>
           ) : (
@@ -58,11 +47,7 @@ function LanguageSwitcher({
               href={getAlternatePath(pathname, target)}
               hrefLang={target}
               onClick={() => rememberLocale(target)}
-              className={`px-1.5 py-1 rounded transition-colors ${
-                scrolled
-                  ? "text-text-light hover:text-accent"
-                  : "text-white/60 hover:text-white"
-              }`}
+              className="px-1.5 py-1 text-white/50 hover:text-white transition-colors"
             >
               {target.toUpperCase()}
             </Link>
@@ -82,6 +67,7 @@ export function Navbar({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -97,17 +83,22 @@ export function Navbar({
     { href: paths.contact(locale), label: dict.contact },
   ];
 
+  const isActive = (href: string) =>
+    href === paths.home(locale)
+      ? pathname === href
+      : pathname === href || pathname.startsWith(`${href}/`);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+          ? "bg-ink/95 backdrop-blur-md border-b border-white/10"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
-          {/* Logo */}
+      <nav className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo — original brand assets, standard white-reverse over ink */}
           <Link
             href={paths.home(locale)}
             className="flex-shrink-0 flex items-center gap-2.5"
@@ -117,9 +108,7 @@ export function Navbar({
               alt=""
               width={100}
               height={100}
-              className={`h-12 w-auto transition-all duration-300 ${
-                scrolled ? "" : "brightness-0 invert"
-              }`}
+              className="h-10 sm:h-11 w-auto brightness-0 invert"
               priority
             />
             <Image
@@ -127,49 +116,50 @@ export function Navbar({
               alt="Primevest Investment"
               width={260}
               height={60}
-              className={`h-9 w-auto transition-all duration-300 ${
-                scrolled ? "" : "brightness-0 invert"
-              }`}
+              className="h-7 sm:h-8 w-auto brightness-0 invert"
               priority
             />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-0 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3.5 py-2.5 rounded-lg text-base font-medium transition-colors ${
-                  scrolled
-                    ? "text-primary hover:text-accent hover:bg-surface"
-                    : "text-white/90 hover:text-white hover:bg-white/10"
+                className={`relative py-2 text-[15px] tracking-wide transition-colors ${
+                  isActive(link.href)
+                    ? "text-white"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
                 {link.label}
+                {isActive(link.href) && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-0.5 left-0 w-full h-px bg-gold"
+                  />
+                )}
               </Link>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-6">
             <LanguageSwitcher
               locale={locale}
-              scrolled={scrolled}
               label={dict.languageSwitcherLabel}
             />
             <a
               href={`tel:${COMPANY.phone}`}
-              className={`flex items-center gap-2 text-base font-medium transition-colors ${
-                scrolled ? "text-primary" : "text-white/90"
-              }`}
+              className="flex items-center gap-2 font-mono text-[13px] text-white/60 hover:text-gold-light transition-colors"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-3.5 h-3.5" strokeWidth={1.5} />
               {COMPANY.phone}
             </a>
             <Link
               href={paths.contact(locale)}
-              className="bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-lg text-base font-semibold transition-all hover:shadow-lg"
+              className="border border-gold/60 text-gold-light hover:bg-gold hover:border-gold hover:text-ink px-5 py-2.5 text-sm font-medium tracking-wide transition-colors"
             >
               {dict.getInfo}
             </Link>
@@ -179,16 +169,11 @@ export function Navbar({
           <div className="lg:hidden flex items-center gap-2">
             <LanguageSwitcher
               locale={locale}
-              scrolled={scrolled}
               label={dict.languageSwitcherLabel}
             />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-lg transition-colors ${
-                scrolled
-                  ? "text-primary hover:bg-surface"
-                  : "text-white hover:bg-white/10"
-              }`}
+              className="p-2 text-white hover:text-gold-light transition-colors"
               aria-label={dict.openMenu}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -198,29 +183,33 @@ export function Navbar({
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden bg-white rounded-2xl shadow-2xl mt-2 p-4 animate-fade-in">
+          <div className="lg:hidden bg-ink-deep border border-white/10 mt-2 mb-4 p-2 animate-fade-in">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-3 text-primary hover:text-accent hover:bg-surface rounded-lg text-base font-medium transition-colors"
+                className={`block px-4 py-3 text-[15px] tracking-wide transition-colors ${
+                  isActive(link.href)
+                    ? "text-gold-light"
+                    : "text-white/70 hover:text-white"
+                }`}
               >
                 {link.label}
               </Link>
             ))}
-            <hr className="my-3 border-border" />
+            <hr className="my-2 border-white/10" />
             <a
               href={`tel:${COMPANY.phone}`}
-              className="flex items-center gap-2 px-4 py-3 text-primary text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-3 font-mono text-[13px] text-white/60"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-3.5 h-3.5" strokeWidth={1.5} />
               {COMPANY.phone}
             </a>
             <Link
               href={paths.contact(locale)}
               onClick={() => setIsOpen(false)}
-              className="block text-center bg-accent hover:bg-accent-dark text-white px-5 py-3 rounded-lg text-sm font-semibold transition-all mt-2"
+              className="block text-center border border-gold/60 text-gold-light hover:bg-gold hover:text-ink px-5 py-3 text-sm font-medium tracking-wide transition-colors m-2"
             >
               {dict.getInfo}
             </Link>

@@ -13,6 +13,7 @@ import {
   type Locale,
 } from "@/app/_lib/i18n";
 import { DICT_ICONS } from "@/app/_components/service-icons";
+import { PageHeader } from "@/app/_components/page-header";
 
 // Person schema for the founder: her economics and Cyprus background is the
 // centrepiece of the brand, so it is exposed to search engines explicitly.
@@ -87,75 +88,68 @@ export default async function AboutPage({
 
   return (
     <>
-      {/* Header */}
-      <section className="bg-primary pt-32 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">
-            {dict.about.title}
-          </h1>
-          <p className="text-white/70 mt-4 max-w-2xl mx-auto text-lg">
-            {dict.about.subtitle}
-          </p>
-        </div>
-      </section>
+      <PageHeader title={dict.about.title} subtitle={dict.about.subtitle} />
 
       {/* Story */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="section-divider mb-6" />
-              <h2 className="text-3xl font-bold text-primary">
+      <section className="py-24 bg-paper">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-start">
+            <div className="lg:col-span-7">
+              <h2 className="font-display text-3xl sm:text-4xl text-ink leading-tight">
                 {dict.about.storyTitle}
               </h2>
-              <p className="text-text-light mt-4 leading-relaxed">
+              <div className="dual-rule mt-7" aria-hidden="true" />
+              <p className="text-text-light mt-8 leading-relaxed">
                 {dict.about.storyParagraph1}
               </p>
               <p className="text-text-light mt-4 leading-relaxed">
                 {dict.about.storyParagraph2}
               </p>
-              <p className="text-text-light mt-4 leading-relaxed font-medium text-primary/80">
-                {dict.about.storyMotto}
-              </p>
-              <p className="text-text-light mt-4 leading-relaxed">
+              <blockquote className="border-l-2 border-gold pl-6 my-9">
+                <p className="font-display italic text-2xl text-ink leading-snug">
+                  {dict.about.storyMotto}
+                </p>
+              </blockquote>
+              <p className="text-text-light leading-relaxed">
                 {dict.about.storyParagraph3}
               </p>
             </div>
-            <div className="relative h-[480px] rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/images/press/guclu-kadinlar-gulay-yildiz.jpg"
-                alt={dict.about.storyImageAlt}
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+            <figure className="lg:col-span-5 max-w-sm lg:max-w-none mx-auto lg:mx-0 w-full">
+              <div className="relative">
+                <div
+                  aria-hidden="true"
+                  className="absolute -top-4 -right-4 w-full h-full border border-gold/50"
+                />
+                <div className="relative aspect-[4/5] overflow-hidden border border-line">
+                  <Image
+                    src="/images/press/guclu-kadinlar-gulay-yildiz.jpg"
+                    alt={dict.about.storyImageAlt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 90vw, 40vw"
+                  />
+                </div>
+              </div>
+              <figcaption className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted mt-5">
+                {dict.about.storyImageAlt}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="section-divider mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-primary">
-              {dict.about.valuesTitle}
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="py-24 bg-ink">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="eyebrow eyebrow-light">{dict.about.valuesTitle}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 mt-12">
             {dict.about.values.map((value) => (
-              <div
-                key={value.title}
-                className="bg-white rounded-2xl p-7 text-center hover:shadow-lg transition-all border border-transparent hover:border-accent/20"
-              >
-                <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mx-auto">
-                  {DICT_ICONS[value.icon]}
-                </div>
-                <h3 className="text-lg font-bold text-primary mt-4">
+              <div key={value.title} className="border-t border-white/10 pt-7">
+                <div className="text-gold-light">{DICT_ICONS[value.icon]}</div>
+                <h3 className="text-paper text-lg font-medium mt-5">
                   {value.title}
                 </h3>
-                <p className="text-text-light text-sm mt-2">
+                <p className="text-white/55 text-sm mt-3 leading-relaxed">
                   {value.description}
                 </p>
               </div>
@@ -165,35 +159,27 @@ export default async function AboutPage({
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="section-divider mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-primary">
-              {dict.about.teamTitle}
-            </h2>
-            <p className="text-text-light mt-4 max-w-2xl mx-auto">
-              {dict.about.teamSubtitle}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-24 bg-paper">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="eyebrow">{dict.about.teamTitle}</p>
+          <h2 className="font-display text-3xl sm:text-4xl text-ink leading-tight mt-5 max-w-2xl">
+            {dict.about.teamSubtitle}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 mt-14">
             {team.map((member) => (
-              <div
-                key={member.name}
-                className="bg-surface rounded-2xl overflow-hidden hover:shadow-lg transition-all group"
-              >
-                <div className="relative h-64 bg-primary-light overflow-hidden">
+              <figure key={member.name}>
+                <div className="relative aspect-[4/5] overflow-hidden border border-line bg-stone">
                   {member.image ? (
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover object-[50%_20%] group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover object-[50%_20%] grayscale hover:grayscale-0 transition-[filter] duration-500"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   ) : (
-                    <div className="flex items-center justify-center h-full bg-gradient-to-br from-primary to-accent">
-                      <span className="text-5xl font-bold text-white/30">
+                    <div className="flex items-center justify-center h-full bg-ink">
+                      <span className="font-display text-5xl text-gold/40">
                         {member.name
                           .split(" ")
                           .map((n) => n[0])
@@ -202,46 +188,51 @@ export default async function AboutPage({
                     </div>
                   )}
                 </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-primary">
+                <figcaption className="mt-6">
+                  <h3 className="font-display text-xl text-ink">
                     {member.name}
                   </h3>
-                  <p className="text-accent text-sm font-medium">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark mt-1.5">
                     {member.title}
                   </p>
-                  <p className="text-text-light text-sm mt-3 line-clamp-4 leading-relaxed">
+                  <p className="text-text-light text-sm mt-4 line-clamp-5 leading-relaxed">
                     {member.bio}
                   </p>
-                </div>
-              </div>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-accent">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white">
-            {dict.about.ctaTitle}
-          </h2>
-          <p className="text-white/80 mt-4 text-lg">{dict.about.ctaText}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link
-              href={paths.contact(locale)}
-              className="inline-flex items-center justify-center gap-2 bg-white text-accent hover:bg-surface px-8 py-4 rounded-xl font-semibold transition-all"
-            >
-              {dict.about.ctaContact}
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <a
-              href={getWhatsAppLink(locale)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold transition-all"
-            >
-              {dict.about.ctaWhatsapp}
-            </a>
+      <section className="py-24 bg-stone">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-3xl sm:text-4xl text-ink leading-tight">
+              {dict.about.ctaTitle}
+            </h2>
+            <div className="dual-rule mt-7" aria-hidden="true" />
+            <p className="text-text-light mt-8 text-lg leading-relaxed">
+              {dict.about.ctaText}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mt-10">
+              <Link
+                href={paths.contact(locale)}
+                className="inline-flex items-center justify-center gap-2 bg-ink hover:bg-gold text-paper hover:text-ink px-8 py-4 text-sm font-medium tracking-wide transition-colors"
+              >
+                {dict.about.ctaContact}
+                <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+              <a
+                href={getWhatsAppLink(locale)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-ink/25 text-ink hover:border-gold-dark hover:text-gold-dark px-8 py-4 text-sm font-medium tracking-wide transition-colors"
+              >
+                {dict.about.ctaWhatsapp}
+              </a>
+            </div>
           </div>
         </div>
       </section>

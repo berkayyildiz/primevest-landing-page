@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
-import { Calendar, Clock, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { getBlogPosts, getBlogPostBySlug, type BlogPost } from "@/app/_lib/blog";
 import { getDictionary } from "@/app/_lib/dictionaries";
 import {
@@ -111,42 +111,37 @@ export default async function BlogPostPage({
   return (
     <>
       {/* Header */}
-      <section className="bg-primary pt-24 pb-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-ink pt-32 pb-14">
+        <div className="max-w-4xl mx-auto px-6">
           <Link
             href={paths.blog(locale)}
-            className="inline-flex items-center gap-1 text-white/70 hover:text-white text-sm transition-colors mb-6"
+            className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-white/50 hover:text-gold-light transition-colors mb-8"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
             {dict.blogPost.allPosts}
           </Link>
-          <div className="flex items-center gap-3 text-sm text-white/60 mb-4">
-            <span className="bg-accent/20 text-accent-light px-3 py-1 rounded-full font-medium text-xs">
-              {post.category}
-            </span>
-            <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5" />
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] mb-5">
+            <span className="text-gold-light">{post.category}</span>
+            <span className="text-white/50">
               {new Date(post.date).toLocaleDateString(DATE_LOCALES[locale], {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
               })}
             </span>
-            <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5" />
-              {post.readTime}
-            </span>
+            <span className="text-white/50">{post.readTime}</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+          <h1 className="font-display text-3xl sm:text-4xl text-paper leading-[1.15]">
             {post.title}
           </h1>
+          <div className="dual-rule dual-rule-light mt-8" aria-hidden="true" />
         </div>
       </section>
 
       {/* Cover Image */}
-      <section className="bg-surface-dark">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden">
+      <section className="bg-paper">
+        <div className="max-w-4xl mx-auto px-6 pt-10">
+          <div className="relative h-[300px] sm:h-[420px] overflow-hidden border border-line">
             <PostCover
               post={post}
               sizes="(max-width: 896px) 100vw, 896px"
@@ -158,16 +153,16 @@ export default async function BlogPostPage({
       </section>
 
       {/* Content */}
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-10">
-            <article className="lg:col-span-2 prose prose-lg max-w-none">
+      <section className="py-14 bg-paper">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="grid lg:grid-cols-3 gap-12">
+            <article className="lg:col-span-2">
               {post.content.split("\n\n").map((paragraph, i) => {
                 if (paragraph.startsWith("## ")) {
                   return (
                     <h2
                       key={i}
-                      className="text-2xl font-bold text-primary mt-8 mb-4"
+                      className="font-display text-2xl text-ink mt-10 mb-4"
                     >
                       {paragraph.replace("## ", "")}
                     </h2>
@@ -175,10 +170,7 @@ export default async function BlogPostPage({
                 }
                 if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
                   return (
-                    <h3
-                      key={i}
-                      className="text-lg font-bold text-primary mt-6 mb-2"
-                    >
+                    <h3 key={i} className="text-lg font-medium text-ink mt-8 mb-2">
                       {paragraph.replace(/\*\*/g, "")}
                     </h3>
                   );
@@ -186,7 +178,7 @@ export default async function BlogPostPage({
                 return (
                   <p
                     key={i}
-                    className="text-text-light leading-relaxed mb-4"
+                    className="text-text-light text-[16px] leading-[1.8] mb-5"
                   >
                     {paragraph}
                   </p>
@@ -196,30 +188,31 @@ export default async function BlogPostPage({
 
             {/* Sidebar */}
             <aside className="lg:col-span-1">
-              <div className="sticky top-24 space-y-6">
-                <div className="bg-surface rounded-2xl p-6">
-                  <h3 className="font-bold text-primary mb-4">
+              <div className="sticky top-28 space-y-8">
+                <div className="bg-white border border-line p-7">
+                  <div className="dual-rule mb-5" aria-hidden="true" />
+                  <h3 className="font-display text-xl text-ink mb-2">
                     {dict.blogPost.advisoryTitle}
                   </h3>
-                  <p className="text-text-light text-sm mb-4">
+                  <p className="text-text-light text-sm mb-6 leading-relaxed">
                     {dict.blogPost.advisoryText}
                   </p>
                   <ContactForm variant="compact" dict={dict.contactForm} />
                 </div>
 
                 {/* Other Posts */}
-                <div className="bg-surface rounded-2xl p-6">
-                  <h3 className="font-bold text-primary mb-4">
+                <div className="bg-white border border-line p-7">
+                  <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-gold-dark mb-5">
                     {dict.blogPost.otherPosts}
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {allPosts
                       .filter((p) => p.slug !== post.slug)
                       .map((p) => (
                         <Link
                           key={p.slug}
                           href={paths.blogPost(locale, p.slug)}
-                          className="block text-sm text-text-light hover:text-accent transition-colors"
+                          className="block text-sm text-text-light hover:text-gold-dark transition-colors leading-snug"
                         >
                           {p.title}
                         </Link>
@@ -259,35 +252,31 @@ function RelatedPosts({
   const others = posts.filter((p) => p.slug !== currentSlug);
   const hash = currentSlug.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   const shuffled = [...others].sort(
-    (a, b) =>
-      ((a.slug.length * hash) % 97) - ((b.slug.length * hash) % 97)
+    (a, b) => ((a.slug.length * hash) % 97) - ((b.slug.length * hash) % 97)
   );
   const related = shuffled.slice(0, 3);
 
   return (
-    <section className="py-16 bg-surface">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <div className="section-divider mx-auto mb-4" />
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary">
-            {title}
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section className="py-20 bg-stone">
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-gold-dark mb-10">
+          {title}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {related.map((p) => (
             <Link
               key={p.slug}
               href={paths.blogPost(locale, p.slug)}
-              className="block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-accent/20 group"
+              className="block bg-white border border-line group"
             >
               <div className="relative h-44 overflow-hidden">
                 <PostCover post={p} sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
-              <div className="p-5">
-                <span className="bg-accent/10 text-accent px-2.5 py-0.5 rounded-full font-medium text-xs">
+              <div className="p-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-gold-dark">
                   {p.category}
                 </span>
-                <h3 className="text-base font-bold text-primary mt-2 group-hover:text-accent transition-colors line-clamp-2">
+                <h3 className="font-display text-lg text-ink leading-snug mt-2.5 group-hover:text-gold-dark transition-colors line-clamp-2">
                   {p.title}
                 </h3>
               </div>

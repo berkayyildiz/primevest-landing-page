@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { IBM_Plex_Mono, Newsreader, Schibsted_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { Navbar } from "../_components/navbar";
@@ -18,9 +18,22 @@ import {
   type Locale,
 } from "../_lib/i18n";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// latin-ext covers the Turkish characters (ı, ğ, ş, İ …) in both locales.
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin", "latin-ext"],
+  style: ["normal", "italic"],
+});
+
+const schibsted = Schibsted_Grotesk({
+  variable: "--font-schibsted",
+  subsets: ["latin", "latin-ext"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500"],
 });
 
 export function generateStaticParams() {
@@ -117,7 +130,10 @@ export default async function RootLayout({
   const dict = await getDictionary(locale);
 
   return (
-    <html lang={locale} className={`${geistSans.variable} antialiased`}>
+    <html
+      lang={locale}
+      className={`${newsreader.variable} ${schibsted.variable} ${plexMono.variable} antialiased`}
+    >
       <body className="min-h-screen flex flex-col">
         <Navbar locale={locale} dict={dict.nav} />
         <main className="flex-1">{children}</main>

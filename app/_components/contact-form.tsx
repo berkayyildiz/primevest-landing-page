@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Loader2, CheckCircle, MessageCircle } from "lucide-react";
+import { Loader2, CheckCircle, MessageCircle } from "lucide-react";
 import { COMPANY, GENERAL_INTEREST_ID } from "@/app/_lib/data";
 import type { Dictionary } from "@/app/_lib/dictionaries";
 
@@ -37,6 +37,9 @@ function buildWhatsAppUrl(
 
   return `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
+
+const inputClasses =
+  "w-full px-4 py-3.5 border border-line bg-paper text-sm text-text rounded-none placeholder:text-text-muted focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/40 transition-colors";
 
 export function ContactForm({
   dict,
@@ -89,23 +92,23 @@ export function ContactForm({
   if (submitted) {
     return (
       <div className="text-center py-6">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle className="w-8 h-8 text-green-600" />
+        <div className="w-16 h-16 border border-gold/50 rounded-full flex items-center justify-center mx-auto mb-5">
+          <CheckCircle className="w-7 h-7 text-gold-dark" strokeWidth={1.5} />
         </div>
-        <h3 className="text-xl font-bold text-primary mb-2">
+        <h3 className="font-display text-2xl text-ink mb-2">
           {dict.successTitle}
         </h3>
         <p className="text-text-light text-sm">{dict.successText}</p>
 
-        <div className="mt-6 pt-6 border-t border-border">
-          <p className="text-text-muted text-sm mb-3">{dict.whatsappPrompt}</p>
+        <div className="mt-7 pt-7 border-t border-line">
+          <p className="text-text-muted text-sm mb-4">{dict.whatsappPrompt}</p>
           <a
             href={buildWhatsAppUrl(formData, interestLabel, dict)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fb855] text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all w-full"
+            className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fb855] text-white px-6 py-3.5 text-sm font-medium tracking-wide transition-colors w-full"
           >
-            <MessageCircle className="w-5 h-5" />
+            <MessageCircle className="w-4 h-4" strokeWidth={1.5} />
             {dict.whatsappContinue}
           </a>
         </div>
@@ -117,7 +120,11 @@ export function ContactForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className={isCompact ? "space-y-3" : "grid grid-cols-1 sm:grid-cols-2 gap-4"}>
+      <div
+        className={
+          isCompact ? "space-y-4" : "grid grid-cols-1 sm:grid-cols-2 gap-4"
+        }
+      >
         <input
           type="text"
           name="name"
@@ -125,7 +132,7 @@ export function ContactForm({
           required
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
+          className={inputClasses}
         />
         <input
           type="tel"
@@ -134,7 +141,7 @@ export function ContactForm({
           required
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
+          className={inputClasses}
         />
         {!isCompact && (
           <input
@@ -142,16 +149,20 @@ export function ContactForm({
             name="email"
             placeholder={dict.emailPlaceholder}
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            className={inputClasses}
           />
         )}
         {!isCompact && (
           <select
             name="interest"
             value={formData.interest}
-            onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
+            onChange={(e) =>
+              setFormData({ ...formData, interest: e.target.value })
+            }
+            className={`${inputClasses} text-text-light`}
           >
             <option value="">{dict.interestPlaceholder}</option>
             {services.map((service) => (
@@ -170,19 +181,19 @@ export function ContactForm({
           placeholder={dict.messagePlaceholder}
           rows={4}
           value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors resize-none"
+          onChange={(e) =>
+            setFormData({ ...formData, message: e.target.value })
+          }
+          className={`${inputClasses} resize-none`}
         />
       )}
 
-      {error && (
-        <p className="text-red-500 text-sm text-center">{error}</p>
-      )}
+      {error && <p className="text-red-600 text-sm text-center">{error}</p>}
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-accent hover:bg-accent-dark text-white py-3.5 rounded-xl text-sm font-semibold transition-all hover:shadow-lg disabled:opacity-70 flex items-center justify-center gap-2"
+        className="w-full bg-ink hover:bg-gold text-paper hover:text-ink py-4 text-sm font-medium tracking-wide transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
       >
         {loading ? (
           <>
@@ -190,10 +201,7 @@ export function ContactForm({
             {dict.sending}
           </>
         ) : (
-          <>
-            <Send className="w-4 h-4" />
-            {isCompact ? dict.submitCompact : dict.submit}
-          </>
+          <>{isCompact ? dict.submitCompact : dict.submit}</>
         )}
       </button>
 

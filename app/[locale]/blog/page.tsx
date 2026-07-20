@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar, Clock, ArrowRight, BookOpen, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getBlogPosts } from "@/app/_lib/blog";
 import { getWhatsAppLink } from "@/app/_lib/data";
 import { getDictionary } from "@/app/_lib/dictionaries";
@@ -12,6 +12,7 @@ import {
   paths,
 } from "@/app/_lib/i18n";
 import { PostCover } from "@/app/_components/blog-cover";
+import { PageHeader } from "@/app/_components/page-header";
 
 export async function generateMetadata({
   params,
@@ -40,65 +41,53 @@ export default async function BlogPage({
   if (!hasLocale(locale)) notFound();
   const dict = await getDictionary(locale);
   const [featured, ...rest] = getBlogPosts(locale);
+  const dateFormat = new Intl.DateTimeFormat(DATE_LOCALES[locale], {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <>
-      {/* Header */}
-      <section className="bg-primary pt-32 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 rounded-full text-white/90 text-sm mb-4">
-            <BookOpen className="w-4 h-4" />
-            {dict.blog.badge}
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">
-            {dict.blog.title}
-          </h1>
-          <p className="text-white/70 mt-4 max-w-2xl mx-auto text-lg">
-            {dict.blog.subtitle}
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow={dict.blog.badge}
+        title={dict.blog.title}
+        subtitle={dict.blog.subtitle}
+      />
 
       {/* Featured Post */}
-      <section className="py-12 bg-surface">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-16 pb-8 bg-paper">
+        <div className="max-w-6xl mx-auto px-6">
           <Link
             href={paths.blogPost(locale, featured.slug)}
-            className="block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all border border-transparent hover:border-accent/20 group"
+            className="block bg-white border border-line group"
           >
             <div className="grid md:grid-cols-2">
-              <div className="relative h-64 md:h-auto min-h-[280px] overflow-hidden">
+              <div className="relative h-64 md:h-auto min-h-[300px] overflow-hidden">
                 <PostCover
                   post={featured}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-              <div className="p-8 flex flex-col justify-center">
-                <div className="flex items-center gap-3 text-sm text-text-muted mb-3">
-                  <span className="bg-accent/10 text-accent px-3 py-1 rounded-full font-medium text-xs">
-                    {featured.category}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {new Date(featured.date).toLocaleDateString(
-                      DATE_LOCALES[locale],
-                      {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      }
-                    )}
+              <div className="p-8 sm:p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.16em]">
+                  <span className="text-gold-dark">{featured.category}</span>
+                  <span className="text-text-muted">
+                    {dateFormat.format(new Date(featured.date))}
                   </span>
                 </div>
-                <h2 className="text-2xl font-bold text-primary group-hover:text-accent transition-colors">
+                <h2 className="font-display text-2xl sm:text-3xl text-ink leading-snug mt-4 group-hover:text-gold-dark transition-colors">
                   {featured.title}
                 </h2>
-                <p className="text-text-light mt-3 leading-relaxed">
+                <p className="text-text-light mt-4 leading-relaxed">
                   {featured.excerpt}
                 </p>
-                <div className="flex items-center gap-1 text-accent font-semibold text-sm mt-5 group-hover:gap-2 transition-all">
+                <div className="flex items-center gap-2 text-ink font-medium text-sm mt-7 border-b border-gold pb-1 w-fit group-hover:text-gold-dark transition-colors">
                   {dict.blog.readMore}
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    strokeWidth={1.5}
+                  />
                 </div>
               </div>
             </div>
@@ -107,41 +96,32 @@ export default async function BlogPage({
       </section>
 
       {/* Other Posts */}
-      <section className="py-12 bg-surface">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="pt-8 pb-20 bg-paper">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {rest.map((post) => (
               <Link
                 key={post.slug}
                 href={paths.blogPost(locale, post.slug)}
-                className="block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-accent/20 group"
+                className="block bg-white border border-line group"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-52 overflow-hidden">
                   <PostCover
                     post={post}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <div className="p-5">
-                  <div className="flex items-center gap-2 text-xs text-text-muted mb-2">
-                    <span className="bg-accent/10 text-accent px-2.5 py-0.5 rounded-full font-medium">
-                      {post.category}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {post.readTime}
-                    </span>
+                <div className="p-6">
+                  <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em]">
+                    <span className="text-gold-dark">{post.category}</span>
+                    <span className="text-text-muted">{post.readTime}</span>
                   </div>
-                  <h3 className="text-base font-bold text-primary group-hover:text-accent transition-colors line-clamp-2">
+                  <h3 className="font-display text-xl text-ink leading-snug mt-3 group-hover:text-gold-dark transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-text-light text-sm mt-2 line-clamp-2">
+                  <p className="text-text-light text-sm mt-3 line-clamp-2 leading-relaxed">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center gap-1 text-accent font-semibold text-xs mt-3 group-hover:gap-2 transition-all">
-                    {dict.blog.readMore}
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </div>
                 </div>
               </Link>
             ))}
@@ -150,28 +130,33 @@ export default async function BlogPage({
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-white border-t border-border">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-primary">
-            {dict.blog.ctaTitle}
-          </h2>
-          <p className="text-text-light mt-3 text-lg">{dict.blog.ctaText}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link
-              href={paths.contact(locale)}
-              className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl font-semibold transition-all hover:shadow-xl"
-            >
-              <Phone className="w-5 h-5" />
-              {dict.blog.ctaContact}
-            </Link>
-            <a
-              href={getWhatsAppLink(locale)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border border-border text-primary hover:bg-surface px-8 py-4 rounded-xl font-semibold transition-all"
-            >
-              {dict.blog.ctaWhatsapp}
-            </a>
+      <section className="py-24 bg-ink">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-3xl sm:text-4xl text-paper leading-tight">
+              {dict.blog.ctaTitle}
+            </h2>
+            <div className="dual-rule dual-rule-light mt-7" aria-hidden="true" />
+            <p className="text-white/60 mt-8 text-lg leading-relaxed">
+              {dict.blog.ctaText}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mt-10">
+              <Link
+                href={paths.contact(locale)}
+                className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-ink px-8 py-4 text-sm font-medium tracking-wide transition-colors"
+              >
+                {dict.blog.ctaContact}
+                <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+              <a
+                href={getWhatsAppLink(locale)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-white/25 text-white hover:border-gold-light hover:text-gold-light px-8 py-4 text-sm font-medium tracking-wide transition-colors"
+              >
+                {dict.blog.ctaWhatsapp}
+              </a>
+            </div>
           </div>
         </div>
       </section>

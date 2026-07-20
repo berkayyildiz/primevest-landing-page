@@ -1,35 +1,51 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #0c2340;
-  --color-primary-light: #163a5f;
-  --color-primary-dark: #071526;
-  --color-accent: #1a8fc4;
-  --color-accent-light: #4db8e8;
-  --color-accent-dark: #126d96;
-  --color-gold: #c9a84c;
-  --color-gold-light: #dfc478;
-  --color-gold-dark: #a68a3a;
-  --color-surface: #f8fafb;
-  --color-surface-dark: #eef2f5;
-  --color-text: #1a1a2e;
-  --color-text-light: #4a5568;
-  --color-text-muted: #94a3b8;
-  --color-white: #ffffff;
-  --color-border: #e2e8f0;
+  /* Ink — the brand navy from the logo, deepened toward black */
+  --color-ink: #0b1d33;
+  --color-ink-deep: #071322;
+  --color-ink-light: #16304e;
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Light surfaces — warm paper, never pure grey */
+  --color-paper: #faf9f6;
+  --color-stone: #f0eee7;
+
+  /* Gold — antique, from the founder's black-and-gold map portrait */
+  --color-gold: #b4924c;
+  --color-gold-light: #d9be85;
+  --color-gold-dark: #8a6b33;
+
+  /* Text */
+  --color-text: #212b36;
+  --color-text-light: #4e5a67;
+  --color-text-muted: #8a94a0;
+
+  /* Hairlines on light surfaces */
+  --color-line: #e3e0d6;
+
+  --font-sans: var(--font-schibsted);
+  --font-display: var(--font-newsreader);
+  --font-mono: var(--font-plex-mono);
 }
 
-* {
+html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-white);
+  background: var(--color-paper);
   color: var(--color-text);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-gold-light);
+  color: var(--color-ink);
 }
 
 /* Custom scrollbar */
@@ -37,99 +53,100 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-surface);
+  background: var(--color-stone);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
+  background: var(--color-text-muted);
   border-radius: 4px;
 }
 
-/* Animations */
-@keyframes fade-in-up {
-  from {
+/* Eyebrow — small mono label that opens a section */
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.eyebrow-light {
+  color: var(--color-gold-light);
+}
+
+/* Dual rule — the signature mark: two parallel lines, ink and gold,
+   for the practice's two economies read side by side (TR ↔ TRNC). */
+.dual-rule {
+  position: relative;
+  width: 56px;
+  height: 6px;
+}
+.dual-rule::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-ink);
+}
+.dual-rule::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 60%;
+  height: 1px;
+  background: var(--color-gold);
+}
+.dual-rule-light::before {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Animations — a single orchestrated page-load sequence, nothing ambient */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in-up {
     opacity: 0;
-    transform: translateY(30px);
+    animation: fade-in-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
   }
-}
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
+  .delay-100 {
+    animation-delay: 100ms;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  .delay-200 {
+    animation-delay: 200ms;
   }
-}
-
-@keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.7s ease-out forwards;
-}
-
-.animate-fade-in {
-  animation: fade-in 0.5s ease-out forwards;
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.6s ease-out forwards;
-}
-
-/* Stagger delays */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
-
-/* Glass effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-gold-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Hero heading */
-.hero-heading {
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5), 0 1px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Hero overlay */
-.hero-overlay {
-  background: linear-gradient(
-    160deg,
-    rgba(7, 21, 38, 0.55) 0%,
-    rgba(12, 35, 64, 0.35) 40%,
-    rgba(12, 35, 64, 0.25) 100%
-  );
-}
-
-/* Section divider */
-.section-divider {
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-gold));
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+  .delay-500 {
+    animation-delay: 500ms;
+  }
 }

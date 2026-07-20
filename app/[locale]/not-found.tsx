@@ -31,20 +31,19 @@ export default function NotFound() {
   const messages = MESSAGES[locale];
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center bg-surface">
-      <div className="text-center px-4">
-        <h1 className="text-7xl font-bold text-primary/20">404</h1>
-        <h2 className="text-2xl font-bold text-primary mt-4">
+    <div className="min-h-[70vh] flex items-center justify-center bg-paper pt-20">
+      <div className="text-center px-6">
+        <p className="font-display italic text-8xl text-gold/50">404</p>
+        <h1 className="font-display text-3xl text-ink mt-6">
           {messages.title}
-        </h2>
-        <p className="text-text-light mt-2 max-w-md mx-auto">
-          {messages.text}
-        </p>
+        </h1>
+        <div className="dual-rule mx-auto mt-6" aria-hidden="true" />
+        <p className="text-text-light mt-6 max-w-md mx-auto">{messages.text}</p>
         <Link
           href={`/${locale}`}
-          className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-xl font-semibold transition-all mt-6"
+          className="inline-flex items-center gap-2 bg-ink hover:bg-gold text-paper hover:text-ink px-7 py-3.5 text-sm font-medium tracking-wide transition-colors mt-9"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-4 h-4" strokeWidth={1.5} />
           {messages.backHome}
         </Link>
       </div>
